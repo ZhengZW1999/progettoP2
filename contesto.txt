@@ -1,0 +1,30 @@
+ci sono tanti modelli di vestiti che si distinguono per colori, apparenza, tessuto ecc..
+
+prendendo esempio di un pantalone, ci sono i pantaloni lunghi e corti, con tasche o senza;
+e questi sono divisi in "MODELLI"
+
+per ogni modello si possono scegliere tra diversi TESSUTI
+per esempio jeans, cotone, lana, lino...
+
+diversi modelli hanno diversi costi per produzione influenzati da: tipo di tessuto usato, tipo di filo usato,
+trasporto, manodopera, tipo di lavaggio
+
+gli step (per semplicita) per produzione di un vestito sono: taglio del tessuto->cucitura->lavaggio->vendita + trasporto in mezzo ai vari step
+ogni step ha un suo costo e aggiungendo il costo del tessuto usato, si ottiene il COSTO FINALE di produzione per singolo vestito
+
+non entrando nei dettagli mettiamo taglio del tessuto cucitura come COSTO BASE,
+costo trasporto come COSTO TRASPORTO (dato statico),
+costo tessuto come COSTO TESSUTO METRO QUADRO,
+tessuto usato come TESSUTO USATO
+
+per fase di vendita si ha COSTO VENDITA
+
+ogni campione ha QUANTITA VENDUTA in un singolo mese
+
+
+per i grafici possiamo assegnare:
+	-grafico a torta= composizione del costo finale di ogni campione
+	-grafico a barre sovrapposte= guadagno effettivo (costo vendita - costo finale) di ogni campione
+	-grafico a barre= utilizzo di tessuto per campione
+	-grafico a linee= vendita mensile di ogni campione
+	-?
