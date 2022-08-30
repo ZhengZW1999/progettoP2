@@ -12,8 +12,8 @@ trasporto, manodopera, tipo di lavaggio
 gli step (per semplicita) per produzione di un vestito sono: taglio del tessuto->cucitura->lavaggio->vendita + trasporto in mezzo ai vari step
 ogni step ha un suo costo e aggiungendo il costo del tessuto usato, si ottiene il COSTO FINALE di produzione per singolo vestito
 
-non entrando nei dettagli mettiamo taglio del tessuto cucitura come COSTO BASE,
-costo trasporto come COSTO TRASPORTO (dato statico),
+non entrando nei dettagli mettiamo taglio del tessuto e cucitura come COSTO BASE,
+costo lavaggio come COSTO LAVAGGIO
 costo tessuto come COSTO TESSUTO METRO QUADRO,
 tessuto usato come TESSUTO USATO
 
@@ -23,8 +23,8 @@ ogni campione ha QUANTITA VENDUTA in un singolo mese
 
 
 per i grafici possiamo assegnare:
-	-grafico a torta= composizione del costo finale di ogni campione
-	-grafico a barre sovrapposte= guadagno effettivo (costo vendita - costo finale) di ogni campione
-	-grafico a barre= utilizzo di tessuto per campione
-	-grafico a linee= vendita mensile di ogni campione
+	-grafico a torta= composizione del costo di vendita di ogni modello
+	-grafico a barre sovrapposte= rapporto costo vendita / costo finale di tutti i modelli 
+	-grafico a barre= numero di volte del tessuto utilizzato
+	-grafico a linee= vendita mensile di ogni modello
 	-?
