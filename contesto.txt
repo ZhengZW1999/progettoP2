@@ -27,4 +27,4 @@ per i grafici possiamo assegnare:
 	-grafico a barre sovrapposte= rapporto costo vendita / costo finale di tutti i modelli 
 	-grafico a barre= numero di volte del tessuto utilizzato
 	-grafico a linee= vendita mensile di ogni modello
-	-?
+	-graafico a barre positivo/negativo= rapport produzione vendita per mese di tutto

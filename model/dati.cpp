@@ -19,7 +19,9 @@ double dati::getCostoFinale() const{return tessUsato*costoTessutoMq+costoBase+co
 
 double dati::getCostoVendita() const{return costoVendita;}
 
-unsigned int dati::getPezziVenduto() const{return pezziVenduti;}
+unsigned int dati::getPezziProdotti() const{return getPezziProdotti();}
+
+unsigned int dati::getPezziVenduti() const{return pezziVenduti;}
 
 const QDate &dati::getData() const{return data;}
 

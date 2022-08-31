@@ -14,6 +14,8 @@ private:
     double costoBase;
     double costoLavaggio;
     double costoVendita;
+
+    unsigned int pezziProdotti;
     unsigned int pezziVenduti;
     QDate data;
 
@@ -29,7 +31,8 @@ public:
     double getCostoLavaggio() const;
     double getCostoFinale() const;
     double getCostoVendita() const;
-    unsigned int getPezziVenduto() const;
+    unsigned int getPezziProdotti() const;
+    unsigned int getPezziVenduti() const;
     const QDate& getData() const;
     //setter
     void setNomeModello(const QString& n) {nomeModello=n;}
