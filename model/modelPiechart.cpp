@@ -2,14 +2,17 @@
 
 pieChart::pieChart(tabelle *t)
 {
-    std::list<double> composizione;
+    std::list<float> composizione;
         for(datiModelli* d : t->getListaDatiModelli()){
+            std::pair<QString, QString> modelloTessuto("","");
             composizione.clear();
             composizione.push_back(d->getCostoBase());
             composizione.push_back(d->getCostoLavaggio());
             composizione.push_back(d->getCostoTessutoMq()*d->getTessUsato());
-            compCostoModello.insert({d->getNomeModello(),composizione});
+            modelloTessuto.first=d->getNomeModello();
+            modelloTessuto.second=d->getTessuto();
+            compCostoModello.insert({modelloTessuto,composizione});
         }
 }
 
-std::map<QString, std::list<double> > pieChart::getCompCostoModello() const{return compCostoModello;}
+std::map<std::pair<QString,QString>, std::list<float> > pieChart::getCompCostoModello() const{return compCostoModello;}

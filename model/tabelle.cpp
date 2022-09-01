@@ -4,12 +4,21 @@ tabelle::tabelle()
 {
     listaTessuti = new QStringList();
     listaModelli = new QStringList();
-    filepath = new QString();
+    percorsoFile = new QString();
+}
+
+tabelle::tabelle(QString *path, QJsonDocument *file)
+{
+    listaModelli = JSONFilePicker::getMaterialList(file);
+    listaTessuti = JSONFilePicker::getMaterialList(file);
+    listaDatiModelli = JSONFilePicker::getRecords(file);
+    listaDatiVendite = JSONFilePicker::getRecords(file);
+    percorsoFile = path;
 }
 
 tabelle::~tabelle()
 {
-    delete filepath;
+    delete percorsoFile;
     delete listaModelli;
     delete listaTessuti;
     for(auto dm : listaDatiModelli) delete dm;
@@ -42,4 +51,41 @@ void tabelle::rimuoviModello(unsigned int riga){listaModelli->removeAt(riga);}
 
 void tabelle::aggiungiTessuto(const QString &t){listaTessuti->push_back(t);}
 void tabelle::rimuoviTessuto(unsigned int riga){listaTessuti->removeAt(riga);}
+
+const QJsonDocument &tabelle::saveToQJSonDocument() const
+{
+    QJsonDocument* modelJson = new QJsonDocument();
+    QJsonObject main;
+
+    QJsonArray arrayModelli;
+    for(datiModelli* r : listaDatiModelli){
+        QJsonObject oggetto;
+        oggetto.insert(QString::fromStdString("Nome Modello"),r->getNomeModello());
+        oggetto.insert(QString::fromStdString("Tessuto"),r->getTessuto()));
+        oggetto.insert(QString::fromStdString("Tessuto Usato"),QJsonValue((float)r->getTessUsato()));
+        oggetto.insert(QString::fromStdString("Costo Tessuto Per Metro Quadro"),QJsonValue((float)r->getCostoTessutoMq()));
+        oggetto.insert(QString::fromStdString("Costo Base"),QJsonValue((float)r->getCostoBase()));
+        oggetto.insert(QString::fromStdString("Costo Lavaggio"),QJsonValue((float)r->getCostoLavaggio()));
+        oggetto.insert(QString::fromStdString("Prezo Vendita"),QJsonValue((float)r->getCostoVendita()));
+        oggetto.insert(QString::fromStdString("Produzione Giornaliera"),QJsonValue((int)r->getProduzioneGiornaliera()));
+        arrayModelli.push_back(oggetto);
+    }
+    QJsonArray arrayVendite;
+    for(datiVendite* d : listaDatiVendite){
+        QJsonObject oggetto;
+        oggetto.insert(QString::fromStdString("Pezzi Prodotti"),d->getPezziProdotti());
+        oggetto.insert(QString::fromStdString("Pezzi Venduti"),d->getPezziVenduti());
+        oggetto.insert(QString::fromStdString("Mese"),d->getData().toString("MMMM/yyyy"));
+        arrayVendite.push_back(oggetto);
+    }
+    main.insert(QString::fromStdString("Modelli"),QJsonArray::fromStringList(*listaModelli));
+    main.insert(QString::fromStdString("Tessuti"),QJsonArray::fromStringList(*listaTessuti));
+    main.insert(QString::fromStdString("Dati dei modelli"),arrayModelli);
+    main.insert(QString::fromStdString("Dati delle vendite"),arrayVendite);
+    modelJson->setObject(main);
+
+    return *modelJson;
+}
+
+const QString &tabelle::getPercorsoFile() const{return *percorsoFile;}
 

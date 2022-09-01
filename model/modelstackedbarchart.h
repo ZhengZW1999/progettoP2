@@ -8,11 +8,11 @@
 class modelStackedBarChart: public model
 {
 private:
-    std::map<QString, std::pair<double, double>> rappSpesaGuadagno;
+    std::map<QString, std::pair<float, float>> rappSpesaGuadagno;
 public:
     explicit modelStackedBarChart(tabelle* t);
 
-    std::map<QString, std::pair<double, double>> getRappSpesaGuadagno()const;
+    std::map<QString, std::pair<float, float>> getRappSpesaGuadagno()const;
 };
 
 #endif // MODELSTACKEDBARCHART_H

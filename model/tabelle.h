@@ -12,7 +12,7 @@
 class tabelle: public model
 {
 private:
-    QString* filepath;
+    QString* percorsoFile;
     QStringList* listaTessuti;
     QStringList* listaModelli;
     std::list<datiModelli*> listaDatiModelli;
@@ -39,5 +39,11 @@ public:
 
     void aggiungiTessuto(const QString& t);
     void rimuoviTessuto(unsigned int riga);
+
+    const QJsonDocument& saveToQJSonDocument() const;
+
+    void setPercosoFile(const QString& nomeF){*percorsoFile=nomeF;};
+    const QString& getPercorsoFile() const;
+
 };
 #endif // TABELLE_H
