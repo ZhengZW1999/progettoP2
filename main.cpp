@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "homeview.h"
+#include "view/homeview.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

@@ -2,7 +2,8 @@
 #define TABELLE_H
 
 #include "model/model.h"
-#include "model/dati.h"
+#include "model/datiModelli.h"
+#include "model/dativendite.h"
 
 #include <QString>
 #include <list>
@@ -14,7 +15,8 @@ private:
     QString* filepath;
     QStringList* listaTessuti;
     QStringList* listaModelli;
-    std::list<dati*> listaDati;
+    std::list<datiModelli*> listaDatiModelli;
+    std::list<datiVendite*> listaDatiVendite;
 public:
     explicit tabelle();
     explicit tabelle(QString* path, QJsonDocument* file);
@@ -23,10 +25,14 @@ public:
 
     QStringList* getListaTessuti() const;
     QStringList* getListaModelli() const;
-    std::list<dati*> getListaDati() const;
+    std::list<datiModelli*> getListaDatiModelli() const;
+    std::list<datiVendite*> getListaDatiVendite() const;
 
-    void aggiungiRiga(dati* d);
-    void rimuoviRiga(unsigned int riga);
+    void aggiungiRigaModelli(datiModelli* dm);
+    void rimuoviRigaModelli(unsigned int riga);
+
+    void aggiungiRigaVendite(datiVendite* dv);
+    void rimuoviRigaVendite(unsigned int riga);
 
     void aggiungiModello(const QString& m);
     void rimuoviModello(unsigned int riga);

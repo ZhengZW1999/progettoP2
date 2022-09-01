@@ -12,19 +12,29 @@ tabelle::~tabelle()
     delete filepath;
     delete listaModelli;
     delete listaTessuti;
-    for(auto d : listaDati) delete d;
+    for(auto dm : listaDatiModelli) delete dm;
+    for(auto dv : listaDatiVendite) delete dv;
 }
 
 QStringList *tabelle::getListaTessuti() const{return listaTessuti;}
 QStringList *tabelle::getListaModelli() const{return listaModelli;}
-std::list<dati *> tabelle::getListaDati() const{return listaDati;}
+std::list<datiModelli *> tabelle::getListaDatiModelli() const{return listaDatiModelli;}
+std::list<datiVendite *> tabelle::getListaDatiVendite() const{return listaDatiVendite;}
 
-void tabelle::aggiungiRiga(dati *d){listaDati.push_back(d);}
-void tabelle::rimuoviRiga(unsigned int riga)
+void tabelle::aggiungiRigaModelli(datiModelli *dm){listaDatiModelli.push_back(dm);}
+void tabelle::rimuoviRigaModelli(unsigned int riga)
 {
-    std::list<dati *>::iterator it= listaDati.begin();
+    std::list<datiModelli *>::iterator it= listaDatiModelli.begin();
     std::advance(it,riga);
-    listaDati.erase(it);
+    listaDatiModelli.erase(it);
+}
+
+void tabelle::aggiungiRigaVendite(datiVendite *dv){listaDatiVendite.push_back(dv);}
+void tabelle::rimuoviRigaVendite(unsigned int riga)
+{
+    std::list<datiVendite *>::iterator it= listaDatiVendite.begin();
+    std::advance(it,riga);
+    listaDatiVendite.erase(it);
 }
 
 void tabelle::aggiungiModello(const QString &m){listaModelli->push_back(m);}

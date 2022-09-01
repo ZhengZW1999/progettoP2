@@ -1,10 +1,10 @@
-#ifndef DATI_H
-#define DATI_H
+#ifndef DATIMODELLI_H
+#define DATIMODELLI_H
 
 #include <QString>
 #include <QDate>
 
-class dati
+class datiModelli
 {
 private:
     QString nomeModello;
@@ -14,13 +14,9 @@ private:
     double costoBase;
     double costoLavaggio;
     double costoVendita;
-
-    unsigned int pezziProdotti;
-    unsigned int pezziVenduti;
-    QDate data;
-
+    unsigned int produzioneGiornaliera;
 public:
-    explicit dati(QString n,QString t, double tu, double ctm, double cb, double cl);
+    explicit datiModelli(QString n,QString t, double tu, double ctm, double cb, double cl,double cv, unsigned int pg);
 
     //getter
     const QString& getNomeModello() const;
@@ -31,9 +27,8 @@ public:
     double getCostoLavaggio() const;
     double getCostoFinale() const;
     double getCostoVendita() const;
-    unsigned int getPezziProdotti() const;
-    unsigned int getPezziVenduti() const;
-    const QDate& getData() const;
+    unsigned int getProduzioneGiornaliera() const;
+
     //setter
     void setNomeModello(const QString& n) {nomeModello=n;}
     void setTessuto(const QString& t) {tessuto=t;}
@@ -41,8 +36,8 @@ public:
     void setCostoTessutoMq(const double ctm) {costoTessutoMq=ctm;}
     void setCostoLavaggio(const double cn) {costoLavaggio=cn;}
     void setCostoVendita(const double cv){costoVendita=cv;}
-    void setPezziVenduti(const unsigned int pv){pezziVenduti=pv;}
-    void setData(const QDate& d){data=d;}
+    void setProduzioneGiornaliera(const unsigned int po){produzioneGiornaliera=pg;}
+
 };
 
-#endif // DATI_H
+#endif // DATIMODELLI_H

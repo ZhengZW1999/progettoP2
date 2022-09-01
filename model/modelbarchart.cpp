@@ -4,7 +4,7 @@ modelBarChart::modelBarChart(tabelle *t)
 {
     for(const QString& tessuto : *t->getListaTessuti()){
         unsigned int n = 0;
-        for(dati* d : t->getListaDati()){
+        for(datiModelli* d : t->getListaDatiModelli()){
             if(d->getTessuto() == tessuto)
                 n++;
         }
