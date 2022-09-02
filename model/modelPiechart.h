@@ -9,11 +9,11 @@
 class pieChart: public model
 {
 private:
-    std::map<QString,std::list<double>> compCostoModello;
+    std::map<std::pair<QString,QString>,std::list<float>> compCostoModello;
 public:
     explicit pieChart(tabelle *t);
 
-    std::map<QString,std::list<double>> getCompCostoModello() const;
+    std::map<std::pair<QString,QString>,std::list<float>> getCompCostoModello() const;
 };
 
 #endif // MODELPIECHART_H

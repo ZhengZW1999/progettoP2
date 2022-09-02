@@ -3,11 +3,16 @@
 
 #include "model/model.h"
 #include "model/tabelle.h"
+#include <map>
 
-class modelStackedBarChart
+class modelStackedBarChart: public model
 {
+private:
+    std::map<QString, std::pair<float, float>> rappSpesaGuadagno;
 public:
-    modelStackedBarChart();
+    explicit modelStackedBarChart(tabelle* t);
+
+    std::map<QString, std::pair<float, float>> getRappSpesaGuadagno()const;
 };
 
 #endif // MODELSTACKEDBARCHART_H

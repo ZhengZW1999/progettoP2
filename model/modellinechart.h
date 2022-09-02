@@ -4,24 +4,18 @@
 #include "model/model.h"
 #include "model/tabelle.h"
 
-#include <list>
 #include <map>
 #include <QLocale>
 
 class modelLineChart: public model
 {
 private:
-    std::map<QString,std::map<QString,unsigned int>> meseModelloVendite;
+    std::map<QString,std::map<QString,unsigned int>> prodModelliPerTess;
 
-    QStringList mesiOrdinati;
-
-    void insertMesi(const QDate& d, QStringList* mesiOrdinati) const;
 public:
     explicit modelLineChart(tabelle* t);
 
-    std::map<QString,std::map<QString,unsigned int>> getMeseModelloVendite()const;
-
-    const QStringList& getMesiOrdinati() const;
+    std::map<QString,std::map<QString,unsigned int>> getProdModelliPerTess()const;
 };
 
 #endif // MODELLINECHART_H

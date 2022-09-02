@@ -26,5 +26,5 @@ per i grafici possiamo assegnare:
 	-grafico a torta= composizione del costo di vendita di ogni modello
 	-grafico a barre sovrapposte= rapporto costo vendita / costo finale di tutti i modelli 
 	-grafico a barre= numero di volte del tessuto utilizzato
-	-grafico a linee= vendita mensile di ogni modello
+	-grafico a linee= produzione giornaliera di ogni modello per diversi tessuti
 	-graafico a barre positivo/negativo= rapport produzione vendita per mese di tutto
