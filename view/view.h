@@ -67,7 +67,7 @@ public:
      * @param listaModelli lista di modelli tra cui scegliere per la cella di selezione modelli
      * @param listaTessuti lista di modelli tra cui scegliere per la cella di selezione tessuti
      */
-    void addItemDataTable(unsigned int row,const dati& d,const QStringList& listaModelli, const QStringList& listaTessuti );
+    void addItemDataTable(unsigned int row,const datiModelli& d, const datiVendite& dv, const QStringList& listaModelli, const QStringList& listaTessuti );
 
     /**
      * @brief addRowModelliTable Metodo che si occupa di creare la riga di inserimento dei materiali, in questa

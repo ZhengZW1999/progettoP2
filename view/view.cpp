@@ -150,7 +150,7 @@ void view::addRowDataTable(unsigned int row, const QStringList& listaModelli, co
 }
 
 //CREA UNA NUOVA RIGA CON I DATI E CON IL PULSANTE PER ELIMINARE RIGA NELLA TABELLA DATI (dataTable)
-void view::addItemDataTable(unsigned int row,const dati& d,const QStringList& listaModelli, const QStringList& listaTessuti){
+void view::addItemDataTable(unsigned int row,const datiModelli& d, const datiVendite& dv, const QStringList& listaModelli, const QStringList& listaTessuti){
     //Creo La ADD Row più in basso
     addRowDataTable(row+1,listaModelli, listaTessuti);
 
@@ -293,7 +293,7 @@ void view::addItemDataTable(unsigned int row,const dati& d,const QStringList& li
     QSpinBox* pezziProdottiW = new QSpinBox(this);
     pezziProdottiW->setRange(0,100000);
     pezziProdottiW->setSuffix(" pezzi");
-    pezziProdottiW->setValue(d.getPezziProdotti());
+    pezziProdottiW->setValue(dv.getPezziProdotti());
     dataTable->setCellWidget(row,7,pezziProdottiW);
 
     connect(pezziProdottiW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,pezziProdottiW](int value) {
@@ -306,7 +306,7 @@ void view::addItemDataTable(unsigned int row,const dati& d,const QStringList& li
     QSpinBox* pezziVendutiW = new QSpinBox(this);
     pezziVendutiW->setRange(0,100000);
     pezziVendutiW->setSuffix(" pezzi");
-    pezziVendutiW->setValue(d.getPezziVenduti());
+    pezziVendutiW->setValue(dv.getPezziVenduti());
     dataTable->setCellWidget(row,8,pezziVendutiW);
 
     connect(pezziVendutiW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,pezziVendutiW](int value) {
@@ -316,7 +316,7 @@ void view::addItemDataTable(unsigned int row,const dati& d,const QStringList& li
     });
 
     //data Widget
-    QDateEdit* dataW = new QDateEdit(d.getData(),this);
+    QDateEdit* dataW = new QDateEdit(dv.getData(),this);
     dataTable->setCellWidget(row,9,dataW);
 
     connect(dataW, &QDateEdit::dateChanged,this,[this,dataW](const QDate& data) {
