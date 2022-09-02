@@ -1,12 +1,12 @@
 #include "mainwindow.h"
-#include "homeview.h"
+#include "view/view.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    HomeView h;
+    view h;
     h.show();
     return a.exec();
 }
