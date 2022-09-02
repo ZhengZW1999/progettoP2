@@ -1,6 +1,6 @@
 #include "homeview.h"
 
-HomeView::HomeView(const QSize& s,view* parent): view(s,parent)
+HomeView::HomeView(const QSize& s,View* parent): View(s,parent)
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
     mainLayout->setSpacing(10);

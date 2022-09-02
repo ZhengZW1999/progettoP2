@@ -1,12 +1,15 @@
 //#include "mainwindow.h"
-#include "view/view.h"
+#include "view/tablepage.h"
+
+#include <QSize>
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //MainWindow w;
-    view h;
-    h.show();
+    //tablePage h;
+
     return a.exec();
+
 }

@@ -9,7 +9,7 @@
 
 #include "view.h"
 
-class HomeView: public view
+class HomeView: public View
 {
     Q_OBJECT
 private:
@@ -18,7 +18,7 @@ private:
     QPushButton* carica;
 
 public:
-    explicit HomeView(const QSize& s = QSize(),view* parent = nullptr);
+    explicit HomeView(const QSize& s = QSize(),View* parent = nullptr);
 
 };
 
