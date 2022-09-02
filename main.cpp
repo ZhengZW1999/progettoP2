@@ -1,6 +1,5 @@
 //#include "mainwindow.h"
 #include "view/tablepage.h"
-#include "tablecontroller.h"
 
 #include <QSize>
 #include <QApplication>
