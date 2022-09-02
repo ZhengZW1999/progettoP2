@@ -23,7 +23,8 @@ private:
      * i SIGNAL dei singoli elementi grafici (QPushButton, etc..) ai propri segnali della View.
      * I segnali della view saranno gli unici a comunicare con il Controller.
      */
-    virtual void connectViewSignals() const = 0;
+
+    //virtual void connectViewSignals() const = 0;
 
 protected:
     /**
@@ -34,7 +35,8 @@ protected:
      * Viene poi emesso un segnale per avvisare il Controller della chiusura
      * @param event
      */
-    void closeEvent(QCloseEvent *event) override;
+
+    //void closeEvent(QCloseEvent *event) override;
 
 public:
     /**
