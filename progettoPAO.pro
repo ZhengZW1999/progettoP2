@@ -1,4 +1,6 @@
 QT       += core gui
+QT       += charts
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,6 +11,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    control/gestionefilejson.cpp \
     model/datiModelli.cpp \
     model/dativendite.cpp \
     model/modelPiechart.cpp \
@@ -21,10 +24,12 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model/model.cpp \
+    view/piechart.cpp \
     view/tablepage.cpp \
     view/view.cpp
 
 HEADERS += \
+    control/gestionefilejson.h \
     model/datiModelli.h \
     model/dativendite.h \
     model/modelPiechart.h \
@@ -36,6 +41,7 @@ HEADERS += \
     view/homeview.h \
     mainwindow.h \
     model/model.h \
+    view/piechart.h \
     view/tablepage.h \
     view/view.h
 
