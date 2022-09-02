@@ -59,8 +59,8 @@ view::view(const QSize& s, view* parent): QWidget(parent,Qt::Window)
     modelliTable->setHorizontalHeaderLabels(modelliHeaders);
     tessutiTable->setHorizontalHeaderLabels(tessutiHeaders);
 
-    dataTable->setRowCount(0);
-    dataTable->setColumnCount(10);
+    //dataTable->setRowCount(10);
+    //dataTable->setColumnCount(0);
 
     //PULSANTI PER CREARE GRAFICI
     pieChartBtn = new QPushButton("Composizione costo vendita per modello");

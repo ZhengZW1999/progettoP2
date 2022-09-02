@@ -6,7 +6,7 @@ tabelle::tabelle()
     listaModelli = new QStringList();
     percorsoFile = new QString();
 }
-
+/*
 tabelle::tabelle(QString *path, QJsonDocument *file)
 {
     listaModelli = JSONFilePicker::getMaterialList(file);
@@ -15,7 +15,7 @@ tabelle::tabelle(QString *path, QJsonDocument *file)
     listaDatiVendite = JSONFilePicker::getRecords(file);
     percorsoFile = path;
 }
-
+*/
 tabelle::~tabelle()
 {
     delete percorsoFile;
@@ -51,7 +51,7 @@ void tabelle::rimuoviModello(unsigned int riga){listaModelli->removeAt(riga);}
 
 void tabelle::aggiungiTessuto(const QString &t){listaTessuti->push_back(t);}
 void tabelle::rimuoviTessuto(unsigned int riga){listaTessuti->removeAt(riga);}
-
+/*
 const QJsonDocument &tabelle::saveToQJSonDocument() const
 {
     QJsonDocument* modelJson = new QJsonDocument();
@@ -86,6 +86,6 @@ const QJsonDocument &tabelle::saveToQJSonDocument() const
 
     return *modelJson;
 }
-
+*/
 const QString &tabelle::getPercorsoFile() const{return *percorsoFile;}
 
