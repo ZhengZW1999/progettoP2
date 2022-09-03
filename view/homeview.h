@@ -1,24 +1,36 @@
-#ifndef HOMEVIEW_H
-#define HOMEVIEW_H
+#ifndef VENDITEVIEW_H
+#define VENDITEVIEW_H
 
-#include <QWidget>
+#include "view/view.h"
+
+#include <QTableWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QSpinBox>
+#include <QDateEdit>
 #include <QPushButton>
-#include <QLabel>
 
-#include "view.h"
-
-class HomeView: public View
+class venditeView: public View
 {
     Q_OBJECT
 private:
-    QPushButton* nuovo;
-    QPushButton* carica;
+    QVBoxLayout* venditeLayout;
+    QHBoxLayout* venditeBtnLayout;
+    QTableWidget* venditeTable;
+    QPushButton* venditeChartBtn;
 
 public:
-    explicit HomeView(const QSize& s = QSize(),View* parent = nullptr);
+    explicit venditeView(const QSize& s = QSize(), View* parent = nullptr);
 
+    void createVenditeTable(const QStringList& headers) const;
+
+   // void addRowVenditeTable(unsigned int row);
+
+    //void addItemVenditeTable(unsigned int row, unsigned int vendite);
+
+    //void modifyItemVenditeTable(unsigned int row, unsigned int vendite);
+
+    //void removeItemVenditeTable(unsigned int row);
 };
 
-#endif // HOMEVIEW_H
+#endif // VENDITEVIEW_H

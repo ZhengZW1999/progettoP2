@@ -1,6 +1,6 @@
 //#include "mainwindow.h"
 #include "view/tablepage.h"
-#include "view/guideview.h"
+//#include "view/guideview.h"
 #include "view/homeview.h"
 
 #include <QSize>
@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //MainWindow w;
-    guideView w;
+    venditeView w;
     //HomeView w;
     w.show();
 

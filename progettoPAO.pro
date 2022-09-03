@@ -27,7 +27,6 @@ SOURCES += \
     model/model.cpp \
     view/piechart.cpp \
     view/tablepage.cpp \
-    view/venditeview.cpp \
     view/view.cpp
 
 HEADERS += \
@@ -46,7 +45,6 @@ HEADERS += \
     model/model.h \
     view/piechart.h \
     view/tablepage.h \
-    view/venditeview.h \
     view/view.h
 
 FORMS +=

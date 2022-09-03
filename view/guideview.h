@@ -9,7 +9,7 @@
 
 #include "view.h"
 
-class guideView: public View
+class GuideView: public View
 {
     Q_OBJECT
 private:
@@ -17,7 +17,7 @@ private:
     QPushButton* carica;
 
 public:
-    explicit guideView(const QSize& s = QSize(),View* parent = nullptr);
+    explicit GuideView(const QSize& s = QSize(),View* parent = nullptr);
 
 };
 
