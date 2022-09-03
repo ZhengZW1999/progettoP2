@@ -1,5 +1,5 @@
 #include "tablepage.h"
-/**
+
 tablePage::tablePage(const QSize& s, View* parent): View(s,parent)
 {
     mainLayout = new QVBoxLayout;
@@ -87,7 +87,7 @@ void tablePage::createDataTable(const QStringList& headers) const{
     dataTable->setMinimumHeight(400);
     dataTable->setRowCount(0);
     dataTable->setColumnCount(8);
-    dataTable->setColumnWidth(3,150);
+    dataTable->setColumnWidth(3,175);
     dataTable->setHorizontalHeaderLabels(headers);
     dataTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     dataTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
@@ -490,6 +490,6 @@ void tablePage::modifyItemTessutiTable(unsigned int row, const QString &m){
     textEdit->setText(m);
     emit tessutiTableTessutoModChecked(row,m);
 }
-*/
+
 
 

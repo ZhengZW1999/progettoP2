@@ -3,6 +3,8 @@
 
 #include "view/view.h"
 
+#include <QMenuBar>
+#include <QMenu>
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -18,6 +20,8 @@ private:
     QHBoxLayout* venditeBtnLayout;
     QTableWidget* venditeTable;
     QPushButton* venditeChartBtn;
+    QPushButton* pageViewBtn;
+
 
 public:
     explicit venditeView(const QSize& s = QSize(), View* parent = nullptr);
