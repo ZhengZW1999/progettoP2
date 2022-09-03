@@ -1,22 +1,31 @@
 #include "homeview.h"
 
-HomeView::HomeView(const QSize& s,View* parent): View(s,parent)
+venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
 {
-    QHBoxLayout* mainLayout = new QHBoxLayout;
-    mainLayout->setSpacing(10);
-    mainLayout->setMargin(0);
-    mainLayout->setContentsMargins(150,50,150,50);
-    mainLayout->setAlignment(Qt::AlignCenter);
+    //Creazione Layout
+    venditeLayout = new QVBoxLayout;
+    venditeBtnLayout = new QHBoxLayout;
 
-    nuovo = new QPushButton("Nuovo",this);
-    carica = new QPushButton("Apri esistente",this);
-    nuovo->setFixedSize(150,70);
-    carica->setFixedSize(150,70);
+    //Creazione Tabella
+    venditeTable = new QTableWidget;
+    QStringList venditeHeaders = {"Pezzi prodotti", "Pezzi venduti", "Data", ""};
+    createVenditeTable(venditeHeaders);
 
-    mainLayout->addWidget(nuovo);
-    mainLayout->addWidget(carica);
+    //Creazione pulsanti
+    venditeChartBtn = new QPushButton;
 
-    resize(QSize(800, 600));
+    venditeBtnLayout->addWidget(venditeChartBtn, Qt::AlignCenter);
+    venditeLayout->addWidget(venditeTable);
+    venditeLayout->addLayout(venditeBtnLayout);
 
-    setLayout(mainLayout);
+    setLayout(venditeLayout);
+}
+
+
+void venditeView::createVenditeTable(const QStringList& headers) const{
+    venditeTable->setRowCount(0);
+    venditeTable->setColumnCount(4);
+    venditeTable->setHorizontalHeaderLabels(headers);
+    venditeTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    venditeTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
 }

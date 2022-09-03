@@ -1,6 +1,6 @@
 #include "guideview.h"
 
-guideView::guideView(const QSize& s,View* parent): View(s,parent)
+GuideView::GuideView(const QSize& s,View* parent): View(s,parent)
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
     mainLayout->setSpacing(10);

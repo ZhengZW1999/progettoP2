@@ -30,7 +30,6 @@ SOURCES += \
     view/linechart.cpp \
     view/piechart.cpp \
     view/tablepage.cpp \
-    view/venditeview.cpp \
     view/view.cpp
 
 HEADERS += \
@@ -52,7 +51,6 @@ HEADERS += \
     view/linechart.h \
     view/piechart.h \
     view/tablepage.h \
-    view/venditeview.h \
     view/view.h
 
 FORMS +=
