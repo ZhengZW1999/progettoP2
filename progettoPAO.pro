@@ -20,12 +20,14 @@ SOURCES += \
     model/modelposnegbarchart.cpp \
     model/modelstackedbarchart.cpp \
     model/tabelle.cpp \
+    view/guideview.cpp \
     view/homeview.cpp \
     main.cpp \
     mainwindow.cpp \
     model/model.cpp \
     view/piechart.cpp \
     view/tablepage.cpp \
+    view/venditeview.cpp \
     view/view.cpp
 
 HEADERS += \
@@ -38,11 +40,13 @@ HEADERS += \
     model/modelposnegbarchart.h \
     model/modelstackedbarchart.h \
     model/tabelle.h \
+    view/guideview.h \
     view/homeview.h \
     mainwindow.h \
     model/model.h \
     view/piechart.h \
     view/tablepage.h \
+    view/venditeview.h \
     view/view.h
 
 FORMS +=

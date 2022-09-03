@@ -33,21 +33,18 @@ tablePage::tablePage(const QSize& s, View* parent): View(s,parent)
     QHBoxLayout* materialiLayout = new QHBoxLayout;
     QVBoxLayout* buttonLayout = new QVBoxLayout;
 
-    QStringList dataHeaders = {"Modello","Tessuto","Tessuto usato", "Costo tessuto in mq", "Costo base", "Costo lavaggio", "Costo vendita", "Pezzi prodotti", "Pezzi venduti", "Data"};
-    QStringList modelliHeaders = {"Modello"};
-    QStringList tessutiHeaders = {"Tessuti"};
+    QStringList dataHeaders = {"Modello","Tessuto","Tessuto usato", "Costo tessuto in mq", "Costo base", "Costo lavaggio", "Costo vendita",""};
+    QStringList modelliHeaders = {"Modello", ""};
+    QStringList tessutiHeaders = {"Tessuti", ""};
 
+    //CREAZIONE TABELLE
     dataTable = new QTableWidget;
     modelliTable = new QTableWidget;
     tessutiTable = new QTableWidget;
 
-    //HEADER TABELLE
-    dataTable->setHorizontalHeaderLabels(dataHeaders);
-    modelliTable->setHorizontalHeaderLabels(modelliHeaders);
-    tessutiTable->setHorizontalHeaderLabels(tessutiHeaders);
-
-    //dataTable->setRowCount(10);
-    //dataTable->setColumnCount(0);
+    createDataTable(dataHeaders);
+    createModelliTable(modelliHeaders);
+    createTessutiTable(tessutiHeaders);
 
     //PULSANTI PER CREARE GRAFICI
     pieChartBtn = new QPushButton("Composizione costo vendita per modello");
@@ -68,6 +65,8 @@ tablePage::tablePage(const QSize& s, View* parent): View(s,parent)
     buttonLayout->addWidget(lineChartBtn);
     buttonLayout->addWidget(doubleBarChartBtn);
     buttonLayout->addWidget(PosNegBarChartBtn);
+    buttonLayout->setMargin(20);
+    buttonLayout->setSpacing(10);
 
      //materialiLayout->setMargin(0);
 
@@ -82,6 +81,34 @@ tablePage::tablePage(const QSize& s, View* parent): View(s,parent)
     //Connessione dei SIGNAL dei Widget al Signal della AdminView
     //connectViewSignals();
 }
+
+//CREAZIONE TABELLE
+void tablePage::createDataTable(const QStringList& headers) const{
+    dataTable->setMinimumHeight(400);
+    dataTable->setRowCount(0);
+    dataTable->setColumnCount(8);
+    dataTable->setColumnWidth(3,150);
+    dataTable->setHorizontalHeaderLabels(headers);
+    dataTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    dataTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
+}
+
+void tablePage::createModelliTable(const QStringList& headers) const{
+    modelliTable->setRowCount(0);
+    modelliTable->setColumnCount(2);
+    modelliTable->setHorizontalHeaderLabels(headers);
+    modelliTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    modelliTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
+}
+
+void tablePage::createTessutiTable(const QStringList& headers) const{
+    tessutiTable->setRowCount(0);
+    tessutiTable->setColumnCount(2);
+    tessutiTable->setHorizontalHeaderLabels(headers);
+    tessutiTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    tessutiTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
+}
+
 
 //INSERIMENTO MODELLI NELLA TABELLA DATI (dataTable)
 

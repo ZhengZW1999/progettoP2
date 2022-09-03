@@ -3,15 +3,12 @@
 
 #include "view/view.h"
 
-#include <QWidget>
 #include <QMenuBar>
 #include <QMenu>
 #include <QAction>
 #include <QTableWidget>
-#include <QGridLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QSize>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QComboBox>
@@ -40,6 +37,9 @@ private:
 public:
     explicit tablePage(const QSize& s = QSize(), View* parent = nullptr);
 
+    //TABELLA DATI
+     void createDataTable(const QStringList& headers) const;
+
     /**
      * @brief addRowDataTable Crea una riga specifica di add, alla riga row, in cui appone uno spazione nuovo su cui
      * si potrà inserire i dettagli di un nuovo record.
@@ -60,6 +60,9 @@ public:
      */
     void addItemDataTable(unsigned int row,const datiModelli& d, const datiVendite& dv, const QStringList& listaModelli, const QStringList& listaTessuti );
 
+
+    //MODELLI TABLE
+    void createModelliTable(const QStringList& headers) const;
     /**
      * @brief addRowModelliTable Metodo che si occupa di creare la riga di inserimento dei materiali, in questa
      * riga si potranno inserire i dettagli di un nuovo materiale
@@ -79,11 +82,16 @@ public:
      */
     void addItemModelliTable(unsigned int row, const QString& m);
 
+
+    //TABELLA TESSUTI
+    void createTessutiTable(const QStringList& headers) const;
+
     /**
      * @brief addRowTessutiTable Metodo che si occupa di creare la riga di inserimento dei materiali, in questa
      * riga si potranno inserire i dettagli di un nuovo materiale
      * @param row riga alla cui creare
      */
+
     void addRowTessutiTable(unsigned int row);
     /**
      * @brief addItemTessutiTable Metodo che aggiunge ad una QTableWidget,

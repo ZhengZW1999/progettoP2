@@ -1,5 +1,5 @@
-#ifndef HOMEVIEW_H
-#define HOMEVIEW_H
+#ifndef GUIDEVIEW_H
+#define GUIDEVIEW_H
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -9,7 +9,7 @@
 
 #include "view.h"
 
-class HomeView: public View
+class guideView: public View
 {
     Q_OBJECT
 private:
@@ -17,8 +17,8 @@ private:
     QPushButton* carica;
 
 public:
-    explicit HomeView(const QSize& s = QSize(),View* parent = nullptr);
+    explicit guideView(const QSize& s = QSize(),View* parent = nullptr);
 
 };
 
-#endif // HOMEVIEW_H
+#endif // GUIDEVIEW_H
