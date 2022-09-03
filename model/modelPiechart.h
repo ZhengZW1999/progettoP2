@@ -6,12 +6,12 @@
 #include <map>
 
 
-class pieChart: public model
+class modelPieChart: public model
 {
 private:
     std::map<std::pair<QString,QString>,std::list<float>> compCostoModello;
 public:
-    explicit pieChart(tabelle *t);
+    explicit modelPieChart(tabelle *t);
 
     std::map<std::pair<QString,QString>,std::list<float>> getCompCostoModello() const;
 };

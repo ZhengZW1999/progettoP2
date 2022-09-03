@@ -1,5 +1,5 @@
 #include "tablepage.h"
-
+/**
 tablePage::tablePage(const QSize& s, View* parent): View(s,parent)
 {
     mainLayout = new QVBoxLayout;
@@ -490,5 +490,6 @@ void tablePage::modifyItemTessutiTable(unsigned int row, const QString &m){
     textEdit->setText(m);
     emit tessutiTableTessutoModChecked(row,m);
 }
+*/
 
 

@@ -1,16 +1,19 @@
 #include "piechart.h"
 
-pieChart::pieChart(const QSize &s, view *parent)
+pieChart::pieChart(const QSize &s, View *parent,const QStringList *lista): View(s,parent), series(new QPieSeries()), chart(new QChart())
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
     chart->addSeries(series);
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
-    chart->setTheme(QChart::ChartThemeDark);
+    chart->setTheme(QChart::ChartThemeLight);
     chart->setAnimationOptions(QChart::AllAnimations);
     chart->setAnimationDuration(1500);
     QChartView *chartView = new QChartView(chart,this);
     chartView->setRenderHint(QPainter::Antialiasing);
+    listBox=createChartListBox(lista);
+    mainLayout->addWidget(new QLabel("Modelli: "));
+    mainLayout->addWidget(listBox);
     mainLayout->addWidget(chartView);
     setLayout(mainLayout);
     setMinimumSize(800,500);
@@ -31,4 +34,18 @@ void pieChart::viewSetting()
     }
     chart->setTitle("Costo finale per produzione");
     series->setLabelsPosition(QPieSlice::LabelInsideHorizontal);
+}
+/**
+void pieChart::connectViewSignals() const{
+    connect(listBox,static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this,SIGNAL(newBPressed()));
+}
+*/
+QComboBox *pieChart::createChartListBox(const QStringList* lista) const
+{
+    QComboBox *list = new QComboBox();
+    for(const QString& a : *lista){
+        list->addItem(a);
+    }
+    return list;
 }

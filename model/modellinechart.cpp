@@ -7,7 +7,7 @@ modelLineChart::modelLineChart(tabelle *t)
         std::map<QString, unsigned int> prodGiornaliera;
         for(datiModelli* d : t->getListaDatiModelli()){
             if(d->getTessuto() == tessuto)
-                prodGiornaliera.insert({d->getNomeModello(),d->getProduzioneGiornaliera()});
+                prodGiornaliera[d->getNomeModello()] += d->getProduzioneGiornaliera();
         }
         prodModelliPerTess.insert({tessuto,prodGiornaliera});
     }

@@ -11,7 +11,9 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    control/ctrl.cpp \
     control/gestionefilejson.cpp \
+    control/piechartctrl.cpp \
     model/datiModelli.cpp \
     model/dativendite.cpp \
     model/modelPiechart.cpp \
@@ -25,13 +27,16 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model/model.cpp \
+    view/linechart.cpp \
     view/piechart.cpp \
     view/tablepage.cpp \
     view/venditeview.cpp \
     view/view.cpp
 
 HEADERS += \
+    control/ctrl.h \
     control/gestionefilejson.h \
+    control/piechartctrl.h \
     model/datiModelli.h \
     model/dativendite.h \
     model/modelPiechart.h \
@@ -44,6 +49,7 @@ HEADERS += \
     view/homeview.h \
     mainwindow.h \
     model/model.h \
+    view/linechart.h \
     view/piechart.h \
     view/tablepage.h \
     view/venditeview.h \

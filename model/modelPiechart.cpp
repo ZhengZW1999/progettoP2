@@ -1,6 +1,6 @@
 #include "modelPiechart.h"
 
-pieChart::pieChart(tabelle *t)
+modelPieChart::modelPieChart(tabelle *t)
 {
     std::list<float> composizione;
         for(datiModelli* d : t->getListaDatiModelli()){
@@ -15,4 +15,4 @@ pieChart::pieChart(tabelle *t)
         }
 }
 
-std::map<std::pair<QString,QString>, std::list<float> > pieChart::getCompCostoModello() const{return compCostoModello;}
+std::map<std::pair<QString,QString>, std::list<float> > modelPieChart::getCompCostoModello() const{return compCostoModello;}
