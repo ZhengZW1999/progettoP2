@@ -22,6 +22,8 @@ SOURCES += \
     model/modelposnegbarchart.cpp \
     model/modelstackedbarchart.cpp \
     model/tabelle.cpp \
+    view/areachart.cpp \
+    view/barchart.cpp \
     view/guideview.cpp \
     view/homeview.cpp \
     main.cpp \
@@ -29,6 +31,7 @@ SOURCES += \
     model/model.cpp \
     view/linechart.cpp \
     view/piechart.cpp \
+    view/stackedbarchart.cpp \
     view/tablepage.cpp \
     view/view.cpp
 
@@ -44,12 +47,15 @@ HEADERS += \
     model/modelposnegbarchart.h \
     model/modelstackedbarchart.h \
     model/tabelle.h \
+    view/areachart.h \
+    view/barchart.h \
     view/guideview.h \
     view/homeview.h \
     mainwindow.h \
     model/model.h \
     view/linechart.h \
     view/piechart.h \
+    view/stackedbarchart.h \
     view/tablepage.h \
     view/view.h
 
