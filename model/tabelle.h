@@ -40,6 +40,9 @@ public:
     void aggiungiTessuto(const QString& t);
     void rimuoviTessuto(unsigned int riga);
 
+    datiModelli* getDatiModelli(unsigned int riga);
+    datiVendite* getDatiVendite(unsigned int riga);
+
     const QJsonDocument& saveToQJSonDocument() const;
 
     void setPercosoFile(const QString& nomeF){*percorsoFile=nomeF;};

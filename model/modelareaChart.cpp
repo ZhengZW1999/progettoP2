@@ -1,6 +1,6 @@
-#include "modelposnegbarchart.h"
+#include "modelareaChart.h"
 
-modelPosNegBarChart::modelPosNegBarChart(tabelle *t)
+modelAreaChart::modelAreaChart(tabelle *t)
 {
     std::list<datiVendite*> listOrdinata = t->getListaDatiVendite();
     listOrdinata.sort([](datiVendite* a,datiVendite* b) {return a->getData() < b->getData();});
@@ -12,4 +12,4 @@ modelPosNegBarChart::modelPosNegBarChart(tabelle *t)
     }
 }
 
-std::map<QString, std::pair<unsigned int, unsigned int> > modelPosNegBarChart::getRappProdVend() const{return rappProdVend;}
+std::map<QString, std::pair<unsigned int, unsigned int> > modelAreaChart::getRappProdVend() const{return rappProdVend;}

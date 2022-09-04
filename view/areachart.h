@@ -6,6 +6,9 @@
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QAreaSeries>
+#include <QHBoxLayout>
+#include <QBarCategoryAxis>
+#include <QValueAxis>
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -13,18 +16,23 @@ class areaChart: public View
 {
     Q_OBJECT
 private:
-    QLineSeries *series0 = new QLineSeries();
-    QLineSeries *series1 = new QLineSeries();
+    QChart* chart;
+    QLineSeries *vendita = new QLineSeries();
+    QLineSeries *produzione = new QLineSeries();
     static QLineSeries *series;
+    QAreaSeries *prod;
+    QAreaSeries *vend;
 public:
     explicit areaChart(const QSize& size = QSize(800,500), View* parent = nullptr);
 
-    void insertProdVend(const unsigned int p,const unsigned int v);
+    void insertProdVend(const unsigned int n,const unsigned int p,const unsigned int v);
 
     void applyAreaAxis(const QStringList& mesi);
 
     void applyAreaChart();
 
 };
+
+QLineSeries* areaChart::series = 0;
 
 #endif // AREACHART_H

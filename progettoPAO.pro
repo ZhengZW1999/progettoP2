@@ -12,14 +12,18 @@ CONFIG += c++17
 
 SOURCES += \
     control/ctrl.cpp \
+    control/ctrlareachart.cpp \
+    control/ctrlbarchart.cpp \
+    control/ctrllinechart.cpp \
+    control/ctrlpiechart.cpp \
+    control/ctrlstackedbarchart.cpp \
     control/gestionefilejson.cpp \
-    control/piechartctrl.cpp \
     model/datiModelli.cpp \
     model/dativendite.cpp \
     model/modelPiechart.cpp \
+    model/modelareaChart.cpp \
     model/modelbarchart.cpp \
     model/modellinechart.cpp \
-    model/modelposnegbarchart.cpp \
     model/modelstackedbarchart.cpp \
     model/tabelle.cpp \
     view/areachart.cpp \
@@ -37,14 +41,18 @@ SOURCES += \
 
 HEADERS += \
     control/ctrl.h \
+    control/ctrlareachart.h \
+    control/ctrlbarchart.h \
+    control/ctrllinechart.h \
+    control/ctrlpiechart.h \
+    control/ctrlstackedbarchart.h \
     control/gestionefilejson.h \
-    control/piechartctrl.h \
     model/datiModelli.h \
     model/dativendite.h \
     model/modelPiechart.h \
+    model/modelareaChart.h \
     model/modelbarchart.h \
     model/modellinechart.h \
-    model/modelposnegbarchart.h \
     model/modelstackedbarchart.h \
     model/tabelle.h \
     view/areachart.h \

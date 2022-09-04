@@ -30,4 +30,9 @@ void barChart::insertSetTessuto(const QString &tessuto, unsigned int n)
 void barChart::applySetsOnChart()
 {
     chart->addSeries(series);
+    chart->createDefaultAxes();
+    if(chart->axisX() && chart->axisY()){
+       chart->axisX()->setTitleText("Tessuto");
+       chart->axisY()->setTitleText("Quantita'");
+    }
 }

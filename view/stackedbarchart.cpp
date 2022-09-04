@@ -46,7 +46,7 @@ void stackedBarChart::applyStackedBarAxis(const QStringList &modelli)
     }
 }
 
-void stackedBarChart::applySetsOnChart()
+void stackedBarChart::applyStackedChart()
 {
     chart->addSeries(series);
 }
