@@ -40,6 +40,15 @@ public:
     void aggiungiTessuto(const QString& t);
     void rimuoviTessuto(unsigned int riga);
 
+    datiModelli* getDatiModelli(unsigned int riga);
+    datiVendite* getDatiVendite(unsigned int riga);
+
+    void setModello(unsigned int riga, const QString& modello);
+    void setTessuto(unsigned int riga, const QString& tessuto);
+
+    const QString& getModello(unsigned int riga)const;
+    const QString& getTessuto(unsigned int riga)const;
+
     const QJsonDocument& saveToQJSonDocument() const;
 
     void setPercosoFile(const QString& nomeF){*percorsoFile=nomeF;};

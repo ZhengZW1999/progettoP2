@@ -51,6 +51,26 @@ void tabelle::rimuoviModello(unsigned int riga){listaModelli->removeAt(riga);}
 
 void tabelle::aggiungiTessuto(const QString &t){listaTessuti->push_back(t);}
 void tabelle::rimuoviTessuto(unsigned int riga){listaTessuti->removeAt(riga);}
+
+datiModelli *tabelle::getDatiModelli(unsigned int riga)
+{
+    std::list<datiModelli *>::iterator it= listaDatiModelli.begin();
+    std::advance(it,riga);
+    return *it;
+}
+
+datiVendite *tabelle::getDatiVendite(unsigned int riga)
+{
+    std::list<datiVendite *>::iterator it= listaDatiVendite.begin();
+    std::advance(it,riga);
+    return *it;
+}
+
+void tabelle::setModello(unsigned int riga, const QString &modello){listaModelli->replace(riga,modello);}
+void tabelle::setTessuto(unsigned int riga, const QString &tessuto){listaTessuti->replace(riga,tessuto);}
+
+const QString &tabelle::getModello(unsigned int riga) const{return listaModelli->at(riga);}
+const QString &tabelle::getTessuto(unsigned int riga) const{return listaTessuti->at(riga);}
 /*
 const QJsonDocument &tabelle::saveToQJSonDocument() const
 {

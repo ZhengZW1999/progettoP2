@@ -21,16 +21,18 @@ protected:
     QChart *chart;
     QStringList *listaModelli;
     QComboBox *listBox;
-    QComboBox *createChartListBox(const QStringList* lista) const;
+
 public:
     explicit pieChart(const QSize& s = QSize(800,500),View* parent = nullptr,const QStringList *lista = nullptr);
 
     void insertDati(const QString& tipoCosto, float costo);
 
+    QComboBox *createChartListBox(const QStringList* lista) const;
+
     void viewSetting();
 
 signals:
-    void listBoxPressed() const;
+    void indexChanged() const;
 
 };
 

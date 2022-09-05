@@ -12,47 +12,57 @@ CONFIG += c++17
 
 SOURCES += \
     control/ctrl.cpp \
+    control/ctrlareachart.cpp \
+    control/ctrlbarchart.cpp \
+    control/ctrllinechart.cpp \
+    control/ctrlpiechart.cpp \
+    control/ctrlstackedbarchart.cpp \
     control/gestionefilejson.cpp \
-    control/piechartctrl.cpp \
-    control/tablectrl.cpp \
     model/datiModelli.cpp \
     model/dativendite.cpp \
     model/modelPiechart.cpp \
+    model/modelareaChart.cpp \
     model/modelbarchart.cpp \
     model/modellinechart.cpp \
-    model/modelposnegbarchart.cpp \
     model/modelstackedbarchart.cpp \
     model/tabelle.cpp \
+    view/areachart.cpp \
+    view/barchart.cpp \
     view/guideview.cpp \
     main.cpp \
     mainwindow.cpp \
     model/model.cpp \
     view/linechart.cpp \
     view/piechart.cpp \
-    view/tableview.cpp \
-    view/venditeview.cpp \
+    view/stackedbarchart.cpp \
+    view/tablepage.cpp \
     view/view.cpp
 
 HEADERS += \
     control/ctrl.h \
+    control/ctrlareachart.h \
+    control/ctrlbarchart.h \
+    control/ctrllinechart.h \
+    control/ctrlpiechart.h \
+    control/ctrlstackedbarchart.h \
     control/gestionefilejson.h \
-    control/piechartctrl.h \
-    control/tablectrl.h \
     model/datiModelli.h \
     model/dativendite.h \
     model/modelPiechart.h \
+    model/modelareaChart.h \
     model/modelbarchart.h \
     model/modellinechart.h \
-    model/modelposnegbarchart.h \
     model/modelstackedbarchart.h \
     model/tabelle.h \
+    view/areachart.h \
+    view/barchart.h \
     view/guideview.h \
     mainwindow.h \
     model/model.h \
     view/linechart.h \
     view/piechart.h \
-    view/tableview.h \
-    view/venditeview.h \
+    view/stackedbarchart.h \
+    view/tablepage.h \
     view/view.h
 
 FORMS +=

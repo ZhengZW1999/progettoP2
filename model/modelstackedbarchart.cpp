@@ -10,6 +10,7 @@ modelStackedBarChart::modelStackedBarChart(tabelle *t)
                rapporto.second += d->getCostoFinale();
            }
         }
+        rapporto.first = rapporto.first - rapporto.second;
         rappSpesaGuadagno.insert({modelli,rapporto});
     }
 }
