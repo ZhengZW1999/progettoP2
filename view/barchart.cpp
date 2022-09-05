@@ -1,6 +1,6 @@
 #include "barchart.h"
 
-barChart::barChart(const QSize &size, View *parent)
+barChart::barChart(const QSize &size, View *parent): View(size,parent)
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 

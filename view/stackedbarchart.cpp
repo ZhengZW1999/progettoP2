@@ -1,6 +1,6 @@
 #include "stackedbarchart.h"
 
-stackedBarChart::stackedBarChart(const QSize &s, View *parent)
+stackedBarChart::stackedBarChart(const QSize &s, View *parent):View(s,parent)
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 

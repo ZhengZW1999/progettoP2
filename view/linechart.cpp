@@ -1,6 +1,6 @@
 #include "linechart.h"
 
-lineChart::lineChart(const QSize &size, View *parent)
+lineChart::lineChart(const QSize &size, View *parent):View(size,parent)
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 
