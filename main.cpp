@@ -1,7 +1,7 @@
 //#include "mainwindow.h"
-#include "view/tablepage.h"
-#include "view/guideview.h"
-#include "view/homeview.h"
+#include "view/tableview.h"
+#include "control/tablectrl.h"
+#include "view/venditeview.h"
 
 #include <QSize>
 #include <QApplication>
@@ -10,11 +10,16 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+    /*
     //MainWindow w;
-    tablePage w;
+    venditeView h;
     //HomeView w;
-    w.show();
+    h.show();
+    */
+
+    tableView* tView = new tableView();
+    tableCtrl* tCtrl = new tableCtrl(tView);
+    tCtrl->showView();
 
     return a.exec();
 

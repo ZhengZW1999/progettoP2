@@ -1,5 +1,5 @@
-#ifndef TABLEPAGE_H
-#define TABLEPAGE_H
+#ifndef TABLEVIEW_H
+#define TABLEVIEW_H
 
 #include "view/view.h"
 
@@ -17,7 +17,7 @@
 #include <QDateEdit>
 
 
-class tablePage: public View
+class tableView: public View
 {
     Q_OBJECT
 private:
@@ -33,9 +33,11 @@ private:
     QPushButton* PosNegBarChartBtn;
     QPushButton* doubleBarChartBtn;
 
+    void connectViewSignals() const override;
+
 
 public:
-    explicit tablePage(const QSize& s = QSize(), View* parent = nullptr);
+    explicit tableView(const QSize& s = QSize(), View* parent = nullptr);
 
     //TABELLA DATI
      void createDataTable(const QStringList& headers) const;
@@ -58,7 +60,7 @@ public:
      * @param listaModelli lista di modelli tra cui scegliere per la cella di selezione modelli
      * @param listaTessuti lista di modelli tra cui scegliere per la cella di selezione tessuti
      */
-    void addItemDataTable(unsigned int row,const datiModelli& d, const datiVendite& dv, const QStringList& listaModelli, const QStringList& listaTessuti );
+    void addItemDataTable(unsigned int row,const datiModelli& d, const QStringList& listaModelli, const QStringList& listaTessuti );
 
 
     //MODELLI TABLE
@@ -144,20 +146,19 @@ public:
 signals:
     //SIGNAL catturatti da un Controller, servono per aggiornare il Model con la modifica della dataTable
     void dataTableRemoved(uint) const;
-    void dataTableAdded(QString, uint, uint, QDate) const;
+    void dataTableAdded(QString, QString, float, float, float, float, float, uint) const;
 
     void dataTableModelloMod(uint, QString) const;
     void dataTableTessutoMod(uint, QString) const;
-    void dataTableTessUsatoMod(uint, uint) const;
-    void dataTableCostoTessutoMod(uint, uint) const;
-    void dataTableCostoBaseMod(uint, uint) const;
-    void dataTableCostoLavaggioMod(uint, uint) const;
-    void dataTableCostoVenditaMod(uint, uint) const;
+    void dataTableTessUsatoMod(uint, float) const;
+    void dataTableCostoTessutoMod(uint, float) const;
+    void dataTableCostoBaseMod(uint, float) const;
+    void dataTableCostoLavaggioMod(uint, float) const;
+    void dataTableCostoVenditaMod(uint, float) const;
+    void dataTableProdGiornalieraMod(uint, uint) const;
 
-    void dataTablePezziProdottiMod(uint, uint) const;
-    void dataTablePezziVendutiMod(uint, uint) const;
-
-    void dataTableDataMod(uint, QDate) const;
+    //void dataTablePezziProdottiMod(uint, uint) const;
+    //void dataTablePezziVendutiMod(uint, uint) const;
 
     //SIGNAL catturati da un Controller, servono per aggiornare il Model con la modifica delle modelliTable e tessutiTable
     void modelliTableAdded(QString) const;
@@ -180,4 +181,4 @@ signals:
 };
 
 
-#endif // TABLEPAGE_H
+#endif // TABLEVIEW_H

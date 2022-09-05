@@ -14,6 +14,7 @@ SOURCES += \
     control/ctrl.cpp \
     control/gestionefilejson.cpp \
     control/piechartctrl.cpp \
+    control/tablectrl.cpp \
     model/datiModelli.cpp \
     model/dativendite.cpp \
     model/modelPiechart.cpp \
@@ -23,19 +24,20 @@ SOURCES += \
     model/modelstackedbarchart.cpp \
     model/tabelle.cpp \
     view/guideview.cpp \
-    view/homeview.cpp \
     main.cpp \
     mainwindow.cpp \
     model/model.cpp \
     view/linechart.cpp \
     view/piechart.cpp \
-    view/tablepage.cpp \
+    view/tableview.cpp \
+    view/venditeview.cpp \
     view/view.cpp
 
 HEADERS += \
     control/ctrl.h \
     control/gestionefilejson.h \
     control/piechartctrl.h \
+    control/tablectrl.h \
     model/datiModelli.h \
     model/dativendite.h \
     model/modelPiechart.h \
@@ -45,12 +47,12 @@ HEADERS += \
     model/modelstackedbarchart.h \
     model/tabelle.h \
     view/guideview.h \
-    view/homeview.h \
     mainwindow.h \
     model/model.h \
     view/linechart.h \
     view/piechart.h \
-    view/tablepage.h \
+    view/tableview.h \
+    view/venditeview.h \
     view/view.h
 
 FORMS +=

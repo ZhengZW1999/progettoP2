@@ -1,6 +1,6 @@
-#include "tablepage.h"
+#include "tableview.h"
 
-tablePage::tablePage(const QSize& s, View* parent): View(s,parent)
+tableView::tableView(const QSize& s, View* parent): View(s,parent)
 {
     mainLayout = new QVBoxLayout;
     mainLayout->setMargin(0);
@@ -33,18 +33,20 @@ tablePage::tablePage(const QSize& s, View* parent): View(s,parent)
     QHBoxLayout* materialiLayout = new QHBoxLayout;
     QVBoxLayout* buttonLayout = new QVBoxLayout;
 
-    QStringList dataHeaders = {"Modello","Tessuto","Tessuto usato", "Costo tessuto in mq", "Costo base", "Costo lavaggio", "Costo vendita",""};
-    QStringList modelliHeaders = {"Modello", ""};
-    QStringList tessutiHeaders = {"Tessuti", ""};
-
     //CREAZIONE TABELLE
     dataTable = new QTableWidget;
     modelliTable = new QTableWidget;
     tessutiTable = new QTableWidget;
 
+    /*
+    QStringList dataHeaders = {"Modello","Tessuto","Tessuto usato", "Costo tessuto in mq", "Costo base", "Costo lavaggio", "Costo vendita",""};
+    QStringList modelliHeaders = {"Modello", ""};
+    QStringList tessutiHeaders = {"Tessuti", ""};
+
     createDataTable(dataHeaders);
     createModelliTable(modelliHeaders);
     createTessutiTable(tessutiHeaders);
+    */
 
     //PULSANTI PER CREARE GRAFICI
     pieChartBtn = new QPushButton("Composizione costo vendita per modello");
@@ -83,17 +85,19 @@ tablePage::tablePage(const QSize& s, View* parent): View(s,parent)
 }
 
 //CREAZIONE TABELLE
-void tablePage::createDataTable(const QStringList& headers) const{
+void tableView::createDataTable(const QStringList& headers) const{
     dataTable->setMinimumHeight(400);
     dataTable->setRowCount(0);
-    dataTable->setColumnCount(8);
+    dataTable->setColumnCount(9);
     dataTable->setColumnWidth(3,175);
+    dataTable->setColumnWidth(7,150);
+    dataTable->setColumnWidth(8,30);
     dataTable->setHorizontalHeaderLabels(headers);
     dataTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     dataTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
 }
 
-void tablePage::createModelliTable(const QStringList& headers) const{
+void tableView::createModelliTable(const QStringList& headers) const{
     modelliTable->setRowCount(0);
     modelliTable->setColumnCount(2);
     modelliTable->setHorizontalHeaderLabels(headers);
@@ -101,7 +105,7 @@ void tablePage::createModelliTable(const QStringList& headers) const{
     modelliTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
 }
 
-void tablePage::createTessutiTable(const QStringList& headers) const{
+void tableView::createTessutiTable(const QStringList& headers) const{
     tessutiTable->setRowCount(0);
     tessutiTable->setColumnCount(2);
     tessutiTable->setHorizontalHeaderLabels(headers);
@@ -113,7 +117,7 @@ void tablePage::createTessutiTable(const QStringList& headers) const{
 //INSERIMENTO MODELLI NELLA TABELLA DATI (dataTable)
 
 //CREAZIONE NUOVA RIGA PER INSERIMENTO DI UN NUOVO MODELLO NELLA TABELLA DATI (dataTable)
-void tablePage::addRowDataTable(unsigned int row, const QStringList& listaModelli, const QStringList& listaTessuti){
+void tableView::addRowDataTable(unsigned int row, const QStringList& listaModelli, const QStringList& listaTessuti){
     //Inserismo una nuova riga per fare spazio
     dataTable->insertRow(row);
 
@@ -130,15 +134,15 @@ void tablePage::addRowDataTable(unsigned int row, const QStringList& listaModell
     dataTable->setCellWidget(row,1,tessutoW);
 
     //Aggiornamento della lista di modelli alla aggiunta di un modello
-    connect(this,&tablePage::modelliTableAddedChecked,modelloW,[modelloW](const QString& m){
+    connect(this,&tableView::modelliTableAddedChecked,modelloW,[modelloW](const QString& m){
         modelloW->addItem(m);
     });
     //Aggiornamento della lista di modelli alla rimozione di un modello
-    connect(this,&tablePage::modelliTableRemovedChecked,modelloW,[modelloW](uint i){
+    connect(this,&tableView::modelliTableRemovedChecked,modelloW,[modelloW](uint i){
         modelloW->removeItem(i);
     });
     //Aggiornamento della list adi modelli alla modifica di un modello
-    connect(this,&tablePage::modelliTableModelloModChecked,modelloW,[modelloW](uint i, const QString& m){
+    connect(this,&tableView::modelliTableModelloModChecked,modelloW,[modelloW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, adrà poi riselezionato
         bool iSelected = (modelloW->currentIndex() == (int)i);
         modelloW->removeItem(i);
@@ -148,15 +152,15 @@ void tablePage::addRowDataTable(unsigned int row, const QStringList& listaModell
     });
 
     //Aggiornamento della lista di tessuti alla aggiunta di un tessuto
-    connect(this,&tablePage::tessutiTableAddedChecked,tessutoW,[tessutoW](const QString& m){
+    connect(this,&tableView::tessutiTableAddedChecked,tessutoW,[tessutoW](const QString& m){
         tessutoW->addItem(m);
     });
     //Aggiornamento della lista di tessuti alla rimozione di un tessuto
-    connect(this,&tablePage::tessutiTableRemovedChecked,tessutoW,[tessutoW](uint i){
+    connect(this,&tableView::tessutiTableRemovedChecked,tessutoW,[tessutoW](uint i){
         tessutoW->removeItem(i);
     });
     //Aggiornamento della list adi tessuti alla modifica di un tessuto
-    connect(this,&tablePage::tessutiTableTessutoModChecked,tessutoW,[tessutoW](uint i, const QString& m){
+    connect(this,&tableView::tessutiTableTessutoModChecked,tessutoW,[tessutoW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, adrà poi riselezionato
         bool iSelected = (tessutoW->currentIndex() == (int)i);
         tessutoW->removeItem(i);
@@ -164,10 +168,53 @@ void tablePage::addRowDataTable(unsigned int row, const QStringList& listaModell
         if(iSelected)
             tessutoW->setCurrentIndex(i);
     });
+
+    //WIDGETS
+    QSpinBox* tessUsatoW = new QSpinBox(this);
+    tessUsatoW->setRange(0,100000);
+    tessUsatoW->setSuffix(" Mq");
+    dataTable->setCellWidget(row,2,tessUsatoW);
+
+    QSpinBox* costoTessMqW = new QSpinBox(this);
+    costoTessMqW->setRange(0,100000);
+    costoTessMqW->setSuffix(" €");
+    dataTable->setCellWidget(row,3,costoTessMqW);
+
+    QSpinBox* costoBaseW = new QSpinBox(this);
+    costoBaseW->setRange(0,100000);
+    costoBaseW->setSuffix(" €");
+    dataTable->setCellWidget(row,4,costoBaseW);
+
+    QSpinBox* costoLavaggioW = new QSpinBox(this);
+    costoLavaggioW->setRange(0,100000);
+    costoLavaggioW->setSuffix(" €");
+    dataTable->setCellWidget(row,5,costoLavaggioW);
+
+    QSpinBox* costoVenditaW = new QSpinBox(this);
+    costoVenditaW->setRange(0,100000);
+    costoVenditaW->setSuffix(" €");
+    dataTable->setCellWidget(row,6,costoVenditaW);
+
+    QSpinBox* produzioneGiornalieraW = new QSpinBox(this);
+    produzioneGiornalieraW->setRange(0,100000);
+    //produzioneGiornaliera->setSuffix("");
+    dataTable->setCellWidget(row,7,produzioneGiornalieraW);
+
+    //Add Button Widget
+    QPushButton* addW = new QPushButton("+",this);
+    dataTable->setCellWidget(row,8,addW);
+
+    connect(addW, &QPushButton::clicked,this,
+            [this, modelloW, tessutoW, tessUsatoW, costoTessMqW, costoBaseW, costoLavaggioW, costoVenditaW, produzioneGiornalieraW]() {
+        if(modelloW->currentIndex() != -1)
+            emit dataTableAdded(modelloW->currentText(), tessutoW->currentText(), tessUsatoW->value(), costoTessMqW->value(), costoBaseW->value(), costoLavaggioW->value(), costoVenditaW->value(), produzioneGiornalieraW->value());
+        else
+           showCriticalDialog("Inserimento non concesso","Inserire prima dei modelli");
+    });
 }
 
 //CREA UNA NUOVA RIGA CON I DATI E CON IL PULSANTE PER ELIMINARE RIGA NELLA TABELLA DATI (dataTable)
-void tablePage::addItemDataTable(unsigned int row,const datiModelli& d, const datiVendite& dv, const QStringList& listaModelli, const QStringList& listaTessuti){
+void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QStringList& listaModelli, const QStringList& listaTessuti){
     //Creo La ADD Row più in basso
     addRowDataTable(row+1,listaModelli, listaTessuti);
 
@@ -184,15 +231,15 @@ void tablePage::addItemDataTable(unsigned int row,const datiModelli& d, const da
 
 
     //Aggiornamento della lista di modelli alla aggiunta di un modello dalla listaModelli
-    connect(this,&tablePage::modelliTableAddedChecked,modelloW,[modelloW](const QString& m){
+    connect(this,&tableView::modelliTableAddedChecked,modelloW,[modelloW](const QString& m){
         modelloW->addItem(m);
     });
     //Aggiornamento della lista di modelli alla rimozione di un modello dalla listaModelli
-    connect(this,&tablePage::modelliTableRemovedChecked,modelloW,[modelloW](uint i){
+    connect(this,&tableView::modelliTableRemovedChecked,modelloW,[modelloW](uint i){
         modelloW->removeItem(i);
     });
     //Aggiornamento della lista di modelli alla modifica di un modello
-    connect(this,&tablePage::modelliTableModelloModChecked,modelloW,[modelloW](uint i, const QString& m){
+    connect(this,&tableView::modelliTableModelloModChecked,modelloW,[modelloW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, sarà poi riselezionato
         bool iSelected = (modelloW->currentIndex() == (int)i);
         modelloW->removeItem(i);
@@ -219,15 +266,15 @@ void tablePage::addItemDataTable(unsigned int row,const datiModelli& d, const da
 
 
     //Aggiornamento della lista di tessuti alla aggiunta di un tessuto dalla listaTessuti
-    connect(this,&tablePage::tessutiTableAddedChecked,tessutoW,[tessutoW](const QString& m){
+    connect(this,&tableView::tessutiTableAddedChecked,tessutoW,[tessutoW](const QString& m){
         tessutoW->addItem(m);
     });
     //Aggiornamento della lista di tessuti alla rimozione di un tessuto dalla listaTessuti
-    connect(this,&tablePage::tessutiTableRemovedChecked,tessutoW,[tessutoW](uint i){
+    connect(this,&tableView::tessutiTableRemovedChecked,tessutoW,[tessutoW](uint i){
         tessutoW->removeItem(i);
     });
     //Aggiornamento della lista di tessuti alla modifica di un tessuto
-    connect(this,&tablePage::tessutiTableTessutoModChecked,tessutoW,[tessutoW](uint i, const QString& m){
+    connect(this,&tableView::tessutiTableTessutoModChecked,tessutoW,[tessutoW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, sarà poi riselezionato
         bool iSelected = (tessutoW->currentIndex() == (int)i);
         tessutoW->removeItem(i);
@@ -306,6 +353,18 @@ void tablePage::addItemDataTable(unsigned int row,const datiModelli& d, const da
         //costoVenditaW->value() == value
     });
 
+    QSpinBox* prodGiornalieraW = new QSpinBox(this);
+    prodGiornalieraW->setRange(0,100000);
+    prodGiornalieraW->setSuffix(" €");
+    prodGiornalieraW->setValue(d.getProduzioneGiornaliera());
+    dataTable->setCellWidget(row,7,prodGiornalieraW);
+
+    connect(prodGiornalieraW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,prodGiornalieraW](int value) {
+        unsigned int row = dataTable->indexAt(prodGiornalieraW->pos()).row();
+        emit dataTableProdGiornalieraMod(row,value);
+        //prodGiornalieraW->value() == value
+    });
+    /*
     //pezziProdotti Widget
     QSpinBox* pezziProdottiW = new QSpinBox(this);
     pezziProdottiW->setRange(0,100000);
@@ -332,6 +391,7 @@ void tablePage::addItemDataTable(unsigned int row,const datiModelli& d, const da
         //pezziVendutiW->value() == value
     });
 
+
     //data Widget
     QDateEdit* dataW = new QDateEdit(dv.getData(),this);
     dataTable->setCellWidget(row,9,dataW);
@@ -340,7 +400,8 @@ void tablePage::addItemDataTable(unsigned int row,const datiModelli& d, const da
         unsigned int row = dataTable->indexAt(dataW->pos()).row();
         emit dataTableDataMod(row,data);
         //dataW->date() == data
-    });
+    });   
+    */
 
     //Delete Button Widget
     QPushButton* deleteW = new QPushButton("-",this);
@@ -357,7 +418,7 @@ void tablePage::addItemDataTable(unsigned int row,const datiModelli& d, const da
 //INSERIMENTO MODELLI NELLA TABELLA MODELLI (modelliTable)
 
 //CREAZIONE NUOVA RIGA PER INSERIMENTO DI UN NUOVO MODELLO NELLA TABELLA MODELLI (modelliTable)
-void tablePage::addRowModelliTable(unsigned int row){
+void tableView::addRowModelliTable(unsigned int row){
     //Inserismo una nuova riga per fare spazio
     modelliTable->insertRow(row);
 
@@ -379,7 +440,7 @@ void tablePage::addRowModelliTable(unsigned int row){
 }
 
 //CREA UNA NUOVA RIGA E AGGIUNGE IL WIDGET DI TESTO E UN PULSANTE PER LA ELIMINAZIONE DELLA RIGA NELLA TABELLA MODELLI (modelliTable)
-void tablePage::addItemModelliTable(unsigned int row,const QString& m){
+void tableView::addItemModelliTable(unsigned int row,const QString& m){
     //Creo La ADD Row più in basso
     addRowModelliTable(row+1);
 
@@ -411,13 +472,13 @@ void tablePage::addItemModelliTable(unsigned int row,const QString& m){
     emit modelliTableAddedChecked(m);
 }
 
-void tablePage::modifyItemModelliTable(unsigned int row, const QString &m){
+void tableView::modifyItemModelliTable(unsigned int row, const QString &m){
     QTextEdit* textEdit = static_cast<QTextEdit*>(modelliTable->cellWidget(row,0));
     textEdit->setText(m);
     emit modelliTableModelloModChecked(row,m);
 }
 
-void tablePage::removeItemModelliTable(unsigned int row){
+void tableView::removeItemModelliTable(unsigned int row){
     modelliTable->removeRow(row);
     emit modelliTableRemovedChecked(row);
 }
@@ -425,7 +486,7 @@ void tablePage::removeItemModelliTable(unsigned int row){
 //INSERIMENTO MODELLI NELLA TABELLA TESSUTI (tessutiTable)
 
 //CREAZIONE NUOVA RIGA PER INSERIMENTO DI UN NUOVO MODELLO NELLA TABELLA TESSUTI (tessutiTable)
-void tablePage::addRowTessutiTable(unsigned int row){
+void tableView::addRowTessutiTable(unsigned int row){
     //Inserismo una nuova riga per fare spazio
     tessutiTable->insertRow(row);
 
@@ -447,7 +508,7 @@ void tablePage::addRowTessutiTable(unsigned int row){
 }
 
 //CREA UNA NUOVA RIGA E AGGIUNGE IL WIDGET DI TESTO E UN PULSANTE PER LA ELIMINAZIONE DELLA RIGA NELLA TABELLA TESSUTI (tessutiTable)
-void tablePage::addItemTessutiTable(unsigned int row,const QString& m){
+void tableView::addItemTessutiTable(unsigned int row,const QString& m){
     //Creo La ADD Row più in basso
     addRowTessutiTable(row+1);
 
@@ -479,17 +540,19 @@ void tablePage::addItemTessutiTable(unsigned int row,const QString& m){
     emit tessutiTableAddedChecked(m);
 }
 
-void tablePage::removeItemTessutiTable(unsigned int row){
+void tableView::removeItemTessutiTable(unsigned int row){
     tessutiTable->removeRow(row);
     emit tessutiTableRemovedChecked(row);
 }
 
 
-void tablePage::modifyItemTessutiTable(unsigned int row, const QString &m){
+void tableView::modifyItemTessutiTable(unsigned int row, const QString &m){
     QTextEdit* textEdit = static_cast<QTextEdit*>(tessutiTable->cellWidget(row,0));
     textEdit->setText(m);
     emit tessutiTableTessutoModChecked(row,m);
 }
+
+void tableView::connectViewSignals() const{}
 
 
 

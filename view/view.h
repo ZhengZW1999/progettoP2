@@ -24,7 +24,7 @@ private:
      * I segnali della view saranno gli unici a comunicare con il Controller.
      */
 
-    //virtual void connectViewSignals() const = 0;
+    virtual void connectViewSignals() const = 0;
 
 protected:
     /**
