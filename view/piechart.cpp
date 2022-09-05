@@ -1,6 +1,6 @@
 #include "piechart.h"
 
-pieChart::pieChart(const QSize &s, View *parent,const QStringList *lista): View(s,parent), series(new QPieSeries()), chart(new QChart())
+pieChart::pieChart(const QSize &s, View *parent,const QStringList *lista): View(s,parent)
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
     chart->addSeries(series);
@@ -12,7 +12,7 @@ pieChart::pieChart(const QSize &s, View *parent,const QStringList *lista): View(
     QChartView *chartView = new QChartView(chart,this);
     chartView->setRenderHint(QPainter::Antialiasing);
     listBox=createChartListBox(lista);
-    mainLayout->addWidget(new QLabel("Modelli: "));
+    mainLayout->addWidget(new QLabel("Modello: "));
     mainLayout->addWidget(listBox);
     mainLayout->addWidget(chartView);
     setLayout(mainLayout);
@@ -35,12 +35,12 @@ void pieChart::viewSetting()
     chart->setTitle("Costo finale per produzione");
     series->setLabelsPosition(QPieSlice::LabelInsideHorizontal);
 }
-/**
+
 void pieChart::connectViewSignals() const{
     connect(listBox,static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-            this,SIGNAL(newBPressed()));
+            this,SIGNAL(indexChanged()));
 }
-*/
+
 QComboBox *pieChart::createChartListBox(const QStringList* lista) const
 {
     QComboBox *list = new QComboBox();
