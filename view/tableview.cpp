@@ -374,7 +374,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
 
     QSpinBox* prodGiornalieraW = new QSpinBox(this);
     prodGiornalieraW->setRange(0,100000);
-    prodGiornalieraW->setSuffix(" €");
+    prodGiornalieraW->setSuffix(" €\n");
     prodGiornalieraW->setValue(d.getProduzioneGiornaliera());
     dataTable->setCellWidget(row,7,prodGiornalieraW);
 
@@ -419,7 +419,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
         unsigned int row = dataTable->indexAt(dataW->pos()).row();
         emit dataTableDataMod(row,data);
         //dataW->date() == data
-    });   
+    });
     */
 
     //Delete Button Widget
@@ -572,6 +572,3 @@ void tableView::modifyItemTessutiTable(unsigned int row, const QString &m){
 }
 
 void tableView::connectViewSignals() const{}
-
-
-
