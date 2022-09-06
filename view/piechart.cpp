@@ -36,16 +36,16 @@ void pieChart::viewSetting()
     series->setLabelsPosition(QPieSlice::LabelInsideHorizontal);
 }
 
-void pieChart::connectViewSignals() const{
+/*void pieChart::connectViewSignals() const{
     connect(listBox,static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
             this,SIGNAL(indexChanged()));
 }
-
+*/
 QComboBox *pieChart::createChartListBox(const QStringList* lista) const
 {
     QComboBox *list = new QComboBox();
     for(const QString& a : *lista){
-        list->addItem(a);
+        list->addItem(a, a);
     }
     return list;
 }

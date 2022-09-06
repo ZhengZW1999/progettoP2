@@ -19,7 +19,7 @@ private:
     QChart* chart;
     QLineSeries *vendita = new QLineSeries();
     QLineSeries *produzione = new QLineSeries();
-    static QLineSeries *series;
+    QLineSeries *series = 0;
     QAreaSeries *prod;
     QAreaSeries *vend;
 public:
@@ -32,7 +32,5 @@ public:
     void applyAreaChart();
 
 };
-
-QLineSeries* areaChart::series = 0;
 
 #endif // AREACHART_H

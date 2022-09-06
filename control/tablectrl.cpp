@@ -96,6 +96,7 @@ void tableCtrl::onDataTableAdded(const QString & m, const QString & t, float tU,
 
 void tableCtrl::onDataTableModelloMod(unsigned int row, const QString& m){
     //getModel()->get(row)->setModello(m);
+
 }
 
 void tableCtrl::onDataTableTessutoMod(unsigned int row, const QString& m){
@@ -114,6 +115,7 @@ void tableCtrl::onModelliTableAdded(const QString &m){
 }
 
 void tableCtrl::onModelliTableModelloMod(unsigned int row, const QString &m){
+
 }
 
 void tableCtrl::onModelliTableRemoved(unsigned int row){
