@@ -107,12 +107,12 @@ public:
      * @param title titolo
      */
     virtual void setViewTitle(const QString& title);
-/**
+
 signals:
     //Segnale emesso al Controller per avvisarlo della chiusura della View
     void viewClosed() const;
 
 public slots:
-*/
+
 };
 #endif // VIEW_H

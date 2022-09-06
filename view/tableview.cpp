@@ -177,22 +177,22 @@ void tableView::addRowDataTable(unsigned int row, const QStringList& listaModell
 
     QSpinBox* costoTessMqW = new QSpinBox(this);
     costoTessMqW->setRange(0,100000);
-    costoTessMqW->setSuffix(" €");
+    costoTessMqW->setSuffix(" €\n");
     dataTable->setCellWidget(row,3,costoTessMqW);
 
     QSpinBox* costoBaseW = new QSpinBox(this);
     costoBaseW->setRange(0,100000);
-    costoBaseW->setSuffix(" €");
+    costoBaseW->setSuffix(" €\n");
     dataTable->setCellWidget(row,4,costoBaseW);
 
     QSpinBox* costoLavaggioW = new QSpinBox(this);
     costoLavaggioW->setRange(0,100000);
-    costoLavaggioW->setSuffix(" €");
+    costoLavaggioW->setSuffix(" €\n");
     dataTable->setCellWidget(row,5,costoLavaggioW);
 
     QSpinBox* costoVenditaW = new QSpinBox(this);
     costoVenditaW->setRange(0,100000);
-    costoVenditaW->setSuffix(" €");
+    costoVenditaW->setSuffix(" €\n");
     dataTable->setCellWidget(row,6,costoVenditaW);
 
     QSpinBox* produzioneGiornalieraW = new QSpinBox(this);
@@ -304,7 +304,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     //costoTessutoMq Widget
     QSpinBox* costoTessutoMqW = new QSpinBox(this);
     costoTessutoMqW->setRange(0,100000);
-    costoTessutoMqW->setSuffix(" €");
+    costoTessutoMqW->setSuffix(" €\n");
     costoTessutoMqW->setValue(d.getCostoTessutoMq());
     dataTable->setCellWidget(row,3,costoTessutoMqW);
 
@@ -317,7 +317,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     //costoBase Widget
     QSpinBox* costoBaseW = new QSpinBox(this);
     costoBaseW->setRange(0,100000);
-    costoBaseW->setSuffix(" €");
+    costoBaseW->setSuffix(" €\n");
     costoBaseW->setValue(d.getCostoBase());
     dataTable->setCellWidget(row,4,costoBaseW);
 
@@ -330,7 +330,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     //costoLavaggio Widget
     QSpinBox* costoLavaggioW = new QSpinBox(this);
     costoLavaggioW->setRange(0,100000);
-    costoLavaggioW->setSuffix(" €");
+    costoLavaggioW->setSuffix(" €\n");
     costoLavaggioW->setValue(d.getCostoLavaggio());
     dataTable->setCellWidget(row,5,costoLavaggioW);
 
@@ -343,7 +343,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     //costoVendita Widget
     QSpinBox* costoVenditaW = new QSpinBox(this);
     costoVenditaW->setRange(0,100000);
-    costoVenditaW->setSuffix(" €");
+    costoVenditaW->setSuffix(" €\n");
     costoVenditaW->setValue(d.getCostoVendita());
     dataTable->setCellWidget(row,6,costoVenditaW);
 
@@ -355,7 +355,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
 
     QSpinBox* prodGiornalieraW = new QSpinBox(this);
     prodGiornalieraW->setRange(0,100000);
-    prodGiornalieraW->setSuffix(" €");
+    prodGiornalieraW->setSuffix(" €\n");
     prodGiornalieraW->setValue(d.getProduzioneGiornaliera());
     dataTable->setCellWidget(row,7,prodGiornalieraW);
 
