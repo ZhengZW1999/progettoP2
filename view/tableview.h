@@ -14,6 +14,7 @@
 #include <QComboBox>
 #include <QTextEdit>
 #include <QSpinBox>
+#include <QDoubleSpinBox>
 #include <QDateEdit>
 
 

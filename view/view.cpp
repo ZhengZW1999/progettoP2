@@ -20,4 +20,8 @@ void View::showCriticalDialog(const QString& title, const QString& mesInfo){
     QMessageBox::critical(this,title,mesInfo,QMessageBox::Ok);
 }
 
+void View::showWarningDialog(const QString& title, const QString& mesInfo){
+    QMessageBox::warning(this,title,mesInfo,QMessageBox::Ok);
+}
+
 

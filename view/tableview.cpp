@@ -170,33 +170,43 @@ void tableView::addRowDataTable(unsigned int row, const QStringList& listaModell
     });
 
     //WIDGETS
-    QSpinBox* tessUsatoW = new QSpinBox(this);
-    tessUsatoW->setRange(0,100000);
+    QDoubleSpinBox* tessUsatoW = new QDoubleSpinBox(this);
+    tessUsatoW->setRange(0,9999);
+    tessUsatoW->setDecimals(1);
+    tessUsatoW->setSingleStep(0.1);
     tessUsatoW->setSuffix(" Mq");
     dataTable->setCellWidget(row,2,tessUsatoW);
 
-    QSpinBox* costoTessMqW = new QSpinBox(this);
-    costoTessMqW->setRange(0,100000);
+    QDoubleSpinBox* costoTessMqW = new QDoubleSpinBox(this);
+    costoTessMqW->setRange(0,9999);
+    costoTessMqW->setDecimals(1);
+    costoTessMqW->setSingleStep(0.1);
     costoTessMqW->setSuffix(" €");
     dataTable->setCellWidget(row,3,costoTessMqW);
 
-    QSpinBox* costoBaseW = new QSpinBox(this);
-    costoBaseW->setRange(0,100000);
+    QDoubleSpinBox* costoBaseW = new QDoubleSpinBox(this);
+    costoBaseW->setRange(0,9999);
+    costoBaseW->setDecimals(1);
+    costoBaseW->setSingleStep(0.1);
     costoBaseW->setSuffix(" €");
     dataTable->setCellWidget(row,4,costoBaseW);
 
-    QSpinBox* costoLavaggioW = new QSpinBox(this);
-    costoLavaggioW->setRange(0,100000);
+    QDoubleSpinBox* costoLavaggioW = new QDoubleSpinBox(this);
+    costoLavaggioW->setRange(0,9999);
+    costoLavaggioW->setDecimals(1);
+    costoLavaggioW->setSingleStep(0.1);
     costoLavaggioW->setSuffix(" €");
     dataTable->setCellWidget(row,5,costoLavaggioW);
 
-    QSpinBox* costoVenditaW = new QSpinBox(this);
-    costoVenditaW->setRange(0,100000);
+    QDoubleSpinBox* costoVenditaW = new QDoubleSpinBox(this);
+    costoVenditaW->setRange(0,9999);
+    costoVenditaW->setDecimals(1);
+    costoVenditaW->setSingleStep(0.1);
     costoVenditaW->setSuffix(" €");
     dataTable->setCellWidget(row,6,costoVenditaW);
 
     QSpinBox* produzioneGiornalieraW = new QSpinBox(this);
-    produzioneGiornalieraW->setRange(0,100000);
+    produzioneGiornalieraW->setRange(0,9999);
     //produzioneGiornaliera->setSuffix("");
     dataTable->setCellWidget(row,7,produzioneGiornalieraW);
 
@@ -289,65 +299,74 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     });
 
     //tessUsato Widget
-    QSpinBox* tessUsatoW = new QSpinBox(this);
-    tessUsatoW->setRange(0,100000);
+    QDoubleSpinBox* tessUsatoW = new QDoubleSpinBox(this);
+    tessUsatoW->setRange(0,9999);
+    tessUsatoW->setDecimals(1);
+    tessUsatoW->setSingleStep(0.1);
     tessUsatoW->setSuffix(" Mq");
     tessUsatoW->setValue(d.getTessUsato());
     dataTable->setCellWidget(row,2,tessUsatoW);
 
-    connect(tessUsatoW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,tessUsatoW](int value) {
+    connect(tessUsatoW, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,[this,tessUsatoW](int value) {
         unsigned int row = dataTable->indexAt(tessUsatoW->pos()).row();
         emit dataTableTessUsatoMod(row,value);
         //tessUsatoW->value() == value
     });
 
     //costoTessutoMq Widget
-    QSpinBox* costoTessutoMqW = new QSpinBox(this);
-    costoTessutoMqW->setRange(0,100000);
-    costoTessutoMqW->setSuffix(" €");
+    QDoubleSpinBox* costoTessutoMqW = new QDoubleSpinBox(this);
+    costoTessutoMqW->setRange(0,9999);
+    costoTessutoMqW->setDecimals(1);
+    costoTessutoMqW->setSingleStep(0.1);
+    costoTessutoMqW->setSuffix(" Mq");
     costoTessutoMqW->setValue(d.getCostoTessutoMq());
     dataTable->setCellWidget(row,3,costoTessutoMqW);
 
-    connect(costoTessutoMqW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,costoTessutoMqW](int value) {
+    connect(costoTessutoMqW, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,[this,costoTessutoMqW](int value) {
         unsigned int row = dataTable->indexAt(costoTessutoMqW->pos()).row();
         emit dataTableCostoTessutoMod(row,value);
         //costoTessutoMqW->value() == value
     });
 
     //costoBase Widget
-    QSpinBox* costoBaseW = new QSpinBox(this);
-    costoBaseW->setRange(0,100000);
+    QDoubleSpinBox* costoBaseW = new QDoubleSpinBox(this);
+    costoBaseW->setRange(0,9999);
+    costoBaseW->setDecimals(1);
+    costoBaseW->setSingleStep(0.1);
     costoBaseW->setSuffix(" €");
-    costoBaseW->setValue(d.getCostoBase());
     dataTable->setCellWidget(row,4,costoBaseW);
 
-    connect(costoBaseW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,costoBaseW](int value) {
+    connect(costoBaseW, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,[this,costoBaseW](int value) {
         unsigned int row = dataTable->indexAt(costoBaseW->pos()).row();
         emit dataTableCostoBaseMod(row,value);
         //costoBaseW->value() == value
     });
 
     //costoLavaggio Widget
-    QSpinBox* costoLavaggioW = new QSpinBox(this);
-    costoLavaggioW->setRange(0,100000);
+    QDoubleSpinBox* costoLavaggioW = new QDoubleSpinBox(this);
+    costoLavaggioW->setRange(0,9999);
+    costoLavaggioW->setDecimals(1);
+    costoLavaggioW->setSingleStep(0.1);
     costoLavaggioW->setSuffix(" €");
     costoLavaggioW->setValue(d.getCostoLavaggio());
     dataTable->setCellWidget(row,5,costoLavaggioW);
 
-    connect(costoLavaggioW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,costoLavaggioW](int value) {
+    connect(costoLavaggioW, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,[this,costoLavaggioW](int value) {
         unsigned int row = dataTable->indexAt(costoLavaggioW->pos()).row();
         emit dataTableCostoLavaggioMod(row,value);
         //costoLavaggioW->value() == value
     });
 
     //costoVendita Widget
-    QSpinBox* costoVenditaW = new QSpinBox(this);
-    costoVenditaW->setRange(0,100000);
-    costoVenditaW->setSuffix(" €");
+    QDoubleSpinBox* costoVenditaW = new QDoubleSpinBox(this);
+    costoVenditaW->setRange(0,9999);
+    costoVenditaW->setDecimals(1);
+    costoVenditaW->setSingleStep(0.1);
+    costoVenditaW->setSuffix(" Mq");
     costoVenditaW->setValue(d.getCostoVendita());
     dataTable->setCellWidget(row,6,costoVenditaW);
 
-    connect(costoVenditaW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,costoVenditaW](int value) {
+    connect(costoVenditaW, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,[this,costoVenditaW](int value) {
         unsigned int row = dataTable->indexAt(costoVenditaW->pos()).row();
         emit dataTableCostoVenditaMod(row,value);
         //costoVenditaW->value() == value
@@ -405,7 +424,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
 
     //Delete Button Widget
     QPushButton* deleteW = new QPushButton("-",this);
-    dataTable->setCellWidget(row,10,deleteW);//Widget
+    dataTable->setCellWidget(row,8,deleteW);//Widget
 
     //Connessione al pulsante delete per eliminare la riga e aggiornare il modello di dati con l'eliminazione
     connect(deleteW, &QPushButton::clicked,this,[this,deleteW]() {
@@ -503,7 +522,7 @@ void tableView::addRowTessutiTable(unsigned int row){
         if(tessutoW->toPlainText().isNull() || tessutoW->toPlainText().isEmpty())
             showCriticalDialog("Inserimento Non Concesso", "Inserire un nome valido");
         else
-            emit modelliTableAdded(tessutoW->toPlainText());
+            emit tessutiTableAdded(tessutoW->toPlainText());
     });
 }
 
@@ -518,7 +537,7 @@ void tableView::addItemTessutiTable(unsigned int row,const QString& m){
     tessutiTable->setCellWidget(row,0,tessutoW);
 
     connect(tessutoW, &QTextEdit::textChanged,[this,tessutoW]() {
-        unsigned int row = modelliTable->indexAt(tessutoW->pos()).row();
+        unsigned int row = tessutiTable->indexAt(tessutoW->pos()).row();
         emit tessutiTableTessutoMod(row,tessutoW->toPlainText());
     });
 

@@ -43,16 +43,9 @@ public:
 signals:
 
 public slots:
-     /**
-      * @brief onViewClosed SLOT eseguito alla ricezione di SEGNALI di chiusura della View
-      * In questo caso distrugger il suddetto controller, che di seguito distrugge la view e il model
-      */
+
      void onViewClosed() const override;
-     /**
-      * @brief onRecordTableRemoved SLOT eseguito alla ricezione di SEGNALI dalla view per la rimozione
-      * di un record dalla record table, questo slot modifica il modello aggiornandolo con il record da rimuovere
-      * @param row indice del record da rimuovere dalla recordList
-      */
+
      void onDataTableRemoved(unsigned int row);
 
      /**
@@ -68,53 +61,23 @@ public slots:
       */
      void onDataTableAdded(const QString& m, const QString& t, float tU, float cT, float cB, float cL, float cV, unsigned int pG);
 
-     /**
-      * @brief onDataTableModelloMod SLOT eseguito alla ricezione di SEGNALI dalla view
-      * per la modifica del Modello di una specifico riga della tabella Dati
-      * @param row indice della riga da modificare dalla dataList
-      * @param m Modello
-      */
      void onDataTableModelloMod(unsigned int row,const QString& m);
 
-     /**
-      * @brief onDataTableTessutoMod SLOT eseguito alla ricezione di SEGNALI dalla view
-      * per la modifica del Tessuto di una specifico riga della tabella Dati
-      * @param row indice della riga da modificare dalla dataList
-      * @param t Tessuto
-      */
      void onDataTableTessutoMod(unsigned int row,const QString& t);
 
-     /**
-      * @brief onMaterialTableAdded SLOT eseguito alla ricezione di SEGNALI dalla view per la
-      * aggiunta di un materiale alla materialList
-      * @param m Materiale
-      */
 
      void onModelliTableAdded(const QString& m);
 
-     /**
-      * @brief onMaterialTableMaterialeMod SLOT eseguito alla ricezione di SEGNALI dalla view
-      * per la modifica di un materiale specifico dalla materialList
-      * Verifica che il materiale non esista già effettivamente nel modello per non creare duplicati.
-      * Se trova un materiale già esistente la suddetta modifica
-      * viene attuata con il carattere '_' appeso alla fine.
-      * Successivamente si manda un segnale della VIEW per aggioranre i QComboBox
-      * @param row indice del materiale da modificare dalla materialList
-      * @param m Materiale
-      */
-
      void onModelliTableModelloMod(unsigned int row,const QString& m);
 
-     /**
-      * @brief onMaterialTableRemoved SLOT eseguito alla ricezione di SEGNALI dalla view
-      * per la rimozione di uno specifico materiale dalla materlList
-      * Il materiale può essere rimosso solamente se non è presente in uno dei
-      * record della recordList (Per una questione di integrità dei dati).
-      * @param row indice del record da rimuovereturno
-      * @param check questo parametro rapresenta se la rimozione del materiale è già stata verificata
-      */
-
      void onModelliTableRemoved(unsigned int row);
+
+
+     void onTessutiTableAdded(const QString& t);
+
+     void onTessutiTableTessutoMod(unsigned int row,const QString& m);
+
+     void onTessutiTableRemoved(unsigned int row);
 
      /**
       * @brief onNewBPressed SLOT eseguito alla ricezione di SEGNALI dalla view

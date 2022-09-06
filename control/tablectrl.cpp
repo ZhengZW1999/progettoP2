@@ -74,7 +74,9 @@ void tableCtrl::connectViewCtrlSignalsSlots() const{
     connect(vista,SIGNAL(modelliTableModelloMod(uint,QString)),this,SLOT(onModelliTableModelloMod(uint,QString)));
 
     //connessioni per la TessutiTable
-
+    connect(vista,SIGNAL(tessutiTableAdded(QString)),this,SLOT(onTessutiTableAdded(QString)));
+    connect(vista,SIGNAL(tessutiTableRemoved(uint)),this,SLOT(onTessutiTableRemoved(uint)));
+    connect(vista,SIGNAL(tessutiTableTessutoMod(uint,QString)),this,SLOT(onTessutiTableMod(uint,QString)));
 
     //connessioni per i pulsanti di interrazione
 
@@ -95,18 +97,18 @@ void tableCtrl::onDataTableAdded(const QString & m, const QString & t, float tU,
 }
 
 void tableCtrl::onDataTableModelloMod(unsigned int row, const QString& m){
-    //getModel()->get(row)->setModello(m);
+    getModel()->getDatiModelli(row)->setNomeModello(m);
 
 }
 
-void tableCtrl::onDataTableTessutoMod(unsigned int row, const QString& m){
-
+void tableCtrl::onDataTableTessutoMod(unsigned int row, const QString& t){
+    getModel()->getDatiModelli(row)->setTessuto(t);
 }
 
 void tableCtrl::onModelliTableAdded(const QString &m){
     for(const QString& mAdd : *getModel()->getListaModelli()){
         if(mAdd == m){
-            getView()->showCriticalDialog("Inserimento Fallito","Inserimento non concesso\nassicurarsi che il nome sia univoco");
+            getView()->showCriticalDialog("Errore","Modello gia' esistente");
             return;
         }
     }
@@ -115,9 +117,80 @@ void tableCtrl::onModelliTableAdded(const QString &m){
 }
 
 void tableCtrl::onModelliTableModelloMod(unsigned int row, const QString &m){
+    //contatore per cercare duplicati
+    unsigned int counter = 0;
+    for(const QString& mAdd : *getModel()->getListaModelli()){
 
+        if(mAdd == m && counter != row){    //duplicato
+            getModel()->setModello(row,m);
+            getView()->showWarningDialog("Warning","Modello gia' esistente");
+            getView()->modifyItemModelliTable(row,m+"?");
+            return;
+        }
+        else if(mAdd == m && counter == row)
+            return;
+        counter++;
+    }
+
+    //non c'e' duplicato
+    getModel()->setModello(row,m);
+    emit getView()->modelliTableModelloModChecked(row,m);
 }
 
 void tableCtrl::onModelliTableRemoved(unsigned int row){
+    QString m = getModel()->getModello(row);
+    for(datiModelli* r : getModel()->getListaDatiModelli()){
+        if(r->getNomeModello() == m){
+            getView()->showCriticalDialog("Errore","Il modello e' in uso nella tabella Dati");
+            return;
+        }
+    }
+    getView()->removeItemModelliTable(row);
+    getModel()->rimuoviModello(row);
+}
+
+
+void tableCtrl::onTessutiTableAdded(const QString &t){
+    for(const QString& tAdd : *getModel()->getListaTessuti()){
+        if(tAdd == t){
+            getView()->showCriticalDialog("Errore","Tessuto gia' esistente");
+            return;
+        }
+    }
+    getModel()->aggiungiTessuto(t);
+    getView()->addItemTessutiTable(getModel()->getListaTessuti()->size()-1,t);
+}
+
+void tableCtrl::onTessutiTableTessutoMod(unsigned int row, const QString &t){
+    //contatore per cercare duplicati
+    unsigned int counter = 0;
+    for(const QString& tAdd : *getModel()->getListaTessuti()){
+
+        if(tAdd == t && counter != row){    //duplicato
+            getModel()->setTessuto(row,t);
+            getView()->showWarningDialog("Warning","Tessuto gia' esistente");
+            getView()->modifyItemTessutiTable(row,t+"?");
+            return;
+        }
+        else if(tAdd == t && counter == row)
+            return;
+        counter++;
+    }
+
+    //non c'e' duplicato
+    getModel()->setTessuto(row,t);
+    emit getView()->tessutiTableTessutoModChecked(row,t);
+}
+
+void tableCtrl::onTessutiTableRemoved(unsigned int row){
+    QString m = getModel()->getTessuto(row);
+    for(datiModelli* r : getModel()->getListaDatiModelli()){
+        if(r->getTessuto() == m){
+            getView()->showCriticalDialog("Errore","Il tessuto e' in uso nella tabella Dati");
+            return;
+        }
+    }
+    getView()->removeItemTessutiTable(row);
+    getModel()->rimuoviTessuto(row);
 }
 
