@@ -18,6 +18,7 @@ SOURCES += \
     control/ctrlpiechart.cpp \
     control/ctrlstackedbarchart.cpp \
     control/gestionefilejson.cpp \
+    control/tablectrl.cpp \
     model/datiModelli.cpp \
     model/dativendite.cpp \
     model/modelPiechart.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
     control/ctrlpiechart.h \
     control/ctrlstackedbarchart.h \
     control/gestionefilejson.h \
+    control/tablectrl.h \
     model/datiModelli.h \
     model/dativendite.h \
     model/modelPiechart.h \
