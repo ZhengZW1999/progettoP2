@@ -19,14 +19,16 @@ private:
     QChart* chart;
     QLineSeries* ls;
     std::map<QString,QLineSeries*> serieModello;
+
+    void connectViewSignals() const override{
+        // non ci sono segnali da connettere
+    }
 public:
     explicit lineChart(const QSize& size = QSize(800,500), View* parent = nullptr);
 
-    void insertMaterialData(const unsigned int n,const QString& modello, const uint prodGiornaliera);
+    void insertMaterialData(const unsigned int n,const QString& modello, const unsigned int prodGiornaliera);
 
-    void applyPieAxis(const QStringList& tessuti);
-
-    void applyChartSeries();
+    void applyLineAxis(const QStringList& tessuti);
 };
 
 #endif // LINECHART_H

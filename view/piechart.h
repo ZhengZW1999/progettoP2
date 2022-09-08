@@ -22,6 +22,10 @@ protected:
     QStringList *listaModelli;
     QComboBox *listBox;
 
+    void connectViewSignals() const override{
+        // non ci sono segnali da connettere
+    }
+
 public:
     explicit pieChart(const QSize& s = QSize(800,500),View* parent = nullptr,const QStringList *lista = nullptr);
 

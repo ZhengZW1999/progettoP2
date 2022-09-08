@@ -24,4 +24,8 @@ void View::showWarningDialog(const QString& title, const QString& mesInfo){
     QMessageBox::warning(this,title,mesInfo,QMessageBox::Ok);
 }
 
+void View::showInformationDialog(const QString& title, const QString& mesInfo){
+    QMessageBox::information(this,title,mesInfo,QMessageBox::Ok);
+}
+
 

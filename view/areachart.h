@@ -22,6 +22,10 @@ private:
     QLineSeries *series = 0;
     QAreaSeries *prod;
     QAreaSeries *vend;
+
+    void connectViewSignals() const override{
+        // non ci sono segnali da connettere
+    }
 public:
     explicit areaChart(const QSize& size = QSize(800,500), View* parent = nullptr);
 

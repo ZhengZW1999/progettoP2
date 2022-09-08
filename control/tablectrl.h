@@ -2,10 +2,25 @@
 #define TABLECTRL_H
 
 #include "control/ctrl.h"
+#include "control/ctrlbarchart.h"
+#include "control/ctrllinechart.h"
+#include "control/ctrlstackedbarchart.h"
+#include "control/ctrlpiechart.h"
 
 #include "view/tableview.h"
+#include "view/barchart.h"
+#include "view/linechart.h"
+#include "view/stackedbarchart.h"
+#include "view/piechart.h"
+
+#include "view/guideview.h"
 
 #include "model/tabelle.h"
+#include "model/modelbarchart.h"
+#include "model/modellinechart.h"
+#include "model/modelstackedbarchart.h"
+#include "model/modelPiechart.h"
+
 
 #include <list>
 
@@ -111,10 +126,9 @@ public slots:
       * @brief onPieChartBPressed SLOT eseguito alla ricezione di SEGNALI dall view
       * che chiede come azione eseguita l'apertura di un PieChart
       * viene usato il modello attuale nel Ctrl
-      * @param detail
       */
 
-     //void onPieChartBPressed(bool detail)const;
+     void onPieChartBPressed()const;
 
      /**
       * @brief onLineChartBPressed SLOT eseguito alla ricezione di SEGNALI dalla view
@@ -122,7 +136,7 @@ public slots:
       * viene usato il modello attuale nel Ctrl
       */
 
-     //void onLineChartBPressed()const;
+     void onLineChartBPressed()const;
 
      /**
       * @brief onBarChartBPressed SLOT eseguito alla ricezione di SEGNALI dalla view
@@ -130,7 +144,11 @@ public slots:
       * viene usato il modello attuale nel Ctrl
       */
 
-    // void onBarChartBPressed(bool old) const;
+     void onBarChartBPressed() const;
+     void onStackedBarChartBPressed() const;
+
+
+     //void onGuidePressed() const;
 };
 
 #endif // TABLECTRL_H

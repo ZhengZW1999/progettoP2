@@ -79,6 +79,11 @@ void tableCtrl::connectViewCtrlSignalsSlots() const{
     connect(vista,SIGNAL(tessutiTableTessutoMod(uint,QString)),this,SLOT(onTessutiTableMod(uint,QString)));
 
     //connessioni per i pulsanti di interrazione
+    connect(vista,SIGNAL(barChartBPressed()),this,SLOT(onBarChartBPressed()));
+    connect(vista,SIGNAL(lineChartBPressed()),this,SLOT(onLineChartBPressed()));
+    connect(vista,SIGNAL(pieChartBPressed()),this,SLOT(onPieChartBPressed()));
+    connect(vista,SIGNAL(stackedBarChartBPressed()),this,SLOT(onStackedBarChartBPressed()));
+    connect(vista,SIGNAL(guidePressed()),this,SLOT(onGuidePressed()));
 
 }
 
@@ -193,4 +198,57 @@ void tableCtrl::onTessutiTableRemoved(unsigned int row){
     getView()->removeItemTessutiTable(row);
     getModel()->rimuoviTessuto(row);
 }
+
+void tableCtrl::onBarChartBPressed() const
+{
+    if(getModel()->getListaDatiModelli().size() == 0){
+        vista->showWarningDialog("Attenzione","Inserire dei dati prima");
+        return;
+    }
+
+    barChart* bView = new barChart(QSize(800,700),vista);
+    modelBarChart* bModel = new modelBarChart(getModel());
+    ctrlBarChart* bCtrl = new ctrlBarChart(bView,bModel,const_cast<tableCtrl*>(this));
+    bCtrl->showView();
+}
+
+void tableCtrl::onLineChartBPressed() const
+{
+    if(getModel()->getListaDatiModelli().size() == 0){
+        vista->showWarningDialog("Attenzione","Inserire dei dati prima");
+        return;
+    }
+
+    lineChart* lView = new lineChart(QSize(800,700),vista);
+    modelLineChart* lModel = new modelLineChart(getModel());
+    ctrlLineChart* lCtrl = new ctrlLineChart(lView,lModel,const_cast<tableCtrl*>(this));
+    lCtrl->showView();
+}
+
+void tableCtrl::onStackedBarChartBPressed() const
+{
+    if(getModel()->getListaDatiModelli().size() == 0){
+        vista->showWarningDialog("Attenzione","Inserire dei dati prima");
+        return;
+    }
+
+    stackedBarChart* sbView = new stackedBarChart(QSize(800,700),vista);
+    modelStackedBarChart* sbModel = new modelStackedBarChart(getModel());
+    ctrlStackedBarChart* sbCtrl = new ctrlStackedBarChart(sbView,sbModel,const_cast<tableCtrl*>(this));
+    sbCtrl->showView();
+}
+
+void tableCtrl::onPieChartBPressed() const
+{
+    if(getModel()->getListaDatiModelli().size() == 0){
+        vista->showWarningDialog("Attenzione","Inserire dei dati prima");
+        return;
+    }
+
+    barChart* lcView = new barChart(QSize(800,700),vista);
+    modelBarChart* pcModel = new modelBarChart(getModel());
+    ctrlBarChart* lcCtrl = new ctrlBarChart(lcView,pcModel,const_cast<tableCtrl*>(this));
+    lcCtrl->showView();
+}
+
 

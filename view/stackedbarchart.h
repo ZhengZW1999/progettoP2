@@ -22,6 +22,10 @@ private:
     QStackedBarSeries *series;
     QBarSet *cFinale= new QBarSet("Costo Produzione");;
     QBarSet *guadagno= new QBarSet("Guadagno");;
+
+    void connectViewSignals() const override{
+        // non ci sono segnali da connettere
+    }
 public:
     explicit stackedBarChart(const QSize& size = QSize(800,500), View* parent = nullptr);
 

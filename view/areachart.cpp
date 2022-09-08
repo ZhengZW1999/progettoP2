@@ -1,6 +1,6 @@
 #include "areachart.h"
 
-areaChart::areaChart(const QSize &size, View *parent): View(size,parent)
+areaChart::areaChart(const QSize &size, View *parent): View(size,parent), chart(new QChart())
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 

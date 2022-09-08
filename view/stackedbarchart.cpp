@@ -1,6 +1,6 @@
 #include "stackedbarchart.h"
 
-stackedBarChart::stackedBarChart(const QSize &s, View *parent):View(s,parent)
+stackedBarChart::stackedBarChart(const QSize &s, View *parent):View(s,parent), chart(new QChart()), series(new QStackedBarSeries())
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 
@@ -48,5 +48,7 @@ void stackedBarChart::applyStackedBarAxis(const QStringList &modelli)
 
 void stackedBarChart::applyStackedChart()
 {
+    series->append(guadagno);
+    series->append(cFinale);
     chart->addSeries(series);
 }

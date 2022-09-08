@@ -7,10 +7,11 @@ ctrlStackedBarChart::ctrlStackedBarChart(stackedBarChart *v, modelStackedBarChar
         getView()->insertSetCosto(n.second);
         modelli.push_back(n.first);
     }
+    getView()->applyStackedChart();
 
     getView()->applyStackedBarAxis(modelli);
 
-    getView()->applyStackedChart();
+
 }
 
 

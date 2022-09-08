@@ -1,6 +1,6 @@
 #include "linechart.h"
 
-lineChart::lineChart(const QSize &size, View *parent):View(size,parent)
+lineChart::lineChart(const QSize &size, View *parent):View(size,parent), chart(new QChart()), ls(new QLineSeries())
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 
@@ -20,14 +20,13 @@ lineChart::lineChart(const QSize &size, View *parent):View(size,parent)
     resize(size);
 }
 
-void lineChart::insertMaterialData(const unsigned int n, const QString &modello, const uint prodGiornaliera)
+void lineChart::insertMaterialData(const unsigned int n, const QString &modello, const unsigned int prodGiornaliera)
 {
     if(serieModello.find(modello) == serieModello.end()){
         ls->append(n,prodGiornaliera);
         ls->setName(modello);
         serieModello.insert({modello,ls});
-    }
-    serieModello[modello]->append(n,prodGiornaliera);
+    } else serieModello[modello]->append(n,prodGiornaliera);
 
     //ordino la serie
     QVector<QPointF> points = serieModello[modello]->pointsVector();
@@ -37,32 +36,31 @@ void lineChart::insertMaterialData(const unsigned int n, const QString &modello,
     serieModello[modello]->replace(points);
 }
 
-void lineChart::applyPieAxis(const QStringList &tessuti)
+void lineChart::applyLineAxis(const QStringList &tessuti)
 {
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
+    //axisX->append("0");
     axisX->append(tessuti);
     //Set range per il grafico, massimo 6 mesi PER volta da mostrare
     //Se il numero di mesi disponibili è più grande di 6 imposto un range dal primo al 6 mese
     //Se il numero di mesi disponibile è più piccolo di 6 imposto un range dal primo al ultimo
     axisX->setRange(tessuti.first(),tessuti.last());
     chart->addAxis(axisX, Qt::AlignBottom);
-    ls->attachAxis(axisX);
+
+
 
     QValueAxis *axisY = new QValueAxis();
     chart->addAxis(axisY, Qt::AlignLeft);
-    ls->attachAxis(axisY);
 
+    chart->removeAllSeries();
+    for (const auto& kv : serieModello) {
+        chart->addSeries(kv.second);
+        kv.second->attachAxis(axisX);
+        kv.second->attachAxis(axisY);
+    }
     //Imposto titolo degli assi
     if(chart->axisX() && chart->axisY()){
        chart->axisX()->setTitleText("Tessuto");
        chart->axisY()->setTitleText("Produzione giornaliera per modello");
-    }
-}
-
-void lineChart::applyChartSeries()
-{
-    chart->removeAllSeries();
-    for (const auto& kv : serieModello) {
-        chart->addSeries(kv.second);
     }
 }

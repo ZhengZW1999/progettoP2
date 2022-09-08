@@ -19,6 +19,10 @@ class barChart: public View
 private:
     QChart* chart;
     QBarSeries *series;
+
+    void connectViewSignals() const override{
+        // non ci sono segnali da connettere
+    }
 public:
     explicit barChart(const QSize& size = QSize(800,500), View* parent = nullptr);
 

@@ -31,8 +31,9 @@ private:
     QPushButton* pieChartBtn;
     QPushButton* barChartBtn;
     QPushButton* lineChartBtn;
-    QPushButton* PosNegBarChartBtn;
-    QPushButton* doubleBarChartBtn;
+    QPushButton* stackedBarChartBtn;
+    QPushButton* areaChartBtn;
+    QPushButton* guida;
 
     void connectViewSignals() const override;
 
@@ -178,6 +179,13 @@ signals:
     void tessutiTableAddedChecked(QString) const;
     void tessutiTableRemovedChecked(uint) const;
     void tessutiTableTessutoModChecked(uint,QString) const;
+
+    void barChartBPressed() const;
+    void stackedBarChartBPressed() const;
+    void lineChartBPressed() const;
+    void pieChartBPressed() const;
+
+    void guidePressed() const;
 
 };
 

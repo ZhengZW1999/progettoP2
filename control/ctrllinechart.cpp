@@ -2,8 +2,11 @@
 
 ctrlLineChart::ctrlLineChart(lineChart *v, modelLineChart *m, Ctrl *parent): Ctrl(v,m,parent)
 {
-    unsigned int tessutiN = 0;
+    unsigned int tessutiN = 1;
     QStringList tessuti;
+    /*for(const auto &m : *getModel()->getTess()){
+        getView()->insertMaterialData(0,m,0);
+    }*/
     for(const auto& n : getModel()->getProdModelliPerTess()){
         for(const auto& m : n.second){
             getView()->insertMaterialData(tessutiN,m.first,m.second);
@@ -12,9 +15,9 @@ ctrlLineChart::ctrlLineChart(lineChart *v, modelLineChart *m, Ctrl *parent): Ctr
         tessutiN++;
     }
 
-    getView()->applyPieAxis(tessuti);
+    getView()->applyLineAxis(tessuti);
 
-    getView()->applyChartSeries();
+
 }
 
 lineChart *ctrlLineChart::getView() const{return static_cast<lineChart*>(vista);}

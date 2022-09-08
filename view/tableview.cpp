@@ -1,5 +1,12 @@
 #include "tableview.h"
 
+void tableView::connectViewSignals() const{
+    connect(barChartBtn,SIGNAL(clicked()),this,SIGNAL(barChartBPressed()));
+    connect(pieChartBtn,SIGNAL(clicked()),this,SIGNAL(pieChartBPressed()));
+    connect(stackedBarChartBtn,SIGNAL(clicked()),this,SIGNAL(stackedBarChartBPressed()));
+    connect(lineChartBtn,SIGNAL(clicked()),this,SIGNAL(lineChartBPressed()));
+    connect(guida,SIGNAL(clicked()),this,SIGNAL(guidePressed()));
+}
 tableView::tableView(const QSize& s, View* parent): View(s,parent)
 {
     mainLayout = new QVBoxLayout;
@@ -51,9 +58,10 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     //PULSANTI PER CREARE GRAFICI
     pieChartBtn = new QPushButton("Composizione costo vendita per modello");
     barChartBtn = new QPushButton("Numero di volte del tessuto utilizzato");
-    lineChartBtn = new QPushButton("Vendita mensile di ogni modello");
-    doubleBarChartBtn = new QPushButton("Costo vendita / costo finale");
-    PosNegBarChartBtn = new QPushButton("Produzione / vendita per ogni mese");
+    lineChartBtn = new QPushButton("ProdGiorn di ogni modello");
+    stackedBarChartBtn = new QPushButton("Costo vendita / costo finale");
+    areaChartBtn = new QPushButton("Produzione / vendita per ogni mese");
+    guida = new QPushButton("Guida");
 
     innerLayout->addWidget(dataTable);
 
@@ -65,8 +73,9 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     buttonLayout->addWidget(pieChartBtn);
     buttonLayout->addWidget(barChartBtn);
     buttonLayout->addWidget(lineChartBtn);
-    buttonLayout->addWidget(doubleBarChartBtn);
-    buttonLayout->addWidget(PosNegBarChartBtn);
+    buttonLayout->addWidget(areaChartBtn);
+    buttonLayout->addWidget(stackedBarChartBtn);
+    buttonLayout->addWidget(guida);
     buttonLayout->setMargin(20);
     buttonLayout->setSpacing(10);
 
@@ -81,7 +90,7 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     setLayout(mainLayout);
 
     //Connessione dei SIGNAL dei Widget al Signal della AdminView
-    //connectViewSignals();
+    connectViewSignals();
 }
 
 //CREAZIONE TABELLE
@@ -181,28 +190,28 @@ void tableView::addRowDataTable(unsigned int row, const QStringList& listaModell
     costoTessMqW->setRange(0,9999);
     costoTessMqW->setDecimals(1);
     costoTessMqW->setSingleStep(0.1);
-    costoTessMqW->setSuffix(" €");
+    costoTessMqW->setSuffix(" euro ");
     dataTable->setCellWidget(row,3,costoTessMqW);
 
     QDoubleSpinBox* costoBaseW = new QDoubleSpinBox(this);
     costoBaseW->setRange(0,9999);
     costoBaseW->setDecimals(1);
     costoBaseW->setSingleStep(0.1);
-    costoBaseW->setSuffix(" €");
+    costoBaseW->setSuffix(" euro ");
     dataTable->setCellWidget(row,4,costoBaseW);
 
     QDoubleSpinBox* costoLavaggioW = new QDoubleSpinBox(this);
     costoLavaggioW->setRange(0,9999);
     costoLavaggioW->setDecimals(1);
     costoLavaggioW->setSingleStep(0.1);
-    costoLavaggioW->setSuffix(" €");
+    costoLavaggioW->setSuffix(" euro ");
     dataTable->setCellWidget(row,5,costoLavaggioW);
 
     QDoubleSpinBox* costoVenditaW = new QDoubleSpinBox(this);
     costoVenditaW->setRange(0,9999);
     costoVenditaW->setDecimals(1);
     costoVenditaW->setSingleStep(0.1);
-    costoVenditaW->setSuffix(" €");
+    costoVenditaW->setSuffix(" euro ");
     dataTable->setCellWidget(row,6,costoVenditaW);
 
     QSpinBox* produzioneGiornalieraW = new QSpinBox(this);
@@ -303,7 +312,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     tessUsatoW->setRange(0,9999);
     tessUsatoW->setDecimals(1);
     tessUsatoW->setSingleStep(0.1);
-    tessUsatoW->setSuffix(" Mq");
+    tessUsatoW->setSuffix(" Mq ");
     tessUsatoW->setValue(d.getTessUsato());
     dataTable->setCellWidget(row,2,tessUsatoW);
 
@@ -318,7 +327,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     costoTessutoMqW->setRange(0,9999);
     costoTessutoMqW->setDecimals(1);
     costoTessutoMqW->setSingleStep(0.1);
-    costoTessutoMqW->setSuffix(" Mq");
+    costoTessutoMqW->setSuffix(" euro ");
     costoTessutoMqW->setValue(d.getCostoTessutoMq());
     dataTable->setCellWidget(row,3,costoTessutoMqW);
 
@@ -333,7 +342,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     costoBaseW->setRange(0,9999);
     costoBaseW->setDecimals(1);
     costoBaseW->setSingleStep(0.1);
-    costoBaseW->setSuffix(" €");
+    costoBaseW->setSuffix(" euro ");
     dataTable->setCellWidget(row,4,costoBaseW);
 
     connect(costoBaseW, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,[this,costoBaseW](int value) {
@@ -347,7 +356,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     costoLavaggioW->setRange(0,9999);
     costoLavaggioW->setDecimals(1);
     costoLavaggioW->setSingleStep(0.1);
-    costoLavaggioW->setSuffix(" €");
+    costoLavaggioW->setSuffix(" euro ");
     costoLavaggioW->setValue(d.getCostoLavaggio());
     dataTable->setCellWidget(row,5,costoLavaggioW);
 
@@ -362,7 +371,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     costoVenditaW->setRange(0,9999);
     costoVenditaW->setDecimals(1);
     costoVenditaW->setSingleStep(0.1);
-    costoVenditaW->setSuffix(" Mq");
+    costoVenditaW->setSuffix(" euro ");
     costoVenditaW->setValue(d.getCostoVendita());
     dataTable->setCellWidget(row,6,costoVenditaW);
 
@@ -374,7 +383,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
 
     QSpinBox* prodGiornalieraW = new QSpinBox(this);
     prodGiornalieraW->setRange(0,100000);
-    prodGiornalieraW->setSuffix(" €\n");
+    prodGiornalieraW->setSuffix(" pezzi ");
     prodGiornalieraW->setValue(d.getProduzioneGiornaliera());
     dataTable->setCellWidget(row,7,prodGiornalieraW);
 
@@ -571,4 +580,4 @@ void tableView::modifyItemTessutiTable(unsigned int row, const QString &m){
     emit tessutiTableTessutoModChecked(row,m);
 }
 
-void tableView::connectViewSignals() const{}
+
