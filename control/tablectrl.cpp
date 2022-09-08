@@ -30,10 +30,10 @@ tableCtrl::tableCtrl(tableView* v, tabelle* m, Ctrl* parent) : Ctrl(v,m,parent)
     //Popo la TessutiTable con i dati presi da Model
     id = 0;
     for (const QString& t : *getModel()->getListaTessuti()) {
-        getView()->addItemModelliTable(id++,t);
+        getView()->addItemTessutiTable(id++,t);
     }
 
-    //Creao la Data Table
+    //Creo la Data Table
     getView()->createDataTable({ "Modello", "Tessuto", "Tessuto usato", "Costo Tessuto per Mq","Costo Base", "Costo Lavaggio", "Costo Vendita", "Produzione Giornaliera", ""});
 
     //Creo Prima Row Pulsante Add
@@ -76,7 +76,7 @@ void tableCtrl::connectViewCtrlSignalsSlots() const{
     //connessioni per la TessutiTable
     connect(vista,SIGNAL(tessutiTableAdded(QString)),this,SLOT(onTessutiTableAdded(QString)));
     connect(vista,SIGNAL(tessutiTableRemoved(uint)),this,SLOT(onTessutiTableRemoved(uint)));
-    connect(vista,SIGNAL(tessutiTableTessutoMod(uint,QString)),this,SLOT(onTessutiTableMod(uint,QString)));
+    connect(vista,SIGNAL(tessutiTableTessutoMod(uint,QString)),this,SLOT(onTessutiTableTessutoMod(uint,QString)));
 
     //connessioni per i pulsanti di interrazione
     connect(vista,SIGNAL(barChartBPressed()),this,SLOT(onBarChartBPressed()));

@@ -90,7 +90,7 @@ public slots:
 
      void onTessutiTableAdded(const QString& t);
 
-     void onTessutiTableTessutoMod(unsigned int row,const QString& m);
+     void onTessutiTableTessutoMod(unsigned int row,const QString& t);
 
      void onTessutiTableRemoved(unsigned int row);
 

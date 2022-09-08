@@ -136,7 +136,7 @@ void tableView::addRowDataTable(unsigned int row, const QStringList& listaModell
 
     //Aggiungo la lista degli elementi tra cui scegliere
     modelloW->addItems(listaModelli);
-    tessutoW->addItems(listaModelli);
+    tessutoW->addItems(listaTessuti);
 
     //Imposto il widget sulla cella
     dataTable->setCellWidget(row,0,modelloW);
@@ -150,7 +150,7 @@ void tableView::addRowDataTable(unsigned int row, const QStringList& listaModell
     connect(this,&tableView::modelliTableRemovedChecked,modelloW,[modelloW](uint i){
         modelloW->removeItem(i);
     });
-    //Aggiornamento della list adi modelli alla modifica di un modello
+    //Aggiornamento della lista di modelli alla modifica di un modello
     connect(this,&tableView::modelliTableModelloModChecked,modelloW,[modelloW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, adrà poi riselezionato
         bool iSelected = (modelloW->currentIndex() == (int)i);
@@ -168,7 +168,7 @@ void tableView::addRowDataTable(unsigned int row, const QStringList& listaModell
     connect(this,&tableView::tessutiTableRemovedChecked,tessutoW,[tessutoW](uint i){
         tessutoW->removeItem(i);
     });
-    //Aggiornamento della list adi tessuti alla modifica di un tessuto
+    //Aggiornamento della lista di tessuti alla modifica di un tessuto
     connect(this,&tableView::tessutiTableTessutoModChecked,tessutoW,[tessutoW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, adrà poi riselezionato
         bool iSelected = (tessutoW->currentIndex() == (int)i);
@@ -225,10 +225,10 @@ void tableView::addRowDataTable(unsigned int row, const QStringList& listaModell
 
     connect(addW, &QPushButton::clicked,this,
             [this, modelloW, tessutoW, tessUsatoW, costoTessMqW, costoBaseW, costoLavaggioW, costoVenditaW, produzioneGiornalieraW]() {
-        if(modelloW->currentIndex() != -1)
+        if(modelloW->currentIndex() != -1 && tessutoW->currentIndex() != -1)
             emit dataTableAdded(modelloW->currentText(), tessutoW->currentText(), tessUsatoW->value(), costoTessMqW->value(), costoBaseW->value(), costoLavaggioW->value(), costoVenditaW->value(), produzioneGiornalieraW->value());
         else
-           showCriticalDialog("Inserimento non concesso","Inserire prima dei modelli");
+           showCriticalDialog("Inserimento non concesso","Inserire prima dei modelli e tessuti");
     });
 }
 

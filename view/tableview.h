@@ -58,7 +58,7 @@ public:
      * aggiunge un pulsante che serve ad eliminare la riga.
      *
      * @param row Riga in cui fare la aggiuntaa
-     * @param r Record da aggiungere
+     * @param d dato da aggiungere
      * @param listaModelli lista di modelli tra cui scegliere per la cella di selezione modelli
      * @param listaTessuti lista di modelli tra cui scegliere per la cella di selezione tessuti
      */
@@ -106,7 +106,7 @@ public:
      * @param row
      * @param m
      */
-    void addItemTessutiTable(unsigned int row, const QString& t);
+    void addItemTessutiTable(unsigned int row, const QString& m);
 
     /**
      * @brief modifyItemModelliTable Metodo che modifica uno specifico Modello
