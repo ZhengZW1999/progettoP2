@@ -48,6 +48,7 @@ void stackedBarChart::applyStackedBarAxis(const QStringList &modelli)
 
 void stackedBarChart::applyStackedChart()
 {
+    chart->removeAllSeries();
     series->append(guadagno);
     series->append(cFinale);
     chart->addSeries(series);

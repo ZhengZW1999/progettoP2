@@ -19,14 +19,18 @@ class barChart: public View
 private:
     QChart* chart;
     QBarSeries *series;
-
+    QList<QBarSet*> tipiCosti;
     void connectViewSignals() const override{
         // non ci sono segnali da connettere
     }
 public:
     explicit barChart(const QSize& size = QSize(800,500), View* parent = nullptr);
 
-    void insertSetTessuto(const QString& tessuto, unsigned int n);
+    void insertSetTessuto(std::list<float> costi);
+
+    void createBarChartSet(const QStringList& tipiC);
+
+    void applyBarAxis(const QStringList& modelli);
 
     void applySetsOnChart();
 };

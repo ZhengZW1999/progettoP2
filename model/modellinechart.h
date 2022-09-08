@@ -11,12 +11,14 @@ class modelLineChart: public model
 {
 private:
     std::map<QString,std::map<QString,unsigned int>> prodModelliPerTess;
-    QStringList* mod;
+    QStringList mod;
+
+    void setMod(const QString &s);
 public:
     explicit modelLineChart(tabelle* t);
 
     std::map<QString,std::map<QString,unsigned int>> getProdModelliPerTess()const;
-    QStringList* getMod(tabelle* t);
+    const QStringList getMod() const;
 };
 
 #endif // MODELLINECHART_H

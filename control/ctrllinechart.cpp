@@ -4,9 +4,9 @@ ctrlLineChart::ctrlLineChart(lineChart *v, modelLineChart *m, Ctrl *parent): Ctr
 {
     unsigned int tessutiN = 1;
     QStringList tessuti;
-    /*for(const auto &m : *getModel()->getTess()){
+    for(const auto &m : getModel()->getMod()){
         getView()->insertMaterialData(0,m,0);
-    }*/
+    }
     for(const auto& n : getModel()->getProdModelliPerTess()){
         for(const auto& m : n.second){
             getView()->insertMaterialData(tessutiN,m.first,m.second);

@@ -2,17 +2,9 @@
 
 ctrlPieChart::ctrlPieChart(pieChart *v, modelPieChart *m, Ctrl *parent): Ctrl(v,m,parent)
 {
-    QStringList modelloTessuto;
-    for(const auto& n : getModel()->getCompCostoModello()){
-        unsigned int pos = 0;
-        for(const auto& m : n.second){
-            getView()->insertDati(getModel()->getCostiConsiderati().at(pos),m);
-            pos++;
-        }
-        modelloTessuto.push_back(n.first.first+"-"+n.first.second);
+    for(const auto& n : getModel()->getTessUsatoModello()){
+        getView()->insertDati(n.first,n.second);
     }
-
-    getView()->createChartListBox(&modelloTessuto);
 
     getView()->viewSetting();
 }

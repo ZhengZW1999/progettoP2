@@ -245,10 +245,10 @@ void tableCtrl::onPieChartBPressed() const
         return;
     }
 
-    barChart* lcView = new barChart(QSize(800,700),vista);
-    modelBarChart* pcModel = new modelBarChart(getModel());
-    ctrlBarChart* lcCtrl = new ctrlBarChart(lcView,pcModel,const_cast<tableCtrl*>(this));
-    lcCtrl->showView();
+    pieChart* pView = new pieChart(QSize(800,700),vista);
+    modelPieChart* pModel = new modelPieChart(getModel());
+    ctrlPieChart* pCtrl = new ctrlPieChart(pView,pModel,const_cast<tableCtrl*>(this));
+    pCtrl->showView();
 }
 
 

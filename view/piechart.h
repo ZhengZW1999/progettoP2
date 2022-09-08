@@ -19,25 +19,17 @@ private:
 protected:
     QPieSeries *series;
     QChart *chart;
-    QStringList *listaModelli;
-    QComboBox *listBox;
-
     void connectViewSignals() const override{
         // non ci sono segnali da connettere
     }
 
 public:
-    explicit pieChart(const QSize& s = QSize(800,500),View* parent = nullptr,const QStringList *lista = nullptr);
+    explicit pieChart(const QSize& s = QSize(800,500),View* parent = nullptr);
 
-    void insertDati(const QString& tipoCosto, float costo);
+    void insertDati(const QString& tessuto, unsigned int quantita);
 
-    QComboBox *createChartListBox(const QStringList* lista) const;
 
     void viewSetting();
-
-signals:
-    void indexChanged() const;
-
 };
 
 #endif // PIECHART_H

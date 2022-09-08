@@ -2,14 +2,28 @@
 
 modelBarChart::modelBarChart(tabelle *t)
 {
-    for(const QString& tessuto : *t->getListaTessuti()){
-        unsigned int n = 0;
+    std::list<float> composizione;
         for(datiModelli* d : t->getListaDatiModelli()){
-            if(d->getTessuto() == tessuto)
-                n++;
+            std::pair<QString, QString> modelloTessuto("","");
+            composizione.clear();
+            composizione.push_back(d->getCostoBase());
+            composizione.push_back(d->getCostoLavaggio());
+            composizione.push_back(d->getCostoTessutoMq()*d->getTessUsato());
+            modelloTessuto.first=d->getNomeModello();
+            modelloTessuto.second=d->getTessuto();
+            compCostoModello.insert({modelloTessuto,composizione});
         }
-        tessUsatoModello.insert({tessuto,n});
-    }
+
+        setCostiConsiderati();
 }
 
-std::map<QString, unsigned int> modelBarChart::getTessUsatoModello() const{return tessUsatoModello;}
+std::map<std::pair<QString,QString>, std::list<float> > modelBarChart::getCompCostoModello() const{return compCostoModello;}
+
+void modelBarChart::setCostiConsiderati()
+{
+    costiConsiderati.push_back("Costo Base");
+    costiConsiderati.push_back("Costo Lavaggio");
+    costiConsiderati.push_back("Costo Tessuto Usato");
+}
+
+const QStringList &modelBarChart::getCostiConsiderati() const{return costiConsiderati;}

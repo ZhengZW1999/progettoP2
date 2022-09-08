@@ -1,6 +1,6 @@
 #include "piechart.h"
 
-pieChart::pieChart(const QSize &s, View *parent,const QStringList *lista): View(s,parent)
+pieChart::pieChart(const QSize &s, View *parent): View(s,parent), series(new QPieSeries()), chart(new QChart())
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
     chart->addSeries(series);
@@ -11,18 +11,15 @@ pieChart::pieChart(const QSize &s, View *parent,const QStringList *lista): View(
     chart->setAnimationDuration(1500);
     QChartView *chartView = new QChartView(chart,this);
     chartView->setRenderHint(QPainter::Antialiasing);
-    listBox=createChartListBox(lista);
-    mainLayout->addWidget(new QLabel("Modello: "));
-    mainLayout->addWidget(listBox);
     mainLayout->addWidget(chartView);
     setLayout(mainLayout);
     setMinimumSize(800,500);
     resize(s);
 }
 
-void pieChart::insertDati(const QString &tipoCosto, float costo)
+void pieChart::insertDati(const QString &tessuto, unsigned int quantita)
 {
-    series->append(tipoCosto, costo);
+    series->append(tessuto+tr(" N: ")+QString::number(quantita), quantita);
 }
 
 void pieChart::viewSetting()
@@ -32,20 +29,6 @@ void pieChart::viewSetting()
         slice->setPen(QPen(Qt::darkGreen, 2));
         slice->setLabelColor(Qt::green);
     }
-    chart->setTitle("Costo finale per produzione");
+    chart->setTitle("Numero Scelte del Tessuto");
     series->setLabelsPosition(QPieSlice::LabelInsideHorizontal);
-}
-
-/*void pieChart::connectViewSignals() const{
-    connect(listBox,static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
-            this,SIGNAL(indexChanged()));
-}
-*/
-QComboBox *pieChart::createChartListBox(const QStringList* lista) const
-{
-    QComboBox *list = new QComboBox();
-    for(const QString& a : *lista){
-        list->addItem(a, a);
-    }
-    return list;
 }

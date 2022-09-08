@@ -2,11 +2,17 @@
 
 ctrlBarChart::ctrlBarChart(barChart *v, modelBarChart *m, Ctrl *parent): Ctrl(v,m,parent)
 {
-    for(const auto& n : getModel()->getTessUsatoModello()){
-        getView()->insertSetTessuto(n.first,n.second);
+    QStringList modelli;
+    getView()->createBarChartSet(getModel()->getCostiConsiderati());
+
+    for(const auto& n : getModel()->getCompCostoModello()){
+        modelli.push_back(n.first.first+tr("-")+n.first.second);
+        getView()->insertSetTessuto(n.second);
     }
 
     getView()->applySetsOnChart();
+
+    getView()->applyBarAxis(modelli);
 }
 
 barChart *ctrlBarChart::getView() const{return static_cast<barChart*>(vista);}

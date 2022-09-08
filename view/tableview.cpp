@@ -56,8 +56,8 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     */
 
     //PULSANTI PER CREARE GRAFICI
-    pieChartBtn = new QPushButton("Composizione costo vendita per modello");
-    barChartBtn = new QPushButton("Numero di volte del tessuto utilizzato");
+    pieChartBtn = new QPushButton("Numero di volte del tessuto utilizzato");
+    barChartBtn = new QPushButton("Composizione costo vendita per modello");
     lineChartBtn = new QPushButton("ProdGiorn di ogni modello");
     stackedBarChartBtn = new QPushButton("Costo vendita / costo finale");
     areaChartBtn = new QPushButton("Produzione / vendita per ogni mese");
