@@ -110,6 +110,30 @@ void tableCtrl::onDataTableTessutoMod(unsigned int row, const QString& t){
     getModel()->getDatiModelli(row)->setTessuto(t);
 }
 
+void tableCtrl::onDataTableTessUsatoMod(unsigned int row, float tu){
+    getModel()->getDatiModelli(row)->setTessutoUsato(tu);
+}
+
+void tableCtrl::onDataTableCostoTessutoMod(unsigned int row, float ct){
+    getModel()->getDatiModelli(row)->setCostoTessutoMq(ct);
+}
+
+void tableCtrl::onDataTableCostoBaseMod(unsigned int row, float cb){
+    getModel()->getDatiModelli(row)->setCostoBase(cb);
+}
+
+void tableCtrl::onDataTableCostoLavaggioMod(unsigned int row, float cl){
+    getModel()->getDatiModelli(row)->setCostoLavaggio(cl);
+}
+
+void tableCtrl::onDataTableCostoVenditaMod(unsigned int row, float cv){
+    getModel()->getDatiModelli(row)->setCostoVendita(cv);
+}
+
+void tableCtrl::onDataTableProdGiornalieraMod(unsigned int row, unsigned int pd){
+    getModel()->getDatiModelli(row)->setProduzioneGiornaliera(pd);
+}
+
 void tableCtrl::onModelliTableAdded(const QString &m){
     for(const QString& mAdd : *getModel()->getListaModelli()){
         if(mAdd == m){

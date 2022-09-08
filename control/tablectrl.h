@@ -94,6 +94,21 @@ public slots:
 
      void onTessutiTableRemoved(unsigned int row);
 
+
+     void onDataTableTessUsatoMod(unsigned int row, float tu);
+
+     void onDataTableCostoTessutoMod(unsigned int row, float ct);
+
+     void onDataTableCostoBaseMod(unsigned int row, float cb);
+
+     void onDataTableCostoLavaggioMod(unsigned int row, float cl);
+
+     void onDataTableCostoVenditaMod(unsigned int row, float cv);
+
+     void onDataTableProdGiornalieraMod(unsigned int row, unsigned int pd);
+
+
+
      /**
       * @brief onNewBPressed SLOT eseguito alla ricezione di SEGNALI dalla view
       * Azione da eseguire per aprire un nuovo progetto

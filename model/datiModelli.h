@@ -34,6 +34,7 @@ public:
     void setTessuto(const QString& t) {tessuto=t;}
     void setTessutoUsato(const float tu) {tessUsato=tu;}
     void setCostoTessutoMq(const float ctm) {costoTessutoMq=ctm;}
+    void setCostoBase(const float cb) {costoBase=cb;}
     void setCostoLavaggio(const float cn) {costoLavaggio=cn;}
     void setCostoVendita(const float cv){costoVendita=cv;}
     void setProduzioneGiornaliera(const unsigned int pg){produzioneGiornaliera=pg;}
