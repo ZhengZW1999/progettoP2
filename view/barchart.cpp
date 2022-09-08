@@ -9,7 +9,7 @@ barChart::barChart(const QSize &size, View *parent): View(size,parent), chart(ne
     chart->setAnimationDuration(1500);
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
-    chart->setTitle("Numero Scelte del Tessuto");
+    chart->setTitle("Composizione del costo finale");
 
     QChartView* chartView = new QChartView(chart,this);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -20,19 +20,41 @@ barChart::barChart(const QSize &size, View *parent): View(size,parent), chart(ne
     resize(size);
 }
 
-void barChart::insertSetTessuto(const QString &tessuto, unsigned int n)
+void barChart::insertSetTessuto(std::list<float> costi)
 {
-    QBarSet* set = new QBarSet(tessuto);
-    *set << n;
-    series->append(set);
+    int n= 0;
+    for(auto m : costi){
+        *tipiCosti[n] << m;
+        n++;
+    }
+}
+
+void barChart::createBarChartSet(const QStringList &tipiC)
+{
+    for(const auto& n : tipiC){
+        QBarSet* set = new QBarSet(n);
+        tipiCosti.push_back(set);
+    }
+}
+
+void barChart::applyBarAxis(const QStringList &modelli)
+{
+    QBarCategoryAxis *axisX = new QBarCategoryAxis();
+    axisX->append(modelli);
+    chart->createDefaultAxes();
+    chart->setAxisX(axisX, series);
+
+    //Imposto titolo degli assi
+    if(chart->axisX() && chart->axisY()){
+       chart->axisX()->setTitleText("Modelli");
+       chart->axisY()->setTitleText("Costi");
+    }
 }
 
 void barChart::applySetsOnChart()
 {
+    for(auto n : tipiCosti) series->append(n);
+
     chart->addSeries(series);
-    chart->createDefaultAxes();
-    if(chart->axisX() && chart->axisY()){
-       chart->axisX()->setTitleText("Tessuto");
-       chart->axisY()->setTitleText("Quantita'");
-    }
+
 }

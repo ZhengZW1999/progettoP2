@@ -9,17 +9,12 @@
 class modelPieChart: public model
 {
 private:
-    std::map<std::pair<QString,QString>,std::list<float>> compCostoModello;
+    std::map<QString,unsigned int> tessUsatoModello;
 
-    QStringList costiConsiderati;
 public:
     explicit modelPieChart(tabelle *t);
 
-    std::map<std::pair<QString,QString>,std::list<float>> getCompCostoModello() const;
-
-    void setCostiConsiderati();
-
-    const QStringList& getCostiConsiderati() const;
+    std::map<QString,unsigned int> getTessUsatoModello() const;
 };
 
 #endif // MODELPIECHART_H

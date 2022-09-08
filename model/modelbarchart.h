@@ -8,12 +8,17 @@
 class modelBarChart: public model
 {
 private:
-    std::map<QString,unsigned int> tessUsatoModello;
+    std::map<std::pair<QString,QString>,std::list<float>> compCostoModello;
 
+    QStringList costiConsiderati;
 public:
     explicit modelBarChart(tabelle *t);
 
-    std::map<QString,unsigned int> getTessUsatoModello() const;
+    std::map<std::pair<QString,QString>,std::list<float>> getCompCostoModello() const;
+
+    void setCostiConsiderati();
+
+    const QStringList& getCostiConsiderati() const;
 };
 
 #endif // MODELBARCHART_H

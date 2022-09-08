@@ -1,11 +1,18 @@
 #include "modellinechart.h"
 
 
+void modelLineChart::setMod(const QString &s)
+{
+    if(!mod.contains(s)) mod.push_back(s);
+}
+
 modelLineChart::modelLineChart(tabelle *t)
 {
+    mod = *(t->getListaModelli());
     for(const QString& tessuto : *t->getListaTessuti()){
         std::map<QString, unsigned int> prodGiornaliera;
         for(datiModelli* d : t->getListaDatiModelli()){
+            //setMod(d->getNomeModello());
             if(d->getTessuto() == tessuto)
                 prodGiornaliera[d->getNomeModello()] += d->getProduzioneGiornaliera();
 
@@ -16,7 +23,6 @@ modelLineChart::modelLineChart(tabelle *t)
 
 std::map<QString, std::map<QString, unsigned int> > modelLineChart::getProdModelliPerTess() const{return prodModelliPerTess;}
 
- QStringList *modelLineChart::getMod(tabelle *t) {
-     for(auto& m: *t->getListaModelli()) mod->push_back(m);
+const QStringList modelLineChart::getMod() const{
      return mod;
  }
