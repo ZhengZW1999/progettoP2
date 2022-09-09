@@ -1,6 +1,7 @@
 #include "venditeview.h"
 
 void venditeView::connectViewSignals() const{
+    connect(areaChartBtn,SIGNAL(clicked()),this,SIGNAL(areaChartBPressed()));
 
 }
 
@@ -28,10 +29,10 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
     venditeTable = new QTableWidget;
 
     //Creazione pulsanti
-    venditeChartBtn = new QPushButton("Rapporto produzione/vendita");
-    venditeChartBtn->setMaximumWidth(200);
+    areaChartBtn = new QPushButton("Rapporto produzione/vendita");
+    areaChartBtn->setMaximumWidth(200);
 
-    venditeBtnLayout->addWidget(venditeChartBtn, Qt::AlignCenter);
+    venditeBtnLayout->addWidget(areaChartBtn, Qt::AlignCenter);
     //venditeBtnLayout->setSpacing(50);
 
     venditeLayout->addWidget(menuBar);
@@ -40,7 +41,7 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
 
 
     setLayout(venditeLayout);
-    //connectViewSignals();
+    connectViewSignals();
 }
 
 
@@ -80,7 +81,10 @@ void venditeView::addRowVenditeTable(unsigned int row){
 
     connect(addW, &QPushButton::clicked,this,
             [this, pezziProdottiW, pezziVendutiW, dataW]() {
-        emit venditeTableAdded(pezziProdottiW->value(), pezziVendutiW->value(), dataW->date());
+        if(QDate::currentDate().year() >= dataW->date().year())
+            emit venditeTableAdded(pezziProdottiW->value(), pezziVendutiW->value(), dataW->date());
+        else
+           showCriticalDialog("Inserimento non concesso","La data inserita non e' valida");
     });
 
 }
