@@ -39,6 +39,7 @@ signals:
     void venditeTablePezziProdottiMod(uint, uint) const;
     void venditeTablePezziVendutiMod(uint, uint) const;
     void venditeTableDataMod(uint, QDate) const;
+    void areaChartBPressed() const;
 };
 
 #endif // VENDITEVIEW_H
