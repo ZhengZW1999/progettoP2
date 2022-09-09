@@ -6,15 +6,17 @@
 #include "control/ctrllinechart.h"
 #include "control/ctrlstackedbarchart.h"
 #include "control/ctrlpiechart.h"
+#include "control/venditectrl.h"
 
 #include "view/tableview.h"
-#include "view/venditeview.h"
 #include "view/barchart.h"
 #include "view/linechart.h"
 #include "view/stackedbarchart.h"
 #include "view/piechart.h"
 
 #include "view/guideview.h"
+#include "view/venditeview.h"
+
 
 #include "model/tabelle.h"
 #include "model/modelbarchart.h"
@@ -29,10 +31,6 @@ class tableCtrl: public Ctrl
 {
     Q_OBJECT
 private:
-    /**
-     * @brief connectViewCtrlSignalsSlots Metodo overloading
-     * Questo Metodo serve a connettere i SIGNAL della AdminView ai Slot del AdminCtrl
-     */
 
     void connectViewCtrlSignalsSlots() const;
 
@@ -165,7 +163,7 @@ public slots:
 
 
      void onVenditePressed() const;
-     void onGuidePressed() const;
+     //void onGuidePressed() const;
 };
 
 #endif // TABLECTRL_H

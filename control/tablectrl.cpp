@@ -85,7 +85,7 @@ void tableCtrl::connectViewCtrlSignalsSlots() const{
     connect(vista,SIGNAL(pieChartBPressed()),this,SLOT(onPieChartBPressed()));
     connect(vista,SIGNAL(stackedBarChartBPressed()),this,SLOT(onStackedBarChartBPressed()));
     connect(vista,SIGNAL(venditePressed()),this,SLOT(onVenditePressed()));
-    connect(vista,SIGNAL(guidePressed()),this,SLOT(onGuidePressed()));
+    //connect(vista,SIGNAL(guidePressed()),this,SLOT(onGuidePressed()));
 
 }
 
@@ -280,7 +280,9 @@ void tableCtrl::onPieChartBPressed() const
 
 void tableCtrl::onVenditePressed() const
 {
-
+    venditeView* vView = new venditeView();
+    venditeCtrl* vCtrl = new venditeCtrl(vView);
+    vCtrl->showView();
 
 }
 

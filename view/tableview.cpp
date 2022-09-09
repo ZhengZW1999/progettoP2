@@ -6,6 +6,7 @@ void tableView::connectViewSignals() const{
     connect(stackedBarChartBtn,SIGNAL(clicked()),this,SIGNAL(stackedBarChartBPressed()));
     connect(lineChartBtn,SIGNAL(clicked()),this,SIGNAL(lineChartBPressed()));
     connect(guida,SIGNAL(clicked()),this,SIGNAL(guidePressed()));
+    connect(venditeBtn,SIGNAL(clicked()),this,SIGNAL(venditePressed()));
 }
 tableView::tableView(const QSize& s, View* parent): View(s,parent)
 {
@@ -60,7 +61,7 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     barChartBtn = new QPushButton("Composizione costo vendita per modello");
     lineChartBtn = new QPushButton("ProdGiorn di ogni modello");
     stackedBarChartBtn = new QPushButton("Costo vendita / costo finale");
-    areaChartBtn = new QPushButton("Produzione / vendita per ogni mese");
+    venditeBtn = new QPushButton("Produzione / vendita per ogni mese");
     guida = new QPushButton("Guida");
 
     innerLayout->addWidget(dataTable);
@@ -73,7 +74,7 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     buttonLayout->addWidget(pieChartBtn);
     buttonLayout->addWidget(barChartBtn);
     buttonLayout->addWidget(lineChartBtn);
-    buttonLayout->addWidget(areaChartBtn);
+    buttonLayout->addWidget(venditeBtn);
     buttonLayout->addWidget(stackedBarChartBtn);
     buttonLayout->addWidget(guida);
     buttonLayout->setMargin(20);
@@ -392,44 +393,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
         emit dataTableProdGiornalieraMod(row,value);
         //prodGiornalieraW->value() == value
     });
-    /*
-    //pezziProdotti Widget
-    QSpinBox* pezziProdottiW = new QSpinBox(this);
-    pezziProdottiW->setRange(0,100000);
-    pezziProdottiW->setSuffix(" pezzi");
-    pezziProdottiW->setValue(dv.getPezziProdotti());
-    dataTable->setCellWidget(row,7,pezziProdottiW);
 
-    connect(pezziProdottiW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,pezziProdottiW](int value) {
-        unsigned int row = dataTable->indexAt(pezziProdottiW->pos()).row();
-        emit dataTablePezziProdottiMod(row,value);
-        //pezziProdottiW->value() == value
-    });
-
-    //pezziVenduti Widget
-    QSpinBox* pezziVendutiW = new QSpinBox(this);
-    pezziVendutiW->setRange(0,100000);
-    pezziVendutiW->setSuffix(" pezzi");
-    pezziVendutiW->setValue(dv.getPezziVenduti());
-    dataTable->setCellWidget(row,8,pezziVendutiW);
-
-    connect(pezziVendutiW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,pezziVendutiW](int value) {
-        unsigned int row = dataTable->indexAt(pezziVendutiW->pos()).row();
-        emit dataTablePezziVendutiMod(row,value);
-        //pezziVendutiW->value() == value
-    });
-
-
-    //data Widget
-    QDateEdit* dataW = new QDateEdit(dv.getData(),this);
-    dataTable->setCellWidget(row,9,dataW);
-
-    connect(dataW, &QDateEdit::dateChanged,this,[this,dataW](const QDate& data) {
-        unsigned int row = dataTable->indexAt(dataW->pos()).row();
-        emit dataTableDataMod(row,data);
-        //dataW->date() == data
-    });
-    */
 
     //Delete Button Widget
     QPushButton* deleteW = new QPushButton("-",this);

@@ -22,19 +22,32 @@ private:
     QPushButton* venditeChartBtn;
     QPushButton* pageViewBtn;
 
+    void connectViewSignals() const override;
+
 
 public:
     explicit venditeView(const QSize& s = QSize(), View* parent = nullptr);
 
     void createVenditeTable(const QStringList& headers) const;
 
-   // void addRowVenditeTable(unsigned int row);
+    void addRowVenditeTable(unsigned int row);
 
-    //void addItemVenditeTable(unsigned int row, unsigned int vendite);
+    void addItemVenditeTable(unsigned int row, const datiVendite& dv);
 
-    //void modifyItemVenditeTable(unsigned int row, unsigned int vendite);
+    void modifyItemVenditeTable(unsigned int row, const datiVendite& dv);
 
-    //void removeItemVenditeTable(unsigned int row);
+    void removeItemVenditeTable(unsigned int row);
+
+signals:
+    void venditeTableAdded(uint, uint, QDate) const;
+
+    void venditeTableRemoved(uint);
+
+    void venditeTablePezziProdottiMod(uint, uint) const;
+
+    void venditeTablePezziVendutiMod(uint, uint) const;
+
+    void venditeTableDataMod(uint, QDate) const;
 };
 
 #endif // VENDITEVIEW_H

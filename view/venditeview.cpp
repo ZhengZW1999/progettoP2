@@ -1,5 +1,9 @@
 #include "venditeview.h"
 
+void venditeView::connectViewSignals() const{
+
+}
+
 venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
 {
     //Creazione Layout
@@ -22,17 +26,12 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
 
     //Creazione Tabella
     venditeTable = new QTableWidget;
-    QStringList venditeHeaders = {"Pezzi prodotti", "Pezzi venduti", "Data", ""};
-    createVenditeTable(venditeHeaders);
 
     //Creazione pulsanti
     venditeChartBtn = new QPushButton("Rapporto produzione/vendita");
-    pageViewBtn = new QPushButton("Indietro");
-    pageViewBtn->setMaximumWidth(75);
     venditeChartBtn->setMaximumWidth(200);
 
-    venditeBtnLayout->addWidget(pageViewBtn, Qt::AlignLeft);
-    venditeBtnLayout->addWidget(venditeChartBtn, Qt::AlignRight);
+    venditeBtnLayout->addWidget(venditeChartBtn, Qt::AlignCenter);
     //venditeBtnLayout->setSpacing(50);
 
     venditeLayout->addWidget(menuBar);
@@ -41,6 +40,7 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
 
 
     setLayout(venditeLayout);
+    //connectViewSignals();
 }
 
 
@@ -51,4 +51,89 @@ void venditeView::createVenditeTable(const QStringList& headers) const{
     venditeTable->setHorizontalHeaderLabels(headers);
     venditeTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     venditeTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
+}
+
+
+void venditeView::addRowVenditeTable(unsigned int row){
+    //Inserismo una nuova riga per fare spazio
+    venditeTable->insertRow(row);
+
+    QSpinBox* pezziProdottiW = new QSpinBox(this);
+    pezziProdottiW->setRange(0,100000);
+    pezziProdottiW->setSuffix(" pezzi");
+    venditeTable->setCellWidget(row,0,pezziProdottiW);
+
+
+    //pezziVenduti Widget
+    QSpinBox* pezziVendutiW = new QSpinBox(this);
+    pezziVendutiW->setRange(0,100000);
+    pezziVendutiW->setSuffix(" pezzi");
+    venditeTable->setCellWidget(row,1,pezziVendutiW);
+
+    //data Widget
+    QDateEdit* dataW = new QDateEdit(this);
+    venditeTable->setCellWidget(row,2,dataW);
+
+    //Delete Button Widget
+    QPushButton* addW = new QPushButton("+",this);
+    venditeTable->setCellWidget(row,3,addW);
+
+    connect(addW, &QPushButton::clicked,this,
+            [this, pezziProdottiW, pezziVendutiW, dataW]() {
+        emit venditeTableAdded(pezziProdottiW->value(), pezziVendutiW->value(), dataW->date());
+    });
+
+}
+
+void venditeView::addItemVenditeTable(unsigned int row,const datiVendite& dv){
+    //Creo La ADD Row più in basso
+    addRowVenditeTable(row+1);
+
+    //pezziProdotti Widget
+    QSpinBox* pezziProdottiW = new QSpinBox(this);
+    pezziProdottiW->setRange(0,100000);
+    pezziProdottiW->setSuffix(" pezzi");
+    pezziProdottiW->setValue(dv.getPezziProdotti());
+    venditeTable->setCellWidget(row,0,pezziProdottiW);
+
+    connect(pezziProdottiW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,pezziProdottiW](int value) {
+        unsigned int row = venditeTable->indexAt(pezziProdottiW->pos()).row();
+        emit venditeTablePezziProdottiMod(row,value);
+        //pezziProdottiW->value() == value
+    });
+
+    //pezziVenduti Widget
+    QSpinBox* pezziVendutiW = new QSpinBox(this);
+    pezziVendutiW->setRange(0,100000);
+    pezziVendutiW->setSuffix(" pezzi");
+    pezziVendutiW->setValue(dv.getPezziVenduti());
+    venditeTable->setCellWidget(row,1,pezziVendutiW);
+
+    connect(pezziVendutiW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged),this,[this,pezziVendutiW](int value) {
+        unsigned int row = venditeTable->indexAt(pezziVendutiW->pos()).row();
+        emit venditeTablePezziVendutiMod(row,value);
+        //pezziVendutiW->value() == value
+    });
+
+
+    //data Widget
+    QDateEdit* dataW = new QDateEdit(dv.getData(),this);
+    venditeTable->setCellWidget(row,2,dataW);
+
+    connect(dataW, &QDateEdit::dateChanged,this,[this,dataW](const QDate& data) {
+        unsigned int row = venditeTable->indexAt(dataW->pos()).row();
+        emit venditeTableDataMod(row,data);
+        //dataW->date() == data
+    });
+
+    //Delete Button Widget
+    QPushButton* deleteW = new QPushButton("-",this);
+    venditeTable->setCellWidget(row,3,deleteW);//Widget
+
+    //Connessione al pulsante delete per eliminare la riga e aggiornare il modello di dati con l'eliminazione
+    connect(deleteW, &QPushButton::clicked,this,[this,deleteW]() {
+        unsigned int row = venditeTable->indexAt(deleteW->pos()).row();
+        emit venditeTableRemoved(row);
+        venditeTable->removeRow(row);
+    });
 }

@@ -19,6 +19,7 @@ SOURCES += \
     control/ctrlstackedbarchart.cpp \
     control/gestionefilejson.cpp \
     control/tablectrl.cpp \
+    control/venditectrl.cpp \
     model/datiModelli.cpp \
     model/dativendite.cpp \
     model/modelPiechart.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
     control/ctrlstackedbarchart.h \
     control/gestionefilejson.h \
     control/tablectrl.h \
+    control/venditectrl.h \
     model/datiModelli.h \
     model/dativendite.h \
     model/modelPiechart.h \
