@@ -89,7 +89,7 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
 
     setLayout(mainLayout);
 
-    //Connessione dei SIGNAL dei Widget al Signal della AdminView
+    //Connessione dei SIGNAL
     connectViewSignals();
 }
 

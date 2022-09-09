@@ -8,6 +8,7 @@
 #include "control/ctrlpiechart.h"
 
 #include "view/tableview.h"
+#include "view/venditeview.h"
 #include "view/barchart.h"
 #include "view/linechart.h"
 #include "view/stackedbarchart.h"
@@ -163,7 +164,8 @@ public slots:
      void onStackedBarChartBPressed() const;
 
 
-     //void onGuidePressed() const;
+     void onVenditePressed() const;
+     void onGuidePressed() const;
 };
 
 #endif // TABLECTRL_H

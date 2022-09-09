@@ -84,6 +84,7 @@ void tableCtrl::connectViewCtrlSignalsSlots() const{
     connect(vista,SIGNAL(lineChartBPressed()),this,SLOT(onLineChartBPressed()));
     connect(vista,SIGNAL(pieChartBPressed()),this,SLOT(onPieChartBPressed()));
     connect(vista,SIGNAL(stackedBarChartBPressed()),this,SLOT(onStackedBarChartBPressed()));
+    connect(vista,SIGNAL(venditePressed()),this,SLOT(onVenditePressed()));
     connect(vista,SIGNAL(guidePressed()),this,SLOT(onGuidePressed()));
 
 }
@@ -275,5 +276,13 @@ void tableCtrl::onPieChartBPressed() const
     ctrlPieChart* pCtrl = new ctrlPieChart(pView,pModel,const_cast<tableCtrl*>(this));
     pCtrl->showView();
 }
+
+
+void tableCtrl::onVenditePressed() const
+{
+
+
+}
+
 
 
