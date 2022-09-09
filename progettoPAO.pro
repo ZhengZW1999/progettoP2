@@ -37,6 +37,7 @@ SOURCES += \
     view/piechart.cpp \
     view/stackedbarchart.cpp \
     view/tableview.cpp \
+    view/venditeview.cpp \
     view/view.cpp
 
 HEADERS += \
@@ -65,6 +66,7 @@ HEADERS += \
     view/piechart.h \
     view/stackedbarchart.h \
     view/tableview.h \
+    view/venditeview.h \
     view/view.h
 
 FORMS +=

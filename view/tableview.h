@@ -185,6 +185,7 @@ signals:
     void lineChartBPressed() const;
     void pieChartBPressed() const;
 
+    void venditePressed() const;
     void guidePressed() const;
 
 };
