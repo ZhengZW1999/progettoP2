@@ -46,16 +46,6 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     modelliTable = new QTableWidget;
     tessutiTable = new QTableWidget;
 
-    /*
-    QStringList dataHeaders = {"Modello","Tessuto","Tessuto usato", "Costo tessuto in mq", "Costo base", "Costo lavaggio", "Costo vendita",""};
-    QStringList modelliHeaders = {"Modello", ""};
-    QStringList tessutiHeaders = {"Tessuti", ""};
-
-    createDataTable(dataHeaders);
-    createModelliTable(modelliHeaders);
-    createTessutiTable(tessutiHeaders);
-    */
-
     //PULSANTI PER CREARE GRAFICI
     pieChartBtn = new QPushButton("Numero di volte del tessuto utilizzato");
     barChartBtn = new QPushButton("Composizione costo vendita per modello");
@@ -407,7 +397,6 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     });
 }
 
-//INSERIMENTO MODELLI NELLA TABELLA MODELLI (modelliTable)
 
 //CREAZIONE NUOVA RIGA PER INSERIMENTO DI UN NUOVO MODELLO NELLA TABELLA MODELLI (modelliTable)
 void tableView::addRowModelliTable(unsigned int row){
