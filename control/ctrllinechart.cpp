@@ -15,7 +15,7 @@ ctrlLineChart::ctrlLineChart(lineChart *v, modelLineChart *m, Ctrl *parent): Ctr
         tessutiN++;
     }
 
-    getView()->applyLineAxis(tessuti);
+    getView()->applyLineAxis(tessuti,getModel()->getMax());
 
 
 }

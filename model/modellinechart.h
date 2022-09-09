@@ -5,20 +5,19 @@
 #include "model/tabelle.h"
 
 #include <map>
-#include <QLocale>
 
 class modelLineChart: public model
 {
 private:
     std::map<QString,std::map<QString,unsigned int>> prodModelliPerTess;
     QStringList mod;
-
-    void setMod(const QString &s);
+    unsigned int max;
 public:
     explicit modelLineChart(tabelle* t);
 
     std::map<QString,std::map<QString,unsigned int>> getProdModelliPerTess()const;
     const QStringList getMod() const;
+    const unsigned int getMax() const;
 };
 
 #endif // MODELLINECHART_H

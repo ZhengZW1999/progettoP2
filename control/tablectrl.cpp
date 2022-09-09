@@ -62,11 +62,12 @@ void tableCtrl::connectViewCtrlSignalsSlots() const{
     connect(vista,SIGNAL(dataTableAdded(QString, QString, float, float, float, float, float, uint)),this,SLOT(onDataTableAdded(QString, QString, float, float, float, float, float, uint)));
     connect(vista,SIGNAL(dataTableModelloMod(uint,QString)),this,SLOT(onDataTableModelloMod(uint,QString)));
     connect(vista,SIGNAL(dataTableTessutoMod(uint,QString)),this,SLOT(onDataTableTessutoMod(uint,QString)));
-    connect(vista,SIGNAL(dataTableTessUsatoMod(uint,uint)),this,SLOT(onDataTableTessUsatoMod(uint,float)));
-    connect(vista,SIGNAL(dataTableCostoTessutoMod(uint,uint)),this,SLOT(onDataTableCostoTessutoMod(uint,float)));
-    connect(vista,SIGNAL(dataTableCostoBaseMod(uint,uint)),this,SLOT(onDataTableCostoBaseMod(uint,float)));
-    connect(vista,SIGNAL(dataTableCostoLavaggioMod(uint,uint)),this,SLOT(onDataTableCostoLavaggioMod(uint,float)));
-    connect(vista,SIGNAL(dataTableCostoVenditaMod(uint,uint)),this,SLOT(onDataTableCostoVenditaMod(uint,float)));
+    connect(vista,SIGNAL(dataTableTessUsatoMod(uint,float)),this,SLOT(onDataTableTessUsatoMod(uint,float)));
+    connect(vista,SIGNAL(dataTableCostoTessutoMod(uint,float)),this,SLOT(onDataTableCostoTessutoMod(uint,float)));
+    connect(vista,SIGNAL(dataTableCostoBaseMod(uint,float)),this,SLOT(onDataTableCostoBaseMod(uint,float)));
+    connect(vista,SIGNAL(dataTableCostoLavaggioMod(uint,float)),this,SLOT(onDataTableCostoLavaggioMod(uint,float)));
+    connect(vista,SIGNAL(dataTableCostoVenditaMod(uint,float)),this,SLOT(onDataTableCostoVenditaMod(uint,float)));
+    connect(vista,SIGNAL(dataTableProdGiornalieraMod(uint,uint)),this,SLOT(onDataTableProdGiornalieraMod(uint,uint)));
 
     //connessioni per la ModelliTable
     connect(vista,SIGNAL(modelliTableAdded(QString)),this,SLOT(onModelliTableAdded(QString)));

@@ -7,22 +7,18 @@ GuideView::GuideView(const QSize& s,View* parent): View(s,parent)
     mainLayout->setContentsMargins(150,50,150,50);
     mainLayout->setAlignment(Qt::AlignCenter);
     mainLayout->addLayout(createDescription(tr(
-    "Filament3dPrint è un programma che ti può aiutare a tenere\n"
-    "traccia delle stampe fatte con una Stampante 3D.\n"
-    "Quando si fa una stampa 3D è utile tenere traccia di:\n"
-    "- Materiale\n"
-    "- Durata\n"
-    "- Consumo\n"
-    "- Data\n"
-    "\n"
-    "Il materiale è organizzato in bobine vendute al Kg quindi\n"
-    "è utili tenere traccia per ogni stampa quale e quanti grammi\n"
-    "di materiale si sono usati.\n"
-    "è importante tenere traccia della durata in quanto\n"
-    "una stampa 3D può durare svariate ore.\n"
-    "\n"
-    "Questo programma infine offre dei utili grafici\n"
-    "con cui esaminare queste informazioni"),
+    "NomeProg è un programma di supporto per la pianificazione\n"
+    "e organizzazione della produzione degli indumenti.\n"
+    "Nel processo produttivo, solitamente, la prima fase sta e' \n"
+    "quella di pianificare quali tipi di induzmenti verranno \n"
+    "prodotti. Da qui si devono prendere in considerazione cosa\n"
+    "rodurre (modello), quale tessuto utilizzare,\n"
+    "costi per la produzione per esempio:\n"
+    "-costo di cucitura\n"
+    "-costo del lavaggio\n"
+    "-costo del tessuto\n"
+    "tempo di impiegato ecc...\n"
+    "NomeProg raccoglie tutti questi dati e li mostra con i grafici.\n"),
     ":/3dPrint.jpeg"));
 
 
@@ -48,3 +44,18 @@ QLayout* GuideView::createDescription(const QString& description, const QString&
 
     return descrLayout;
 }
+/*Guida Utente
+ *  -Modello si puo' intende il tipo di indumento in generale(felpa,pantaloni,magliette)
+ *      oppure il modello specifico di un vestito
+ *  -Tessuto si intente il tessuto che si vuole usare per il modello
+ *  -Tessuto usaato per MQ e' la quantita' di tessuto necessario per pruduzione di un singolo capo
+ *  -Costo tessuto per MQ si intente il costo del tessuto
+ *  -Costo base sono tutti gli altri costi necessari nella fase di produzione (taglio tessuto, cucitura, trasporto)
+ *  -Costo Lavaggio e' il costo del lavaggio dei capi prima che vengano messi in vendita
+ *  -Prezzo Vendita si intende il prezzo che si intende fissare per la vendita
+ *  -Produzione giornaliera si intende il numero di capi prodotti in una giornata in media
+ *
+ *Il programma inoltre da anche la possibilita' di inserire dati relativi alla produzione e vendita totalle mensile
+ *cosi da visualizzarlo in grafico. E' utile in quanto vedendo l'andamento delle vendite dei mesi precedenti
+ *aiuta a pianificare il numero di capi da produrre nelle prossime stagioni
+*/

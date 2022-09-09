@@ -1,20 +1,18 @@
 #include "modellinechart.h"
 
-
-void modelLineChart::setMod(const QString &s)
-{
-    if(!mod.contains(s)) mod.push_back(s);
-}
-
 modelLineChart::modelLineChart(tabelle *t)
 {
-    mod = *(t->getListaModelli());
+    mod.clear();
+    for(const QString& modello : *t->getListaModelli())
+        mod << modello;
+    max = 0;
     for(const QString& tessuto : *t->getListaTessuti()){
         std::map<QString, unsigned int> prodGiornaliera;
         for(datiModelli* d : t->getListaDatiModelli()){
-            //setMod(d->getNomeModello());
             if(d->getTessuto() == tessuto)
                 prodGiornaliera[d->getNomeModello()] += d->getProduzioneGiornaliera();
+            if(max < d->getProduzioneGiornaliera() || max < prodGiornaliera[d->getNomeModello()])
+                max = d->getProduzioneGiornaliera() < prodGiornaliera[d->getNomeModello()] ? prodGiornaliera[d->getNomeModello()] :d->getProduzioneGiornaliera();
 
         }
         prodModelliPerTess.insert({tessuto,prodGiornaliera});
@@ -23,6 +21,6 @@ modelLineChart::modelLineChart(tabelle *t)
 
 std::map<QString, std::map<QString, unsigned int> > modelLineChart::getProdModelliPerTess() const{return prodModelliPerTess;}
 
-const QStringList modelLineChart::getMod() const{
-     return mod;
- }
+const QStringList modelLineChart::getMod() const{return mod;}
+
+const unsigned int modelLineChart::getMax() const{return max;}
