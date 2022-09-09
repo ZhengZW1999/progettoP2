@@ -4,7 +4,7 @@ lineChart::lineChart(const QSize &size, View *parent):View(size,parent), chart(n
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 
-    chart->setTitle("Rapporto Durata Consumo");
+    chart->setTitle("Produzione Giornaliera di ogni Modello per Tessuti diversi");
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
     chart->setTheme(QChart::ChartThemeDark);
@@ -61,6 +61,6 @@ void lineChart::applyLineAxis(const QStringList &tessuti, const unsigned int max
     //Imposto titolo degli assi
     if(chart->axisX() && chart->axisY()){
        chart->axisX()->setTitleText("Tessuto");
-       chart->axisY()->setTitleText("Produzione giornaliera per modello");
+       chart->axisY()->setTitleText("Produzione giornaliera");
     }
 }
