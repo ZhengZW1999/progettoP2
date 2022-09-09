@@ -1,6 +1,6 @@
-#include "gestionefilejson.h".h"
+#include "gestionefilejson.h"
 
-QJsonDocument* gestioneFileJSon::getJSONFileData(const QString& path){
+QJsonDocument* gestioneFileJSon::getJSONFileModelData(const QString& path){
     if(path.isNull()) return new QJsonDocument();
 
     QString fileData;
@@ -14,7 +14,7 @@ QJsonDocument* gestioneFileJSon::getJSONFileData(const QString& path){
     //Controllo validità documento
     QJsonDocument* doc = new QJsonDocument(QJsonDocument::fromJson(fileData.toLocal8Bit()));
     QJsonObject dataObj = doc->object();
-    if(!dataObj.contains("records") || !dataObj.contains("modelli")){
+    if(!dataObj.contains("Dati dei modelli") || !dataObj.contains("modelli") || !dataObj.contains("tessuti")){
         delete doc;
         return new QJsonDocument();
     }
@@ -29,6 +29,28 @@ QString gestioneFileJSon::selectJSONFileDialog(){
     if (dialog.exec())
         fileName = dialog.selectedFiles().at(0);
     return fileName;
+}
+
+QJsonDocument *gestioneFileJSon::getJSONFileVenditeData(const QString &path)
+{
+    if(path.isNull()) return new QJsonDocument();
+
+    QString fileData;
+    QFile file;
+
+    file.setFileName(path);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    fileData = file.readAll();
+    file.close();
+
+    //Controllo validità documento
+    QJsonDocument* doc = new QJsonDocument(QJsonDocument::fromJson(fileData.toLocal8Bit()));
+    QJsonObject dataObj = doc->object();
+    if(!dataObj.contains("Dati delle vendite")){
+        delete doc;
+        return new QJsonDocument();
+    }
+    return doc;
 }
 
 QStringList* gestioneFileJSon::getModellList(QJsonDocument* data){
@@ -60,12 +82,12 @@ std::list<datiModelli*> gestioneFileJSon::getDM(QJsonDocument* data){
         datiModelli* dm = new datiModelli(
                 record.toObject().value("materiale").toString(),
                 record.toObject().value("tessuto").toString(),
-                record.toObject().value("quantita' tessuto usato").toInt(),
-                record.toObject().value("costo tessuto per MQ").toInt(),
-                record.toObject().value("costo base").toInt(),
-                record.toObject().value("costo lavaggio").toInt(),
-                record.toObject().value("prezzo vendita").toInt(),
-                record.toObject().value("produzione giornaliera").toInt());
+                record.toObject().value("quantita' tessuto usato").toDouble(),
+                record.toObject().value("costo tessuto per MQ").toDouble(),
+                record.toObject().value("costo base").toDouble(),
+                record.toObject().value("costo lavaggio").toDouble(),
+                record.toObject().value("prezzo vendita").toDouble(),
+                record.toObject().value("produzione giornaliera").toDouble());
         lista.push_back(dm);
     }
     return lista;

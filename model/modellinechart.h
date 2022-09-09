@@ -5,7 +5,9 @@
 #include "model/tabelle.h"
 
 #include <map>
-
+/**
+ * @brief La classe modelAreaChart è un Modello relativo al grafico ad linee
+ */
 class modelLineChart: public model
 {
 private:

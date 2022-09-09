@@ -20,7 +20,7 @@ venditeCtrl::venditeCtrl(venditeView* v, tabelle* m, Ctrl* parent) : Ctrl(v,m,pa
 void venditeCtrl::connectViewCtrlSignalsSlots() const{
     //VENDITE TABLE
     connect(vista,SIGNAL(venditeTableAdded(uint, uint, QDate)),this,SLOT(onVenditeTableAdded(uint, uint, QDate)));
-    connect(vista,SIGNAL(venditeTableRemoved(uint)),this,SLOT(onVenditeTableRemoved(uint, uint, QDate)));
+    connect(vista,SIGNAL(venditeTableRemoved(uint)),this,SLOT(onVenditeTableRemoved(uint)));
     connect(vista,SIGNAL(venditeTablePezziProdottiMod(uint, uint)),this,SLOT(onVenditeTablePezziProdottiMod(uint, uint)));
     connect(vista,SIGNAL(venditeTablePezziVendutiMod(uint, uint)),this,SLOT(onVenditeTablePezziVendutiMod(uint, uint)));
     connect(vista,SIGNAL(venditeTableDataMod(uint, QDate)),this,SLOT(onVenditeTableDataMod(uint, QDate)));

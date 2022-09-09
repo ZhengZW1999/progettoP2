@@ -4,7 +4,9 @@
 #include "model/model.h"
 #include "model/tabelle.h"
 #include <map>
-
+/**
+ * @brief La classe modelAreaChart è un Modello relativo al grafico a barre sovrapposte
+ */
 class modelStackedBarChart: public model
 {
 private:

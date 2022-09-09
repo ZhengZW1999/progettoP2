@@ -21,7 +21,7 @@ private:
     std::list<datiVendite*> listaDatiVendite;
 public:
     explicit tabelle();
-    explicit tabelle(QString* path, QJsonDocument* file);
+    explicit tabelle(QString* path, QJsonDocument* file, bool b);
 
     ~tabelle() override;
 
@@ -51,9 +51,11 @@ public:
     const QString& getModello(unsigned int riga)const;
     const QString& getTessuto(unsigned int riga)const;
 
-    const QJsonDocument& saveToQJSonDocument() const;
+    const QJsonDocument& modelSaveToQJSonDocument() const;
 
-    void setPercosoFile(const QString& nomeF){*percorsoFile=nomeF;};
+    const QJsonDocument& venditeSaveToQJSonDocument() const;
+
+    void setPercosoFile(const QString& nomeF);;
     const QString& getPercorsoFile() const;
 
 };

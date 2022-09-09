@@ -41,7 +41,8 @@ public:
      * @return Documento Json contenente i dati del Json,
      * se documento JSON non valido o path non valida  return QString::isNull() == true
      */
-    static QJsonDocument* getJSONFileData(const QString& path);
+    static QJsonDocument* getJSONFileModelData(const QString& path);
+    static QJsonDocument* getJSONFileVenditeData(const QString& path);
 
     /**
      * @brief getModellList Metodo che Elabora i Dati JSON e restituisce una lista con i Materiali

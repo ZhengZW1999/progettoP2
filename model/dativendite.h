@@ -2,7 +2,10 @@
 #define DATIVENDITE_H
 
 #include <QDate>
-
+/**
+ * @brief La classe datiVendite è un Modello relativa alla produzione e vendita di un certo mese.
+ * Rapresenta il singolo record di memorizzazione della tabella vendite
+ */
 class datiVendite
 {
 private:
@@ -10,6 +13,12 @@ private:
     unsigned int pezziVenduti;
     QDate data;
 public:
+    /**
+     * @brief datiVendite Costruttore
+     * @param pp sono i pezzi prodotti
+     * @param pv sono i pezzi venduti
+     * @param ds e' la data di riferimento nel formato mese-anno
+     */
     explicit datiVendite(unsigned int pp,unsigned int pv, QDate ds);
 
     unsigned int getPezziProdotti() const;

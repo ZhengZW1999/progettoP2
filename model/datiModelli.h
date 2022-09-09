@@ -3,7 +3,11 @@
 
 #include <QString>
 #include <QDate>
-
+/**
+ * @brief La classe datiModelli è un Modello relativa alla fase di pianificazione
+ * Rapresenta il singolo record della tabella dei modelli,
+ * rappresenta un singolo indumento e le sue caratteristiche
+ */
 class datiModelli
 {
 private:
@@ -16,6 +20,17 @@ private:
     float costoVendita;
     unsigned int produzioneGiornaliera;
 public:
+    /**
+     * @brief datiModelli Costruttore
+     * @param n nome del modello
+     * @param t tessuto usato per il modello
+     * @param tu quantita' di tessuto usato in metri quadri
+     * @param ctm costo del tessuto per metro quadro
+     * @param cb costo base
+     * @param cl costo lavaggio
+     * @param cv perzzo di vendita
+     * @param pg produzione giornaliera del modello
+     */
     explicit datiModelli(QString n,QString t, float tu, float ctm, float cb, float cl,float cv, unsigned int pg);
 
     //getter
