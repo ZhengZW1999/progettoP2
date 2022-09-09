@@ -42,6 +42,8 @@ public slots:
      void onVenditeTablePezziVendutiMod(unsigned int row, unsigned int pV);
      void onVenditeTableDataMod(unsigned int row, QDate data);
 
+     void onAreaChartBPressed() const;
+
 
 };
 

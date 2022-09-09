@@ -2,7 +2,7 @@
 
 venditeCtrl::venditeCtrl(venditeView* v, tabelle* m, Ctrl* parent) : Ctrl(v,m,parent)
 {
-    //connectViewCtrlSignalsSlots();
+    connectViewCtrlSignalsSlots();
 
     //creazione tabella venditeTable
     getView()->createVenditeTable({"Pezzi prodotti", "Pezzi venduti", "Data", ""});
@@ -20,10 +20,12 @@ venditeCtrl::venditeCtrl(venditeView* v, tabelle* m, Ctrl* parent) : Ctrl(v,m,pa
 void venditeCtrl::connectViewCtrlSignalsSlots() const{
     //VENDITE TABLE
     connect(vista,SIGNAL(venditeTableAdded(uint, uint, QDate)),this,SLOT(onVenditeTableAdded(uint, uint, QDate)));
-    connect(vista,SIGNAL(venditeTableRemoved(uint)),this,SLOT(onVenditeTableRemoved(uint, uint, QDate)));
+    connect(vista,SIGNAL(venditeTableRemoved(uint)),this,SLOT(onVenditeTableRemoved(uint)));
     connect(vista,SIGNAL(venditeTablePezziProdottiMod(uint, uint)),this,SLOT(onVenditeTablePezziProdottiMod(uint, uint)));
     connect(vista,SIGNAL(venditeTablePezziVendutiMod(uint, uint)),this,SLOT(onVenditeTablePezziVendutiMod(uint, uint)));
     connect(vista,SIGNAL(venditeTableDataMod(uint, QDate)),this,SLOT(onVenditeTableDataMod(uint, QDate)));
+
+    connect(vista,SIGNAL(areaChartBPressed()),this,SLOT(onAreaChartBPressed()));
 
 }
 
@@ -36,7 +38,7 @@ tabelle* venditeCtrl::getModel() const {
 }
 
 void venditeCtrl::onViewClosed() const {
-    delete this;
+    this->hideView();
 }
 
 void venditeCtrl::onVenditeTableAdded(unsigned int pP, unsigned int pV, QDate data){
@@ -60,3 +62,17 @@ void venditeCtrl::onVenditeTablePezziVendutiMod(unsigned int row, unsigned int p
 void venditeCtrl::onVenditeTableDataMod(unsigned int row, QDate data){
     getModel()->getDatiVendite(row)->setData(data);
 }
+
+void venditeCtrl::onAreaChartBPressed() const
+{
+    if(getModel()->getListaDatiVendite().size() == 0){
+        vista->showWarningDialog("Attenzione","Inserire dei dati prima");
+        return;
+    }
+
+    areaChart* aView = new areaChart(QSize(800,700),vista);
+    modelAreaChart* aModel = new modelAreaChart(getModel());
+    ctrlAreaChart* aCtrl = new ctrlAreaChart(aView,aModel,const_cast<venditeCtrl*>(this));
+    aCtrl->showView();
+}
+
