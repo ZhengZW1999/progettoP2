@@ -17,7 +17,7 @@ class lineChart: public View
     Q_OBJECT
 private:
     QChart* chart;
-    QLineSeries* ls;
+
     std::map<QString,QLineSeries*> serieModello;
 
     void connectViewSignals() const override{
@@ -28,7 +28,7 @@ public:
 
     void insertMaterialData(const unsigned int n,const QString& modello, const unsigned int prodGiornaliera);
 
-    void applyLineAxis(const QStringList& tessuti);
+    void applyLineAxis(const QStringList& tessuti,const unsigned int max);
 };
 
 #endif // LINECHART_H

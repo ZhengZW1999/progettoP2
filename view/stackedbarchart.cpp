@@ -30,14 +30,8 @@ void stackedBarChart::applyStackedBarAxis(const QStringList &modelli)
 {
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
     axisX->append(modelli);
-
-    axisX->setRange(modelli.first(),modelli.last());
-    chart->addAxis(axisX, Qt::AlignBottom);
-    series->attachAxis(axisX);
-
-    QValueAxis *axisY = new QValueAxis();
-    chart->addAxis(axisY, Qt::AlignLeft);
-    series->attachAxis(axisY);
+    chart->createDefaultAxes();
+    chart->setAxisX(axisX, series);
 
     //Imposto titolo degli assi
     if(chart->axisX() && chart->axisY()){
