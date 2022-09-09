@@ -15,8 +15,6 @@ QT_CHARTS_USE_NAMESPACE
 class pieChart: public View
 {
 private:
-    //void connectViewSignals() const ;
-protected:
     QPieSeries *series;
     QChart *chart;
     void connectViewSignals() const override{

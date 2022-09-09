@@ -3,6 +3,7 @@
 #include "control/tablectrl.h"
 #include "view/venditeview.h"
 
+
 #include <QSize>
 #include <QApplication>
 #include <QFile>
@@ -16,7 +17,7 @@ int main(int argc, char *argv[])
     //HomeView w;
     h.show();
     */
-
+    //GuideView h;
     tableView* tView = new tableView();
     tableCtrl* tCtrl = new tableCtrl(tView);
     tCtrl->showView();

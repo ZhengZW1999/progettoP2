@@ -4,7 +4,7 @@ stackedBarChart::stackedBarChart(const QSize &s, View *parent):View(s,parent), c
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 
-    chart->setTheme(QChart::ChartThemeDark);
+    chart->setTheme(QChart::ChartThemeLight);
     chart->setAnimationOptions(QChart::SeriesAnimations);
     chart->setAnimationDuration(1500);
     chart->legend()->setVisible(true);

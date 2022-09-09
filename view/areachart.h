@@ -31,7 +31,7 @@ public:
 
     void insertProdVend(const unsigned int n,const unsigned int p,const unsigned int v);
 
-    void applyAreaAxis(const QStringList& mesi);
+    void applyAreaAxis(const QStringList& mesi, const unsigned int max);
 
     void applyAreaChart();
 

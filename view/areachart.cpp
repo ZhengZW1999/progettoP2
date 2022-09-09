@@ -1,10 +1,10 @@
 #include "areachart.h"
 
-areaChart::areaChart(const QSize &size, View *parent): View(size,parent), chart(new QChart())
+areaChart::areaChart(const QSize &size, View *parent): View(size,parent), chart(new QChart()), prod(new QAreaSeries), vend(new QAreaSeries)
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 
-    chart->setTheme(QChart::ChartThemeDark);
+    chart->setTheme(QChart::ChartThemeLight);
     chart->setAnimationOptions(QChart::SeriesAnimations);
     chart->setAnimationDuration(1500);
     chart->legend()->setVisible(true);
@@ -26,20 +26,22 @@ void areaChart::insertProdVend(const unsigned int n,const unsigned int p, const 
     *produzione <<QPoint(n,p);
 }
 
-void areaChart::applyAreaAxis(const QStringList &mesi)
+void areaChart::applyAreaAxis(const QStringList &mesi, const unsigned int max)
 {
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
+    axisX->append("0");
     axisX->append(mesi);
 
-    axisX->setRange(mesi.first(),mesi.last());
+    axisX->setRange("0",mesi.last());
     chart->addAxis(axisX, Qt::AlignBottom);
-    vendita->attachAxis(axisX);
-    produzione->attachAxis(axisX);
+    vend->attachAxis(axisX);
+    prod->attachAxis(axisX);
 
     QValueAxis *axisY = new QValueAxis();
+    axisY->setRange(0,max);
     chart->addAxis(axisY, Qt::AlignLeft);
-    vendita->attachAxis(axisY);
-    produzione->attachAxis(axisY);
+    vend->attachAxis(axisY);
+    prod->attachAxis(axisY);
 
     //Imposto titolo degli assi
     if(chart->axisX() && chart->axisY()){
@@ -63,7 +65,7 @@ void areaChart::applyAreaChart()
     prod->setPen(penProd);
 
     QPen penVend(Qt::red);
-    penProd.setWidth(3);
+    penVend.setWidth(3);
     vend->setPen(penVend);
 
     QLinearGradient gradientProd(QPointF(0, 0), QPointF(0, 1));
@@ -73,11 +75,12 @@ void areaChart::applyAreaChart()
     prod->setBrush(gradientProd);
 
     QLinearGradient gradientVend(QPointF(0, 0), QPointF(0, 1));
-    gradientVend.setColorAt(0.0, Qt::red);
+    gradientVend.setColorAt(0.0, Qt::transparent);
     gradientVend.setColorAt(1.0, Qt::red);
     gradientVend.setCoordinateMode(QGradient::ObjectBoundingMode);
     vend->setBrush(gradientVend);
 
+    chart->removeAllSeries();
     chart->addSeries(prod);
     chart->addSeries(vend);
 }

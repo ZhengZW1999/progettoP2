@@ -7,7 +7,7 @@ lineChart::lineChart(const QSize &size, View *parent):View(size,parent), chart(n
     chart->setTitle("Produzione Giornaliera di ogni Modello per Tessuti diversi");
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
-    chart->setTheme(QChart::ChartThemeDark);
+    chart->setTheme(QChart::ChartThemeLight);
     chart->setAnimationOptions(QChart::AllAnimations);
     chart->setAnimationDuration(1500);
 
@@ -29,14 +29,6 @@ void lineChart::insertMaterialData(const unsigned int n, const QString &modello,
         serieModello.insert({modello,ls});
     }
     serieModello[modello]->append(n,prodGiornaliera);
-
-    //ordino la serie
-    /*
-    QVector<QPointF> points = serieModello[modello]->pointsVector();
-    std::sort(points.begin(), points.end(), [](const QPointF & p1, const QPointF & p2) {
-        return p1.x() < p2.x();
-    });
-    serieModello[modello]->replace(points);*/
 }
 
 void lineChart::applyLineAxis(const QStringList &tessuti, const unsigned int max)

@@ -4,7 +4,7 @@ barChart::barChart(const QSize &size, View *parent): View(size,parent), chart(ne
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
 
-    chart->setTheme(QChart::ChartThemeDark);
+    chart->setTheme(QChart::ChartThemeLight);
     chart->setAnimationOptions(QChart::SeriesAnimations);
     chart->setAnimationDuration(1500);
     chart->legend()->setVisible(true);

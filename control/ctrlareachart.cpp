@@ -3,21 +3,19 @@
 
 ctrlAreaChart::ctrlAreaChart(areaChart *v, modelAreaChart *m, Ctrl *parent): Ctrl(v,m,parent)
 {
-    unsigned int mese = 0;
-    unsigned int produzione = 0;
-    unsigned int vendita = 0;
+    unsigned int mese = 1;
     QStringList tuttiMesi;
+    getView()->insertProdVend(0,0,0);
     for(const auto& n : getModel()->getRappProdVend()){
-        produzione = n.second.first;
-        vendita = n.second.second;
-        getView()->insertProdVend(mese,produzione,vendita);
+        getView()->insertProdVend(mese,n.second.first,n.second.second);
+
         tuttiMesi.push_back(n.first);
         mese++;
     }
-
-    getView()->applyAreaAxis(tuttiMesi);
-
     getView()->applyAreaChart();
+
+    getView()->applyAreaAxis(tuttiMesi,getModel()->getMax());
+
 }
 
 areaChart *ctrlAreaChart::getView() const{return static_cast<areaChart*>(vista);}

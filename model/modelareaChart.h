@@ -12,14 +12,14 @@ class modelAreaChart: public model
 {
 private:
     std::map<QString,std::pair<unsigned int,unsigned int>> rappProdVend;
-
+    unsigned int max;
 public:
     /**
      * @brief La classe modelAreaChart è un Modello relativo al grafico ad area
      */
     explicit modelAreaChart(tabelle* t);
     std::map<QString,std::pair<unsigned int,unsigned int>> getRappProdVend()const;
-
+    const unsigned int getMax() const;
 };
 
 #endif // MODELAREACHART_H
