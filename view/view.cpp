@@ -36,4 +36,18 @@ void View::showInformationDialog(const QString& title, const QString& mesInfo){
     QMessageBox::information(this,title,mesInfo,QMessageBox::Ok);
 }
 
+bool View::showQuestionDialog(unsigned int paramNum, const QString& title,const QString& info){
+    QMessageBox::StandardButton resBtn = QMessageBox::Yes;
+    switch (paramNum)
+    {
+        case 2:
+            resBtn = QMessageBox::question( this,title,info,QMessageBox::No | QMessageBox::Yes | QMessageBox::Yes);
+        break;
+        default:
+            resBtn = QMessageBox::question( this,title,info,QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes | QMessageBox::Yes);
+        break;
+    }
+    return (resBtn == QMessageBox::Yes);
+}
+
 
