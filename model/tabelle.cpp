@@ -20,6 +20,17 @@ tabelle::tabelle(QString *path, QJsonDocument *file, bool b)
     }
 }
 
+tabelle::tabelle(const tabelle &t)
+{
+    percorsoFile = new QString(*t.percorsoFile);
+    listaModelli = new QStringList(*t.listaModelli);
+    listaTessuti = new QStringList(*t.listaTessuti);
+    for(const auto& dm : t.listaDatiModelli)
+        listaDatiModelli.push_back(new datiModelli(*dm));
+    for(const auto& dv : t.listaDatiVendite)
+        listaDatiVendite.push_back(new datiVendite(*dv));
+}
+
 tabelle::~tabelle()
 {
     delete percorsoFile;

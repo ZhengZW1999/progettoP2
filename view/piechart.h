@@ -17,16 +17,33 @@ class pieChart: public View
 private:
     QPieSeries *series;
     QChart *chart;
+
+    /**
+     * @brief connectViewSignals Metodo virtuale che serve a collegare i segnali dei singoli
+     * Widget ai segnali della View
+     */
     void connectViewSignals() const override{
         // non ci sono segnali da connettere
     }
 
 public:
+    /**
+     * @brief pieChart costruttore
+     * @param s size della finestra
+     * @param parent view che invoca il costruttoe
+     */
     explicit pieChart(const QSize& s = QSize(800,500),View* parent = nullptr);
 
+    /**
+     * @brief insertDati metodo che inserisce i dati per pie chart
+     * @param tessuto il nome del dato
+     * @param quantita il valore del dato
+     */
     void insertDati(const QString& tessuto, unsigned int quantita);
 
-
+    /**
+     * @brief viewSetting applica le caratteristiche della chart
+     */
     void viewSetting();
 };
 

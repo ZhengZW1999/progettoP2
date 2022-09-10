@@ -5,10 +5,9 @@ ctrlAreaChart::ctrlAreaChart(areaChart *v, modelAreaChart *m, Ctrl *parent): Ctr
 {
     unsigned int mese = 1;
     QStringList tuttiMesi;
-    getView()->insertProdVend(0,0,0);
+    getView()->insertProdVend(0,0,0); //do un input con valori 0
     for(const auto& n : getModel()->getRappProdVend()){
         getView()->insertProdVend(mese,n.second.first,n.second.second);
-
         tuttiMesi.push_back(n.first);
         mese++;
     }

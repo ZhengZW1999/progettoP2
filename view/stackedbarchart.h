@@ -23,16 +23,36 @@ private:
     QBarSet *cFinale= new QBarSet("Costo Produzione");;
     QBarSet *guadagno= new QBarSet("Guadagno");;
 
+    /**
+     * @brief connectViewSignals Metodo virtuale che serve a collegare i segnali dei singoli
+     * Widget ai segnali della View
+     */
     void connectViewSignals() const override{
         // non ci sono segnali da connettere
     }
 public:
+    /**
+     * @brief stackedBarChart costruttore
+     * @param size size della finestra
+     * @param parent view che invoca il costruttore
+     */
     explicit stackedBarChart(const QSize& size = QSize(800,500), View* parent = nullptr);
 
+    /**
+     * @brief insertSetCosto metodo che inserisce i dati per bar chart sovrapposto
+     * @param rappCosto coppia di dati che rappresentano i pezzi prodotti/venduti
+     */
     void insertSetCosto(std::pair<float,float> rappCosto);
 
+    /**
+     * @brief applyStackedBarAxis metodo che costruisce e setta le assi X e Y
+     * @param modelli dato da mettere nell'asse X
+     */
     void applyStackedBarAxis(const QStringList& modelli);
 
+    /**
+     * @brief applyStackedChart metodo che applica la chart
+     */
     void applyStackedChart();
 };
 

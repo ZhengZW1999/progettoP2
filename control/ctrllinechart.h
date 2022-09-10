@@ -9,10 +9,26 @@ class ctrlLineChart: public Ctrl
 {
     Q_OBJECT
 public:
+    /**
+     * @brief ctrlAreaChart costruttore del controller per la finestra line chart
+     * @param v view
+     * @param m model
+     * @param parent controler padre
+     */
     explicit ctrlLineChart(lineChart* v,modelLineChart* m, Ctrl* parent = nullptr);
 
+    /**
+     * @brief getView metodo virtuale che restituisce il campo view castato
+     * al tipo corrente linechart
+     * @return view
+     */
     lineChart* getView() const override;
 
+    /**
+     * @brief getModel metodo virtuale che restituisce il campo model castato
+     * al tipo corrente modellinechart
+     * @return
+     */
     modelLineChart* getModel() const override;
 
 public slots:

@@ -4,6 +4,7 @@ ctrlLineChart::ctrlLineChart(lineChart *v, modelLineChart *m, Ctrl *parent): Ctr
 {
     unsigned int tessutiN = 1;
     QStringList tessuti;
+    //do un input conv valori 0 per ogni m
     for(const auto &m : getModel()->getMod()){
         getView()->insertMaterialData(0,m,0);
     }
