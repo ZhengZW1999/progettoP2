@@ -5,10 +5,6 @@ tableCtrl::tableCtrl(tableView* v, tabelle* m, Ctrl* parent) : Ctrl(v,m,parent)
     //Collego i SIGNAL della View Ai SLOT del Controller
     connectViewCtrlSignalsSlots();
 
-    //è essenziale che si crei prima la materialTable e solo poi la record table
-    //Questo perchè in caso contrario si verificano dei problemi sulle QComboBox della
-    //view che vengono registrati doppiamente.
-
     //Creo la Modelli Table
     getView()->createModelliTable({"MODELLO",""});
 

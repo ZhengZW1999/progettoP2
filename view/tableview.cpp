@@ -470,13 +470,10 @@ void tableView::addItemModelliTable(unsigned int row,const QString& m){
     connect(deleteW, &QPushButton::clicked,[this,deleteW]() {
         unsigned int row = modelliTable->indexAt(deleteW->pos()).row();
         emit modelliTableRemoved(row);
-        //L'eliminazione effettiva avviene solamente al responso del controller
-        //che richiama il metodo
-        //this->removeItemMaterialTable();
+
     });
 
-    //Emissione di segnale per aggiornare i QComboBox Selezionabili che esiste un nuovo Material
-    //tra cui scegliere
+
     emit modelliTableAddedChecked(m);
 }
 
@@ -538,13 +535,9 @@ void tableView::addItemTessutiTable(unsigned int row,const QString& m){
     connect(deleteW, &QPushButton::clicked,[this,deleteW]() {
         unsigned int row = tessutiTable->indexAt(deleteW->pos()).row();
         emit tessutiTableRemoved(row);
-        //L'eliminazione effettiva avviene solamente al responso del controller
-        //che richiama il metodo
-        //this->removeItemTessutiTable();
+
     });
 
-    //Emissione di segnale per aggiornare i QComboBox Selezionabili che esiste un nuovo Material
-    //tra cui scegliere
     emit tessutiTableAddedChecked(m);
 }
 
