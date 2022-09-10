@@ -40,10 +40,8 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     QMenuBar* menuBar = new QMenuBar(this);
 
     QMenu* file = new QMenu("File", menuBar);
-    QMenu* tabella = new QMenu("Tabella", menuBar);
 
     menuBar->addMenu(file);
-    menuBar->addMenu(tabella);
 
     //MENU FILE
     newProject = new QAction("New Project...", file);
@@ -57,11 +55,6 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     file->addAction(saveProjectAs);
     file->addAction(Exit);
 
-    //MENU TABELLA
-    tabella->addAction(new QAction("Inserisci Riga", tabella));
-    tabella->addAction(new QAction("Elimina Riga", tabella));
-
-    mainLayout->addWidget(menuBar);
 
     //aggiungere layout i widget tabella dati e tabelle modelli e tessuti
     QVBoxLayout* innerLayout = new QVBoxLayout;
@@ -114,14 +107,18 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
 //CREAZIONE TABELLE
 void tableView::createDataTable(const QStringList& headers) const{
     dataTable->setMinimumHeight(400);
+    dataTable->setMinimumWidth(1500);
     dataTable->setRowCount(0);
     dataTable->setColumnCount(9);
-    dataTable->setColumnWidth(3,175);
-    dataTable->setColumnWidth(7,150);
+    dataTable->setColumnWidth(3,200);
+    dataTable->setColumnWidth(7,200);
     dataTable->setColumnWidth(8,30);
+    dataTable->resizeColumnsToContents();
     dataTable->setHorizontalHeaderLabels(headers);
     dataTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     dataTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
+    dataTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    dataTable->horizontalHeader()->setStretchLastSection(false);
 }
 
 void tableView::createModelliTable(const QStringList& headers) const{

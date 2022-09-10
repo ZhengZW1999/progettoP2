@@ -17,6 +17,7 @@
 #include <QDoubleSpinBox>
 #include <QDateEdit>
 #include <QCloseEvent>
+#include <QHeaderView>
 
 
 class tableView: public View

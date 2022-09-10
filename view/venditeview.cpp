@@ -37,10 +37,8 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
     QMenuBar* menuBar = new QMenuBar(this);
 
     QMenu* file = new QMenu("File", menuBar);
-    QMenu* tabella = new QMenu("Tabella", menuBar);
 
     menuBar->addMenu(file);
-    menuBar->addMenu(tabella);
 
     //MENU FILE
     newProject = new QAction("New Project...", file);
@@ -53,11 +51,6 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
     file->addAction(saveProject);
     file->addAction(saveProjectAs);
     file->addAction(Exit);
-
-    //MENU TABELLA
-    AggiungiRiga = new QAction("Aggiungi Riga", tabella);
-    tabella->addAction(AggiungiRiga);
-
 
     //Creazione Tabella
     venditeTable = new QTableWidget;
@@ -82,7 +75,8 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
 void venditeView::createVenditeTable(const QStringList& headers) const{
     venditeTable->setRowCount(0);
     venditeTable->setColumnCount(4);
-    venditeTable->setMinimumHeight(200);
+    venditeTable->setMinimumHeight(300);
+    venditeTable->setMinimumWidth(500);
     venditeTable->setHorizontalHeaderLabels(headers);
     venditeTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     venditeTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
