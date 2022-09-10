@@ -5,8 +5,9 @@ void tableView::connectViewSignals() const{
     connect(pieChartBtn,SIGNAL(clicked()),this,SIGNAL(pieChartBPressed()));
     connect(stackedBarChartBtn,SIGNAL(clicked()),this,SIGNAL(stackedBarChartBPressed()));
     connect(lineChartBtn,SIGNAL(clicked()),this,SIGNAL(lineChartBPressed()));
-    connect(guida,SIGNAL(clicked()),this,SIGNAL(guidePressed()));
     connect(venditeBtn,SIGNAL(clicked()),this,SIGNAL(venditePressed()));
+
+    connect(guida,SIGNAL(clicked()),this,SIGNAL(guidePressed()));
 }
 tableView::tableView(const QSize& s, View* parent): View(s,parent)
 {

@@ -109,8 +109,7 @@ signals:
     void pieChartBPressed() const;
 
     void venditePressed() const;
-    void guidePressed() const;
-
+    void guidePressed() const;   
 };
 
 

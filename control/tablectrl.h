@@ -62,17 +62,6 @@ public slots:
 
      void onDataTableRemoved(unsigned int row);
 
-     /**
-      * @brief onDataTableAdded SLOT eseguito alla ricezione di SEGNALI dalla view per l'aggiunta di una riga nella tabella Dati
-      * viene quindi modificato il model aggiungendo un record alla dataList
-      * @param m Modello
-      * @param t Tessuto
-      * @param tU Tessuto usato
-      * @param cT Costo Tessuto per Mq
-      * @param cB Costo Base
-      * @param cL Costo Lavaggio
-      * @param cV Costo Vendita
-      */
      void onDataTableAdded(const QString& m, const QString& t, float tU, float cT, float cB, float cL, float cV, unsigned int pG);
 
      void onDataTableModelloMod(unsigned int row,const QString& m);
@@ -163,7 +152,7 @@ public slots:
 
 
      void onVenditePressed() const;
-     //void onGuidePressed() const;
+     void onGuidePressed() const;
 };
 
 #endif // TABLECTRL_H

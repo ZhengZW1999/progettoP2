@@ -71,7 +71,10 @@ HEADERS += \
     view/venditeview.h \
     view/view.h
 
-FORMS +=
+RESOURCES += \
+    resource.qrc
+
+ICON = produGrapherIcon.ico
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

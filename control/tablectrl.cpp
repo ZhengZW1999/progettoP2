@@ -85,7 +85,7 @@ void tableCtrl::connectViewCtrlSignalsSlots() const{
     connect(vista,SIGNAL(pieChartBPressed()),this,SLOT(onPieChartBPressed()));
     connect(vista,SIGNAL(stackedBarChartBPressed()),this,SLOT(onStackedBarChartBPressed()));
     connect(vista,SIGNAL(venditePressed()),this,SLOT(onVenditePressed()));
-    //connect(vista,SIGNAL(guidePressed()),this,SLOT(onGuidePressed()));
+    connect(vista,SIGNAL(guidePressed()),this,SLOT(onGuidePressed()));
 
 }
 
@@ -286,5 +286,8 @@ void tableCtrl::onVenditePressed() const
 
 }
 
-
+void tableCtrl::onGuidePressed() const{
+    GuideView* guida = new GuideView();
+    guida->show();
+}
 

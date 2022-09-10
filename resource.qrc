@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>produGrapher.png</file>
+		<file>produGrapherIcon.ico</file>
+    </qresource>
+</RCC>
