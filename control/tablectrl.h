@@ -65,7 +65,7 @@ public slots:
 
      void onDataTableRemoved(unsigned int row);
 
-     void onDataTableAdded(const QString& m, const QString& t, float tU, float cT, float cB, float cL, float cV, unsigned int pG);
+     void onDataTableAdded(const QString& m, const QString& t, double tU, double cT, double cB, double cL, double cV, unsigned int pG);
 
      void onDataTableModelloMod(unsigned int row,const QString& m);
 
@@ -86,15 +86,15 @@ public slots:
      void onTessutiTableRemoved(unsigned int row);
 
 
-     void onDataTableTessUsatoMod(unsigned int row, float tu);
+     void onDataTableTessUsatoMod(unsigned int row, double tu);
 
-     void onDataTableCostoTessutoMod(unsigned int row, float ct);
+     void onDataTableCostoTessutoMod(unsigned int row, double ct);
 
-     void onDataTableCostoBaseMod(unsigned int row, float cb);
+     void onDataTableCostoBaseMod(unsigned int row, double cb);
 
-     void onDataTableCostoLavaggioMod(unsigned int row, float cl);
+     void onDataTableCostoLavaggioMod(unsigned int row, double cl);
 
-     void onDataTableCostoVenditaMod(unsigned int row, float cv);
+     void onDataTableCostoVenditaMod(unsigned int row, double cv);
 
      void onDataTableProdGiornalieraMod(unsigned int row, unsigned int pd);
 

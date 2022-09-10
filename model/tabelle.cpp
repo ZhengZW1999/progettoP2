@@ -10,12 +10,8 @@ tabelle::tabelle()
 tabelle::tabelle(QString *path, QJsonDocument *file, bool b)
 {
     if(b){
-        qDebug() << "costruttore";
         listaDatiModelli = gestioneFileJSon::getDM(file);
         listaModelli = gestioneFileJSon::getModellList(file);
-        for(auto n : *listaModelli){
-            qDebug() <<n;
-        }
         listaTessuti = gestioneFileJSon::getTessutiList(file);
 
         percorsoFile = path;
@@ -102,11 +98,11 @@ const QJsonDocument &tabelle::modelSaveToQJSonDocument() const
         QJsonObject oggetto;
         oggetto.insert(QString::fromStdString("Nome Modello"),dm->getNomeModello());
         oggetto.insert(QString::fromStdString("Tessuto"),dm->getTessuto());
-        oggetto.insert(QString::fromStdString("Tessuto Usato"),QJsonValue((float)dm->getTessUsato()));
-        oggetto.insert(QString::fromStdString("Costo Tessuto Per Metro Quadro"),QJsonValue((float)dm->getCostoTessutoMq()));
-        oggetto.insert(QString::fromStdString("Costo Base"),QJsonValue((float)dm->getCostoBase()));
-        oggetto.insert(QString::fromStdString("Costo Lavaggio"),QJsonValue((float)dm->getCostoLavaggio()));
-        oggetto.insert(QString::fromStdString("Prezo Vendita"),QJsonValue((float)dm->getCostoVendita()));
+        oggetto.insert(QString::fromStdString("Tessuto Usato"),QJsonValue((double)dm->getTessUsato()));
+        oggetto.insert(QString::fromStdString("Costo Tessuto Per Metro Quadro"),QJsonValue((double)dm->getCostoTessutoMq()));
+        oggetto.insert(QString::fromStdString("Costo Base"),QJsonValue((double)dm->getCostoBase()));
+        oggetto.insert(QString::fromStdString("Costo Lavaggio"),QJsonValue((double)dm->getCostoLavaggio()));
+        oggetto.insert(QString::fromStdString("Prezo Vendita"),QJsonValue((double)dm->getCostoVendita()));
         oggetto.insert(QString::fromStdString("Produzione Giornaliera"),QJsonValue((int)dm->getProduzioneGiornaliera()));
         arrayModelli.push_back(oggetto);
     }

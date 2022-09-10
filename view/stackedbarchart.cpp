@@ -20,7 +20,7 @@ stackedBarChart::stackedBarChart(const QSize &s, View *parent):View(s,parent), c
     resize(s);
 }
 
-void stackedBarChart::insertSetCosto(std::pair<float, float> rappCosto)
+void stackedBarChart::insertSetCosto(std::pair<double, double> rappCosto)
 {
     *guadagno << rappCosto.first;
     *cFinale << rappCosto.second;

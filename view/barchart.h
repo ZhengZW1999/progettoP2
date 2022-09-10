@@ -38,9 +38,9 @@ public:
 
     /**
      * @brief insertSetTessuto metodo che inserisce i dati che servono al bar chart
-     * @param costi lista di float che rappresentano i costi
+     * @param costi lista di double che rappresentano i costi
      */
-    void insertSetTessuto(std::list<float> costi);
+    void insertSetTessuto(std::list<double> costi);
 
     /**
      * @brief createBarChartSet crea i barset

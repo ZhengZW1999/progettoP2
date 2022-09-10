@@ -361,6 +361,7 @@ void tableView::addItemDataTable(unsigned int row,const datiModelli& d, const QS
     costoBaseW->setDecimals(1);
     costoBaseW->setSingleStep(0.1);
     costoBaseW->setSuffix(" euro ");
+    costoBaseW->setValue(d.getCostoBase());
     dataTable->setCellWidget(row,4,costoBaseW);
 
     connect(costoBaseW, static_cast<void(QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),this,[this,costoBaseW](int value) {

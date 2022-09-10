@@ -2,7 +2,7 @@
 
 modelBarChart::modelBarChart(tabelle *t)
 {
-    std::list<float> composizione;
+    std::list<double> composizione;
         for(datiModelli* d : t->getListaDatiModelli()){
             std::pair<QString, QString> modelloTessuto("","");
             composizione.clear();
@@ -17,7 +17,7 @@ modelBarChart::modelBarChart(tabelle *t)
         setCostiConsiderati();
 }
 
-std::map<std::pair<QString,QString>, std::list<float> > modelBarChart::getCompCostoModello() const{return compCostoModello;}
+std::map<std::pair<QString,QString>, std::list<double> > modelBarChart::getCompCostoModello() const{return compCostoModello;}
 
 void modelBarChart::setCostiConsiderati()
 {

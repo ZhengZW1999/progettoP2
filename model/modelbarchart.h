@@ -11,7 +11,7 @@
 class modelBarChart: public model
 {
 private:
-    std::map<std::pair<QString,QString>,std::list<float>> compCostoModello;
+    std::map<std::pair<QString,QString>,std::list<double>> compCostoModello;
 
     QStringList costiConsiderati;
 public:
@@ -28,7 +28,7 @@ public:
      * @return compCostoModello una mappa contenente la lista dei costi che compongono
      * il costo finale della produzione per ogni modello-tessuto
      */
-    std::map<std::pair<QString,QString>,std::list<float>> getCompCostoModello() const;
+    std::map<std::pair<QString,QString>,std::list<double>> getCompCostoModello() const;
 
     /**
      * @brief setCostiConsiderati metodo setter per settare i costi in stringhe

@@ -42,7 +42,7 @@ public:
      * @brief insertSetCosto metodo che inserisce i dati per bar chart sovrapposto
      * @param rappCosto coppia di dati che rappresentano i pezzi prodotti/venduti
      */
-    void insertSetCosto(std::pair<float,float> rappCosto);
+    void insertSetCosto(std::pair<double,double> rappCosto);
 
     /**
      * @brief applyStackedBarAxis metodo che costruisce e setta le assi X e Y

@@ -84,15 +84,15 @@ public:
 signals:
     //SIGNAL catturatti da un Controller, servono per aggiornare il Model con la modifica della dataTable
     void dataTableRemoved(uint) const;
-    void dataTableAdded(QString, QString, float, float, float, float, float, uint) const;
+    void dataTableAdded(QString, QString, double, double, double, double, double, uint) const;
 
     void dataTableModelloMod(uint, QString) const;
     void dataTableTessutoMod(uint, QString) const;
-    void dataTableTessUsatoMod(uint, float) const;
-    void dataTableCostoTessutoMod(uint, float) const;
-    void dataTableCostoBaseMod(uint, float) const;
-    void dataTableCostoLavaggioMod(uint, float) const;
-    void dataTableCostoVenditaMod(uint, float) const;
+    void dataTableTessUsatoMod(uint, double) const;
+    void dataTableCostoTessutoMod(uint, double) const;
+    void dataTableCostoBaseMod(uint, double) const;
+    void dataTableCostoLavaggioMod(uint, double) const;
+    void dataTableCostoVenditaMod(uint, double) const;
     void dataTableProdGiornalieraMod(uint, uint) const;
 
     //SIGNAL catturati da un Controller, servono per aggiornare il Model con la modifica delle modelliTable e tessutiTable

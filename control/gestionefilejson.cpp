@@ -80,13 +80,13 @@ std::list<datiModelli*> gestioneFileJSon::getDM(QJsonDocument* data){
     QJsonArray records = dataObj["Dati dei modelli"].toArray();
     for(const QJsonValue& record : records){
         datiModelli* dm = new datiModelli(
-                record.toObject().value("Materiale").toString(),
+                record.toObject().value("Nome Modello").toString(),
                 record.toObject().value("Tessuto").toString(),
-                record.toObject().value("Quantita' Tessuto Usato").toInt(),
-                record.toObject().value("Costo Tessuto Per MQ").toInt(),
-                record.toObject().value("Costo Base").toInt(),
-                record.toObject().value("Costo Lavaggio").toInt(),
-                record.toObject().value("Prezzo Vendita").toInt(),
+                record.toObject().value("Tessuto Usato").toDouble(),
+                record.toObject().value("Costo Tessuto Per Metro Quadro").toDouble(),
+                record.toObject().value("Costo Base").toDouble(),
+                record.toObject().value("Costo Lavaggio").toDouble(),
+                record.toObject().value("Prezo Vendita").toDouble(),
                 record.toObject().value("Produzione Giornaliera").toInt());
         lista.push_back(dm);
     }

@@ -20,7 +20,7 @@ barChart::barChart(const QSize &size, View *parent): View(size,parent), chart(ne
     resize(size);
 }
 
-void barChart::insertSetTessuto(std::list<float> costi)
+void barChart::insertSetTessuto(std::list<double> costi)
 {
     int n= 0;
     for(auto m : costi){
