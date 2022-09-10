@@ -43,6 +43,7 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
 
     menuBar->addMenu(file);
 
+
     //MENU FILE
     newProject = new QAction("New Project...", file);
     openProject = new QAction("Open Project...", file);
@@ -55,6 +56,8 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     file->addAction(saveProjectAs);
     file->addAction(Exit);
 
+
+    mainLayout->addWidget(menuBar);
 
     //aggiungere layout i widget tabella dati e tabelle modelli e tessuti
     QVBoxLayout* innerLayout = new QVBoxLayout;
