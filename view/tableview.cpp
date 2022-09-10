@@ -1,5 +1,19 @@
 #include "tableview.h"
 
+void tableView::closeEvent(QCloseEvent* event){
+    //Elaboro chiusura solo se intenzionata da evento esterno
+    if(!event->spontaneous()) return;
+
+    if(!showQuestionDialog(3,"Exit","Sei sicuro di voler uscire?\n")){
+        //Ignoro l'evento di chiusura
+        event->ignore();
+    } else {
+        //Accetto l'evento di chiusura della Window
+        event->accept();
+        emit viewClosed();
+    }
+}
+
 void tableView::connectViewSignals() const{
     connect(barChartBtn,SIGNAL(clicked()),this,SIGNAL(barChartBPressed()));
     connect(pieChartBtn,SIGNAL(clicked()),this,SIGNAL(pieChartBPressed()));
