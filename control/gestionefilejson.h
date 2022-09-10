@@ -8,6 +8,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMessageBox>
+#include <qdebug.h>
 
 #include "model/datiModelli.h"
 #include "model/dativendite.h"

@@ -10,9 +10,14 @@ tabelle::tabelle()
 tabelle::tabelle(QString *path, QJsonDocument *file, bool b)
 {
     if(b){
-        listaModelli = gestioneFileJSon::getModellList(file);
-        listaTessuti = gestioneFileJSon::getTessutiList(file);
+        qDebug() << "costruttore";
         listaDatiModelli = gestioneFileJSon::getDM(file);
+        listaModelli = gestioneFileJSon::getModellList(file);
+        for(auto n : *listaModelli){
+            qDebug() <<n;
+        }
+        listaTessuti = gestioneFileJSon::getTessutiList(file);
+
         percorsoFile = path;
     } else {
         listaDatiVendite = gestioneFileJSon::getDV(file);
@@ -123,7 +128,7 @@ const QJsonDocument &tabelle::venditeSaveToQJSonDocument() const
         QJsonObject oggetto;
         oggetto.insert(QString::fromStdString("Pezzi Prodotti"),QJsonValue((int)d->getPezziProdotti()));
         oggetto.insert(QString::fromStdString("Pezzi Venduti"),QJsonValue((int)d->getPezziVenduti()));
-        oggetto.insert(QString::fromStdString("Mese"),d->getData().toString("MMMM/yyyy"));
+        oggetto.insert(QString::fromStdString("Mese"),d->getData().toString("dd/MM/yyyy"));
         arrayVendite.push_back(oggetto);
     }
     main.insert(QString::fromStdString("Dati delle vendite"),arrayVendite);

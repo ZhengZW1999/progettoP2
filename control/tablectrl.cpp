@@ -319,7 +319,7 @@ void tableCtrl::onOpenProjectPressed() const{
 
     QJsonDocument* jsonData = gestioneFileJSon::getJSONFileModelData(filepath);
     if(jsonData->isNull()){
-        vista->showWarningDialog("Errore Apertura File", "Riprova con un file valido");
+        vista->showWarningDialog("Errore Apertura File", "Riprova con un file valido "+ filepath);
         return;
     }
 
@@ -380,5 +380,3 @@ void tableCtrl::onSaveProjectAsPressed() const{
     //ora faccio il salvataggio automatico
     onSaveProjectPressed();
 }
-
-

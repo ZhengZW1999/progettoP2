@@ -6,7 +6,7 @@
 #include "model/dativendite.h"
 
 #include "control/gestionefilejson.h"
-
+#include <qdebug.h>
 #include <QString>
 #include <list>
 #include <QJsonDocument>

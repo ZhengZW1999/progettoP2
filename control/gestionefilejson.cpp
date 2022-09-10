@@ -1,7 +1,7 @@
 #include "gestionefilejson.h"
 
 QJsonDocument* gestioneFileJSon::getJSONFileModelData(const QString& path){
-    if(path.isNull()) return new QJsonDocument();
+    if(path.isNull()){return new QJsonDocument(); }
 
     QString fileData;
     QFile file;
@@ -14,7 +14,7 @@ QJsonDocument* gestioneFileJSon::getJSONFileModelData(const QString& path){
     //Controllo validità documento
     QJsonDocument* doc = new QJsonDocument(QJsonDocument::fromJson(fileData.toLocal8Bit()));
     QJsonObject dataObj = doc->object();
-    if(!dataObj.contains("Dati dei modelli") || !dataObj.contains("modelli") || !dataObj.contains("tessuti")){
+    if(!dataObj.contains("Dati dei modelli") || !dataObj.contains("Modelli") || !dataObj.contains("Tessuti")){
         delete doc;
         return new QJsonDocument();
     }
@@ -56,7 +56,7 @@ QJsonDocument *gestioneFileJSon::getJSONFileVenditeData(const QString &path)
 QStringList* gestioneFileJSon::getModellList(QJsonDocument* data){
     QStringList* listaModelli = new QStringList;
     QJsonObject dataObj = data->object();
-    QJsonArray materialiArray = dataObj["modelli"].toArray();
+    QJsonArray materialiArray = dataObj["Modelli"].toArray();
     for(const QJsonValue& value : materialiArray) {
         listaModelli->append(value.toString());
     }
@@ -67,7 +67,7 @@ QStringList *gestioneFileJSon::getTessutiList(QJsonDocument *data)
 {
     QStringList* listaTessuti = new QStringList;
     QJsonObject dataObj = data->object();
-    QJsonArray materialiArray = dataObj["tessuti"].toArray();
+    QJsonArray materialiArray = dataObj["Tessuti"].toArray();
     for(const QJsonValue& value : materialiArray) {
         listaTessuti->append(value.toString());
     }
@@ -77,17 +77,17 @@ QStringList *gestioneFileJSon::getTessutiList(QJsonDocument *data)
 std::list<datiModelli*> gestioneFileJSon::getDM(QJsonDocument* data){
     std::list<datiModelli*> lista;
     QJsonObject dataObj = data->object();
-    QJsonArray records = dataObj["records"].toArray();
+    QJsonArray records = dataObj["Dati dei modelli"].toArray();
     for(const QJsonValue& record : records){
         datiModelli* dm = new datiModelli(
-                record.toObject().value("materiale").toString(),
-                record.toObject().value("tessuto").toString(),
-                record.toObject().value("quantita' tessuto usato").toDouble(),
-                record.toObject().value("costo tessuto per MQ").toDouble(),
-                record.toObject().value("costo base").toDouble(),
-                record.toObject().value("costo lavaggio").toDouble(),
-                record.toObject().value("prezzo vendita").toDouble(),
-                record.toObject().value("produzione giornaliera").toDouble());
+                record.toObject().value("Materiale").toString(),
+                record.toObject().value("Tessuto").toString(),
+                record.toObject().value("Quantita' Tessuto Usato").toInt(),
+                record.toObject().value("Costo Tessuto Per MQ").toInt(),
+                record.toObject().value("Costo Base").toInt(),
+                record.toObject().value("Costo Lavaggio").toInt(),
+                record.toObject().value("Prezzo Vendita").toInt(),
+                record.toObject().value("Produzione Giornaliera").toInt());
         lista.push_back(dm);
     }
     return lista;
@@ -97,12 +97,12 @@ std::list<datiVendite *> gestioneFileJSon::getDV(QJsonDocument *data)
 {
     std::list<datiVendite*> lista;
     QJsonObject dataObj = data->object();
-    QJsonArray records = dataObj["records"].toArray();
+    QJsonArray records = dataObj["Dati delle vendite"].toArray();
     for(const QJsonValue& record : records){
         datiVendite* dv = new datiVendite(
-                record.toObject().value("produzione").toInt(),
-                record.toObject().value("vendita").toInt(),
-                QDate::fromString(record.toObject().value("data").toString(),"dd/MM/yyyy"));
+                record.toObject().value("Pezzi Prodotti").toInt(),
+                record.toObject().value("Pezzi Venduti").toInt(),
+                QDate::fromString(record.toObject().value("Mese").toString(),"dd/MM/yyyy"));
         lista.push_back(dv);
     }
     return lista;
