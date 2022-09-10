@@ -22,6 +22,11 @@ void tableView::connectViewSignals() const{
     connect(venditeBtn,SIGNAL(clicked()),this,SIGNAL(venditePressed()));
 
     connect(guida,SIGNAL(clicked()),this,SIGNAL(guidePressed()));
+
+    connect(newProject, SIGNAL(triggered()), this, SLOT(newProjectPressed()));
+    connect(openProject, SIGNAL(triggered()), this, SLOT(openProjectPressed()));
+    connect(saveProject, SIGNAL(triggered()), this, SLOT(saveProjectPressed()));
+    connect(saveProjectAs, SIGNAL(triggered()), this, SLOT(saveProjectAsPressed()));
 }
 tableView::tableView(const QSize& s, View* parent): View(s,parent)
 {
@@ -41,9 +46,16 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     menuBar->addMenu(tabella);
 
     //MENU FILE
-    file->addAction(new QAction("New Project...", file));
-    file->addAction(new QAction("Open Project...", file));
-    file->addAction(new QAction("Exit...", file));
+    newProject = new QAction("New Project...", file);
+    openProject = new QAction("Open Project...", file);
+    saveProject = new QAction("Save Project As...", file);
+    saveProjectAs = new QAction("Save Project As...", file);
+    Exit = new QAction("Exit...", file);
+    file->addAction(newProject);
+    file->addAction(openProject);
+    file->addAction(saveProject);
+    file->addAction(saveProjectAs);
+    file->addAction(Exit);
 
     //MENU TABELLA
     tabella->addAction(new QAction("Inserisci Riga", tabella));

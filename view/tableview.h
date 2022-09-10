@@ -36,6 +36,12 @@ private:
     QPushButton* venditeBtn;
     QPushButton* guida;
 
+    QAction* newProject;
+    QAction* saveProject;
+    QAction* saveProjectAs;
+    QAction* openProject;
+    QAction* Exit;
+
     void connectViewSignals() const override;
 protected:
     /**
@@ -119,6 +125,8 @@ signals:
 
     void venditePressed() const;
     void guidePressed() const;   
+
+    void newProjectPressed() const;
 };
 
 

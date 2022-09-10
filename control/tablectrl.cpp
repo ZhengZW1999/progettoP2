@@ -87,6 +87,11 @@ void tableCtrl::connectViewCtrlSignalsSlots() const{
     connect(vista,SIGNAL(venditePressed()),this,SLOT(onVenditePressed()));
     connect(vista,SIGNAL(guidePressed()),this,SLOT(onGuidePressed()));
 
+    connect(vista,SIGNAL(newProjectPressed()),this,SLOT(onNewProjectPressed()));
+    connect(vista,SIGNAL(openProjectPressed()),this,SLOT(onOpenProjectPressed()));
+    connect(vista,SIGNAL(saveProjectPressed()),this,SLOT(onSaveProjectPressed()));
+    connect(vista,SIGNAL(saveProjectAsPressed()),this,SLOT(onSaveProjectAsPressed()));
+
 }
 
 void tableCtrl::onViewClosed() const {
@@ -290,4 +295,91 @@ void tableCtrl::onGuidePressed() const{
     GuideView* guida = new GuideView();
     guida->show();
 }
+
+void tableCtrl::onNewProjectPressed() const{
+    if(!vista->showQuestionDialog(3,"Nuovo Progetto","Vuoi aprire un nuovo progetto ?"))return;
+
+    View* parentView = vista->parent() ? static_cast<View*>(vista->parent()) : nullptr;
+    Ctrl* parentCtrl = parent() ? static_cast<Ctrl*>(parent()) : nullptr;
+
+    tableView* TableView = new tableView(vista->size(),parentView);
+    TableView->setViewTitle(tr("Nuovo"));
+    TableView->setWindowSize(vista->size());
+    tableCtrl* TableControl = new tableCtrl(TableView,new tabelle(),parentCtrl);
+    TableControl->showView();
+    vista->hide();
+    delete this;
+}
+
+void tableCtrl::onOpenProjectPressed() const{
+    QString filepath = gestioneFileJSon::selectJSONFileDialog();
+    if(filepath.isNull()){
+        vista->showWarningDialog("Errore Apertura File", "Selezionare un file");
+        return;
+    }
+
+    QJsonDocument* jsonData = gestioneFileJSon::getJSONFileModelData(filepath);
+    if(jsonData->isNull()){
+        vista->showWarningDialog("Errore Apertura File", "Riprova con un file valido");
+        return;
+    }
+
+    //Apertura Nuova schermata Admin da progetto Salvato
+    tableView* view = new tableView(vista->size(),vista);
+    /*
+    AdminModel* adminModel = new AdminModel(jsonData,new QString(filepath));
+
+    //Imposto il titolo alla schermata
+    QStringList pieces = adminModel->getFilePath().split( "/" );
+    QString last = pieces.value( pieces.length() - 1 );
+    adminView->setViewTitle(last);
+
+    AdminCtrl* adminCtrl = new AdminCtrl(adminView,adminModel,const_cast<HomeCtrl*>(this));
+    adminCtrl->showView();
+    view->hide();
+   */
+}
+
+void tableCtrl::onSaveProjectPressed() const{
+    // Se il file non esiste, magari perchè è un nuovo progetto, salvo con nome
+    if(getModel()->getPercorsoFile().isEmpty() || getModel()->getPercorsoFile().isNull()){
+        onSaveProjectAsPressed();
+        return;
+    }
+
+    //Imposto il titolo alla schermata
+    QStringList pieces = getModel()->getPercorsoFile().split( "/" );
+    QString last = pieces.value( pieces.length() - 1 );
+    vista->setViewTitle(last);
+
+    //effettuo il salvataggio ed in base all'esito mostro un messaggio
+    bool esito = gestioneFileJSon::saveAdminModel(getModel()->modelSaveToQJSonDocument(),getModel()->getPercorsoFile());
+    if(!esito)
+        vista->showCriticalDialog("Errore Salvataggio grave","Salvataggio NON riuscito");
+    else
+        vista->showInformationDialog("Perfetto !","Salvataggio Riuscito");
+}
+
+void tableCtrl::onSaveProjectAsPressed() const{
+    //Faccio la richiesta per il nume del file
+    QString jsonFilter = "JSON Files (*.json)";
+    QString titolo = QString::fromStdString("Salva file con nome");
+    QString fname = QFileDialog::getSaveFileName(vista,titolo,QDir::homePath(),jsonFilter);
+
+    //Verifico che il nume sia valido
+    if(fname.isEmpty() || fname.isNull()){
+        vista->showCriticalDialog("Errore Salvataggio","Salvataggio NON riuscito\nInserire un nome file valido");
+        return;
+    }
+
+    if (!fname.endsWith(".json"))
+        fname+= tr(".json");
+
+    //Setto il nume del file al modello di dati
+    getModel()->setPercosoFile(fname);
+
+    //ora faccio il salvataggio automatico
+    onSaveProjectPressed();
+}
+
 

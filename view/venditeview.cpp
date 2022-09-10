@@ -32,10 +32,15 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
     //Menu
     QMenuBar* menuBar = new QMenuBar(this);
 
+    QMenu* file = new QMenu("File", menuBar);
+    file->addAction(new QAction("New Project..."));
+    file->addAction(new QAction("Open Project..."));
+    file->addAction(new QAction("Save Project As..."));
+
+
     QMenu* tabella = new QMenu("Tabella", menuBar);
 
     tabella->addAction(new QAction("Inserisci Riga"));
-    tabella->addAction(new QAction("Elimina Riga"));
     menuBar->addMenu(tabella);
 
 

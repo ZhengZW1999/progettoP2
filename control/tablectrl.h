@@ -156,6 +156,15 @@ public slots:
 
      void onVenditePressed() const;
      void onGuidePressed() const;
+
+     void onNewProjectPressed() const;
+
+     void onOpenProjectPressed() const;
+
+     void onSaveProjectPressed() const;
+
+     void onSaveProjectAsPressed() const;
+
 };
 
 #endif // TABLECTRL_H
