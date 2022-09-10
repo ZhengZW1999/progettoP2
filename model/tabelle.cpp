@@ -134,3 +134,7 @@ const QJsonDocument &tabelle::venditeSaveToQJSonDocument() const
 
 const QString &tabelle::getPercorsoFile() const{return *percorsoFile;}
 
+void tabelle::setPercosoFile(const QString& nomeF){
+    *percorsoFile = nomeF;
+}
+

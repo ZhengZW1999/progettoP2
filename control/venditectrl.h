@@ -48,6 +48,14 @@ public slots:
 
      void onAreaChartBPressed() const;
 
+     void onVenditeNewProjectPressed() const;
+
+     void onVenditeOpenProjectPressed() const;
+
+     void onVenditeSaveProjectPressed() const;
+
+     void onVenditeSaveProjectAsPressed() const;
+
 
 };
 

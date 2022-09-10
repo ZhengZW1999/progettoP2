@@ -22,7 +22,12 @@ private:
     QHBoxLayout* venditeBtnLayout;
     QTableWidget* venditeTable;
     QPushButton* areaChartBtn;
-    QPushButton* pageViewBtn;
+
+    QAction* newProject;
+    QAction* saveProject;
+    QAction* saveProjectAs;
+    QAction* openProject;
+    QAction* Exit;
 
     void connectViewSignals() const override;
 
@@ -49,6 +54,11 @@ signals:
     void venditeTablePezziVendutiMod(uint, uint) const;
     void venditeTableDataMod(uint, QDate) const;
     void areaChartBPressed() const;
+
+    void newVenditeProjectPressed() const;
+    void openVenditeProjectPressed() const;
+    void saveVenditeProjectPressed() const;
+    void saveVenditeProjectAsPressed() const;
 };
 
 #endif // VENDITEVIEW_H

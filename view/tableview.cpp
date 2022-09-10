@@ -23,10 +23,10 @@ void tableView::connectViewSignals() const{
 
     connect(guida,SIGNAL(clicked()),this,SIGNAL(guidePressed()));
 
-    connect(newProject, SIGNAL(triggered()), this, SLOT(newProjectPressed()));
-    connect(openProject, SIGNAL(triggered()), this, SLOT(openProjectPressed()));
-    connect(saveProject, SIGNAL(triggered()), this, SLOT(saveProjectPressed()));
-    connect(saveProjectAs, SIGNAL(triggered()), this, SLOT(saveProjectAsPressed()));
+    connect(newProject, SIGNAL(triggered()), this, SIGNAL(newProjectPressed()));
+    connect(openProject, SIGNAL(triggered()), this, SIGNAL(openProjectPressed()));
+    connect(saveProject, SIGNAL(triggered()), this, SIGNAL(saveProjectPressed()));
+    connect(saveProjectAs, SIGNAL(triggered()), this, SIGNAL(saveProjectAsPressed()));
 }
 tableView::tableView(const QSize& s, View* parent): View(s,parent)
 {
@@ -48,7 +48,7 @@ tableView::tableView(const QSize& s, View* parent): View(s,parent)
     //MENU FILE
     newProject = new QAction("New Project...", file);
     openProject = new QAction("Open Project...", file);
-    saveProject = new QAction("Save Project As...", file);
+    saveProject = new QAction("Save Project", file);
     saveProjectAs = new QAction("Save Project As...", file);
     Exit = new QAction("Exit...", file);
     file->addAction(newProject);

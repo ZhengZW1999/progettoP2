@@ -17,6 +17,11 @@ void venditeView::closeEvent(QCloseEvent* event){
 void venditeView::connectViewSignals() const{
     connect(areaChartBtn,SIGNAL(clicked()),this,SIGNAL(areaChartBPressed()));
 
+    connect(newProject, SIGNAL(triggered()), this, SIGNAL(newVenditeProjectPressed()));
+    connect(openProject, SIGNAL(triggered()), this, SIGNAL(openVenditeProjectPressed()));
+    connect(saveProject, SIGNAL(triggered()), this, SIGNAL(saveVenditeProjectPressed()));
+    connect(saveProjectAs, SIGNAL(triggered()), this, SIGNAL(saveVenditeProjectAsPressed()));
+
 }
 
 venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
@@ -29,19 +34,29 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
     venditeLayout->setSpacing(0);
     venditeBtnLayout->setMargin(20);
 
-    //Menu
     QMenuBar* menuBar = new QMenuBar(this);
 
     QMenu* file = new QMenu("File", menuBar);
-    file->addAction(new QAction("New Project..."));
-    file->addAction(new QAction("Open Project..."));
-    file->addAction(new QAction("Save Project As..."));
-
-
     QMenu* tabella = new QMenu("Tabella", menuBar);
 
-    tabella->addAction(new QAction("Inserisci Riga"));
+    menuBar->addMenu(file);
     menuBar->addMenu(tabella);
+
+    //MENU FILE
+    newProject = new QAction("New Project...", file);
+    openProject = new QAction("Open Project...", file);
+    saveProject = new QAction("Save Project", file);
+    saveProjectAs = new QAction("Save Project As...", file);
+    Exit = new QAction("Exit...", file);
+    file->addAction(newProject);
+    file->addAction(openProject);
+    file->addAction(saveProject);
+    file->addAction(saveProjectAs);
+    file->addAction(Exit);
+
+    //MENU TABELLA
+    tabella->addAction(new QAction("Inserisci Riga", tabella));
+    tabella->addAction(new QAction("Elimina Riga", tabella));
 
 
     //Creazione Tabella

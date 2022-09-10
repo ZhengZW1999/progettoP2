@@ -308,7 +308,6 @@ void tableCtrl::onNewProjectPressed() const{
     tableCtrl* TableControl = new tableCtrl(TableView,new tabelle(),parentCtrl);
     TableControl->showView();
     vista->hide();
-    delete this;
 }
 
 void tableCtrl::onOpenProjectPressed() const{
@@ -326,18 +325,18 @@ void tableCtrl::onOpenProjectPressed() const{
 
     //Apertura Nuova schermata Admin da progetto Salvato
     tableView* view = new tableView(vista->size(),vista);
-    /*
-    AdminModel* adminModel = new AdminModel(jsonData,new QString(filepath));
+
+    tabelle* model = new tabelle(new QString(filepath), jsonData, true);
 
     //Imposto il titolo alla schermata
-    QStringList pieces = adminModel->getFilePath().split( "/" );
+    QStringList pieces = model->getPercorsoFile().split( "/" );
     QString last = pieces.value( pieces.length() - 1 );
-    adminView->setViewTitle(last);
+    //model->setViewTitle(last);
 
-    AdminCtrl* adminCtrl = new AdminCtrl(adminView,adminModel,const_cast<HomeCtrl*>(this));
-    adminCtrl->showView();
+    tableCtrl* ctrl = new tableCtrl(view,model,nullptr);
+    ctrl->showView();
     view->hide();
-   */
+
 }
 
 void tableCtrl::onSaveProjectPressed() const{

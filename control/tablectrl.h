@@ -99,63 +99,19 @@ public slots:
      void onDataTableProdGiornalieraMod(unsigned int row, unsigned int pd);
 
 
-
-     /**
-      * @brief onNewBPressed SLOT eseguito alla ricezione di SEGNALI dalla view
-      * Azione da eseguire per aprire un nuovo progetto
-      */
-
-     //void onNewBPressed();
-
-     /**
-      * @brief onSaveBPressed SLOT eseguito alla ricezione di SEGNALI dalla view
-      * azione eseguite per salvare il progetto
-      */
-
-     //void onSaveBPressed()const;
-
-     /**
-      * @brief onSaveAsBPressed SLOT eseguito alla ricezione di SEGNALI dalla view
-      * azione eseguita per salvare il progetto con un nome diverso
-      */
-
-     //void onSaveAsBPressed()const;
-
-     /**
-      * @brief onHomeBPressed SLOT eseguito alla ricezione di SEGNALI dalla view
-      * azione eseguita per tornare alla home
-      */
-
-     //void onHomeBPressed();
-
-     /**
-      * @brief onPieChartBPressed SLOT eseguito alla ricezione di SEGNALI dall view
-      * che chiede come azione eseguita l'apertura di un PieChart
-      * viene usato il modello attuale nel Ctrl
-      */
-
      void onPieChartBPressed()const;
-
-     /**
-      * @brief onLineChartBPressed SLOT eseguito alla ricezione di SEGNALI dalla view
-      * che chiede come azione eseguita l'apertura di un LineChart
-      * viene usato il modello attuale nel Ctrl
-      */
 
      void onLineChartBPressed()const;
 
-     /**
-      * @brief onBarChartBPressed SLOT eseguito alla ricezione di SEGNALI dalla view
-      * che chiede come azione eseguita l'apertura di un BarChart
-      * viene usato il modello attuale nel Ctrl
-      */
-
      void onBarChartBPressed() const;
+
      void onStackedBarChartBPressed() const;
 
 
      void onVenditePressed() const;
+
      void onGuidePressed() const;
+
 
      void onNewProjectPressed() const;
 
