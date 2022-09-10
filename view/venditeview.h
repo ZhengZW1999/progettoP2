@@ -29,6 +29,8 @@ private:
     QAction* openProject;
     QAction* Exit;
 
+    QAction* AggiungiRiga;
+
     void connectViewSignals() const override;
 
 protected:

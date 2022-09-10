@@ -55,8 +55,8 @@ venditeView::venditeView(const QSize& s, View* parent): View(s,parent)
     file->addAction(Exit);
 
     //MENU TABELLA
-    tabella->addAction(new QAction("Inserisci Riga", tabella));
-    tabella->addAction(new QAction("Elimina Riga", tabella));
+    AggiungiRiga = new QAction("Aggiungi Riga", tabella);
+    tabella->addAction(AggiungiRiga);
 
 
     //Creazione Tabella

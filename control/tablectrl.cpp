@@ -330,12 +330,11 @@ void tableCtrl::onOpenProjectPressed() const{
 
     //Imposto il titolo alla schermata
     QStringList pieces = model->getPercorsoFile().split( "/" );
-    QString last = pieces.value( pieces.length() - 1 );
-    //model->setViewTitle(last);
+    QString last = pieces.value( pieces.length() - 1 );   
 
     tableCtrl* ctrl = new tableCtrl(view,model,nullptr);
     ctrl->showView();
-    view->hide();
+    vista->hide();
 
 }
 

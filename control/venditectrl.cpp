@@ -120,7 +120,7 @@ void venditeCtrl::onVenditeOpenProjectPressed() const{
 
     venditeCtrl* ctrl = new venditeCtrl(view,model,nullptr);
     ctrl->showView();
-    view->hide();
+    vista->hide();
 
 }
 
