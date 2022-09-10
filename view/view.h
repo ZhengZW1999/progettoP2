@@ -5,6 +5,7 @@
 #include <QSize>
 #include <QMessageBox>
 #include <QDialog>
+#include <QCloseEvent>
 
 #include "model/tabelle.h"
 
@@ -36,7 +37,7 @@ protected:
      * @param event
      */
 
-    //void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
 
 public:
     /**

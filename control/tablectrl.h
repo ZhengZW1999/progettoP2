@@ -57,8 +57,11 @@ public:
 signals:
 
 public slots:
-
-     void onViewClosed() const override;
+    /**
+     * @brief onViewClosed SLOT eseguito alla ricezione di SEGNALI di chiusura della View
+     * In questo caso distrugger il suddetto controller, che di seguito distrugge la view e il model
+     */
+    void onViewClosed() const override;
 
      void onDataTableRemoved(unsigned int row);
 
