@@ -1,0 +1,54 @@
+{
+    "Dati dei modelli": [
+        {
+            "Costo Base": 30,
+            "Costo Lavaggio": 15,
+            "Costo Tessuto Per Metro Quadro": 7,
+            "Nome Modello": "felpa",
+            "Prezo Vendita": 180,
+            "Produzione Giornaliera": 6,
+            "Tessuto": "cotone",
+            "Tessuto Usato": 2
+        },
+        {
+            "Costo Base": 7,
+            "Costo Lavaggio": 15,
+            "Costo Tessuto Per Metro Quadro": 7,
+            "Nome Modello": "camicia",
+            "Prezo Vendita": 50,
+            "Produzione Giornaliera": 20,
+            "Tessuto": "cotone",
+            "Tessuto Usato": 1
+        },
+        {
+            "Costo Base": 12,
+            "Costo Lavaggio": 20,
+            "Costo Tessuto Per Metro Quadro": 6,
+            "Nome Modello": "pantaloni",
+            "Prezo Vendita": 120,
+            "Produzione Giornaliera": 11,
+            "Tessuto": "jeans",
+            "Tessuto Usato": 2
+        },
+        {
+            "Costo Base": 15,
+            "Costo Lavaggio": 20,
+            "Costo Tessuto Per Metro Quadro": 10,
+            "Nome Modello": "pantaloni",
+            "Prezo Vendita": 150,
+            "Produzione Giornaliera": 8,
+            "Tessuto": "velluto",
+            "Tessuto Usato": 2
+        }
+    ],
+    "Modelli": [
+        "felpa",
+        "camicia",
+        "pantaloni"
+    ],
+    "Tessuti": [
+        "cotone",
+        "jeans",
+        "velluto"
+    ]
+}

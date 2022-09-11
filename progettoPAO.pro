@@ -75,6 +75,7 @@ RESOURCES += \
     resource.qrc
 
 ICON = produGrapherIcon.ico
+QMAKE_LFLAGS += -no-pie
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

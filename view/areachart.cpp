@@ -45,7 +45,7 @@ void areaChart::applyAreaAxis(const QStringList &mesi, const unsigned int max)
 
     //Imposto titolo degli assi
     if(chart->axisX() && chart->axisY()){
-       chart->axisX()->setTitleText("Mese Anno");
+       chart->axisX()->setTitleText("Anno Mese");
        chart->axisY()->setTitleText("Produzione e Vendita");
     }
 }
