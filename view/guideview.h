@@ -19,9 +19,6 @@ private:
 
     void connectViewSignals() const override;
 
-protected:
-
-    //void closeEvent(QCloseEvent *event) override;
 public:
 
     explicit GuideView(const QSize& s = QSize(),View* parent = nullptr);

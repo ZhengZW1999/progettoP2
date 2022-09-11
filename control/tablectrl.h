@@ -35,33 +35,18 @@ private:
     void connectViewCtrlSignalsSlots() const;
 
 public:
-    /**
-     * @brief AdminCtrl
-     * @param v View collegata al Controller
-     * @param m Model collegato al Controller
-     */
+
     tableCtrl(tableView* v, tabelle* m = new tabelle(), Ctrl* parent = nullptr);
 
-    /**
-     * @brief getView Ritorna La View castata almeno al tipo corrente AdminView
-     * @return
-     */
     tableView* getView() const override;
 
-    /**
-     * @brief getModel Ritorna il Model castato almeno al tipo corrente ModelView
-     * @return
-     */
     tabelle* getModel() const override;
 
 signals:
 
 public slots:
-    /**
-     * @brief onViewClosed SLOT eseguito alla ricezione di SEGNALI di chiusura della View
-     * In questo caso distrugger il suddetto controller, che di seguito distrugge la view e il model
-     */
-    void onViewClosed() const override;
+
+     void onViewClosed() const override;
 
      void onDataTableRemoved(unsigned int row);
 

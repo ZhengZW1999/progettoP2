@@ -432,7 +432,6 @@ void tableView::addRowModelliTable(unsigned int row){
     //Inserismo una nuova riga per fare spazio
     modelliTable->insertRow(row);
 
-    //Materiale Widget Select Box
     QTextEdit* modelloW = new QTextEdit(this);
    modelliTable->setCellWidget(row,0,modelloW);
 
@@ -454,7 +453,7 @@ void tableView::addItemModelliTable(unsigned int row,const QString& m){
     //Creo La ADD Row più in basso
     addRowModelliTable(row+1);
 
-    //Materiale Widget Select Box
+
     QTextEdit* modelloW = new QTextEdit(this);
     modelloW->setText(m);
     modelliTable->setCellWidget(row,0,modelloW);
@@ -466,7 +465,7 @@ void tableView::addItemModelliTable(unsigned int row,const QString& m){
 
     //Delete Button Widget
     QPushButton* deleteW = new QPushButton("-",this);
-    //deleteW->setObjectName(QString::number(row));
+
     modelliTable->setCellWidget(row,1,deleteW);//Widget
 
     connect(deleteW, &QPushButton::clicked,[this,deleteW]() {
@@ -497,7 +496,6 @@ void tableView::addRowTessutiTable(unsigned int row){
     //Inserismo una nuova riga per fare spazio
     tessutiTable->insertRow(row);
 
-    //Materiale Widget Select Box
     QTextEdit* tessutoW = new QTextEdit(this);
     tessutiTable->setCellWidget(row,0,tessutoW);
 
@@ -519,7 +517,6 @@ void tableView::addItemTessutiTable(unsigned int row,const QString& m){
     //Creo La ADD Row più in basso
     addRowTessutiTable(row+1);
 
-    //Materiale Widget Select Box
     QTextEdit* tessutoW = new QTextEdit(this);
     tessutoW->setText(m);
     tessutiTable->setCellWidget(row,0,tessutoW);
@@ -531,7 +528,7 @@ void tableView::addItemTessutiTable(unsigned int row,const QString& m){
 
     //Delete Button Widget
     QPushButton* deleteW = new QPushButton("-",this);
-    //deleteW->setObjectName(QString::number(row));
+
     tessutiTable->setCellWidget(row,1,deleteW);//Widget
 
     connect(deleteW, &QPushButton::clicked,[this,deleteW]() {

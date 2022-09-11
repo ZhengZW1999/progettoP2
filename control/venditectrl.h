@@ -34,10 +34,7 @@ public:
 signals:
 
 public slots:    
-     /**
-      * @brief onViewClosed SLOT eseguito alla ricezione di SEGNALI di chiusura della View
-      * In questo caso distrugger il suddetto controller, che di seguito distrugge la view e il model
-      */
+
      void onViewClosed() const override;
 
      void onVenditeTableAdded(unsigned int pP, unsigned int pV, QDate data);
