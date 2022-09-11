@@ -32,7 +32,6 @@ SOURCES += \
     view/barchart.cpp \
     view/guideview.cpp \
     main.cpp \
-    mainwindow.cpp \
     model/model.cpp \
     view/linechart.cpp \
     view/piechart.cpp \
@@ -62,7 +61,6 @@ HEADERS += \
     view/areachart.h \
     view/barchart.h \
     view/guideview.h \
-    mainwindow.h \
     model/model.h \
     view/linechart.h \
     view/piechart.h \
