@@ -27,6 +27,7 @@ void tableView::connectViewSignals() const{
     connect(openProject, SIGNAL(triggered()), this, SIGNAL(openProjectPressed()));
     connect(saveProject, SIGNAL(triggered()), this, SIGNAL(saveProjectPressed()));
     connect(saveProjectAs, SIGNAL(triggered()), this, SIGNAL(saveProjectAsPressed()));
+    connect(Exit, SIGNAL(triggered()), this, SIGNAL(exitPressed()));
 }
 tableView::tableView(const QSize& s, View* parent): View(s,parent)
 {

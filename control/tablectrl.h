@@ -121,6 +121,8 @@ public slots:
 
      void onSaveProjectAsPressed() const;
 
+     void onExitPressed() const;
+
 };
 
 #endif // TABLECTRL_H

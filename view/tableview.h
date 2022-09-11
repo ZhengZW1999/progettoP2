@@ -125,6 +125,7 @@ signals:
     void openProjectPressed() const;
     void saveProjectPressed() const;
     void saveProjectAsPressed() const;
+    void exitPressed() const;
 };
 
 

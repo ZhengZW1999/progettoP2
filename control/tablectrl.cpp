@@ -87,6 +87,7 @@ void tableCtrl::connectViewCtrlSignalsSlots() const{
     connect(vista,SIGNAL(openProjectPressed()),this,SLOT(onOpenProjectPressed()));
     connect(vista,SIGNAL(saveProjectPressed()),this,SLOT(onSaveProjectPressed()));
     connect(vista,SIGNAL(saveProjectAsPressed()),this,SLOT(onSaveProjectAsPressed()));
+    connect(vista,SIGNAL(exitPressed()),this,SLOT(onExitPressed()));
 
 }
 
@@ -374,4 +375,8 @@ void tableCtrl::onSaveProjectAsPressed() const{
 
     //ora faccio il salvataggio automatico
     onSaveProjectPressed();
+}
+
+void tableCtrl::onExitPressed() const{
+     vista->viewClosed();
 }
